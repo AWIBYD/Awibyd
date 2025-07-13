@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Keunggulan BYD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Chart.js Library Ditambahkan Disini -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+}
+.byd-blue { color: #003a70; }
+.byd-bg-blue { background-color: #003a70; }
+.savings-green { color: #16a34a; }
+.savings-bg-green { background-color: #f0fdf4; }
+.loss-red { color: #dc2626; }
+#formulaDetails {
+transition: max-height 0.3s ease-out;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto max-w-4xl p-4 md:p-8">
+<header class="text-center mb-8">
+<h1 class="text-3xl md:text-4xl font-bold byd-blue">Kalkulator Keunggulan Finansial BYD</h1>
+<p class="text-gray-600 mt-2">Buktikan penghematan nyata memiliki mobil listrik BYD.</p>
+</header>
+
+<!-- Input Section -->
+<div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+<h2 class="text-2xl font-bold byd-blue mb-6 border-b pb-3">1. Parameter Perbandingan</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<!-- Kolom Parameter Mobil Bensin -->
+<div>
+<h3 class="font-semibold text-lg mb-4 text-gray-700">Mobil Bensin Anda Saat Ini</h3>
+<div class="space-y-4">
+<div>
+<label for="iceConsumption" class="block text-sm font-medium text-gray-700">Konsumsi BBM (km/L)</label>
+<input type="number" id="iceConsumption" value="12" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+<div>
+<label for="petrolPrice" class="block text-sm font-medium text-gray-700">Harga Bensin per Liter (Rp)</label>
+<input type="number" id="petrolPrice" value="14000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+<div>
+<label for="annualServiceIce" class="block text-sm font-medium text-gray-700">Biaya Servis Tahunan (Rp)</label>
+<input type="number" id="annualServiceIce" value="1500000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+<div>
+<label for="annualTaxIce" class="block text-sm font-medium text-gray-700">Pajak Tahunan (PKB) (Rp)</label>
+<input type="number" id="annualTaxIce" value="4000000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+</div>
+</div>
+<!-- Kolom Parameter BYD & Umum -->
+<div>
+<h3 class="font-semibold text-lg mb-4 text-gray-700">Mobil BYD & Penggunaan</h3>
+<div class="space-y-4">
+<div>
+<label for="bydModel" class="block text-sm font-medium text-gray-700">Pilih Model BYD</label>
+<select id="bydModel" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+<option value="atto3_superior">BYD Atto 3 Superior</option>
+<option value="dolphin_premium">BYD Dolphin Premium</option>
+<option value="seal_premium">BYD Seal Premium</option>
+<option value="m6_superior">BYD M6 Superior</option>
+<option value="sealion7_premium">BYD Sealion 7 Premium</option>
+</select>
+<!-- Keterangan Spesifikasi Otomatis -->
+<div id="bydSpecInfo" class="mt-2 text-xs text-gray-600 bg-gray-100 p-2 rounded-md">
+<!-- Info akan diisi oleh JavaScript -->
+</div>
+</div>
+<div>
+<label for="monthlyMileage" class="block text-sm font-medium text-gray-700">Jarak Tempuh Bulanan (km)</label>
+<input type="number" id="monthlyMileage" value="1250" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+<div>
+<label for="electricityPrice" class="block text-sm font-medium text-gray-700">Harga Listrik per kWh (Rp)</label>
+<input type="number" id="electricityPrice" value="1700" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+</div>
+<div>
+<label for="annualServiceByd" class="block text-sm font-medium text-gray-700">Biaya Servis Tahunan BYD (Rp)</label>
+<input type="number" id="annualServiceByd" value="0" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+<p class="text-xs text-gray-500 mt-1">*Gratis selama 4 thn/60rb km.</p>
+</div>
+<div>
+<label for="annualTaxByd" class="block text-sm font-medium text-gray-700">Pajak Tahunan (PKB) BYD (Rp)</label>
+<input type="number" id="annualTaxByd" value="750000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+<p class="text-xs text-gray-500 mt-1">*Pajak EV jauh lebih rendah.</p>
+</div>
+</div>
+</div>
+<!-- Pilihan Periode Kepemilikan -->
+<div class="md:col-span-2">
+<label for="ownershipPeriod" class="block text-sm font-medium text-gray-700">Hitung Penghematan untuk Periode Kepemilikan:</label>
+<select id="ownershipPeriod" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+<option value="1">1 Tahun</option>
+<option value="2">2 Tahun</option>
+<option value="3">3 Tahun</option>
+<option value="4">4 Tahun</option>
+<option value="5" selected>5 Tahun</option>
+<option value="6">6 Tahun</option>
+<option value="7">7 Tahun</option>
+<option value="8">8 Tahun</option>
+</select>
+</div>
+</div>
+<!-- Tombol Hitung -->
+<div class="mt-8 text-center">
+<button id="calculateBtn" class="w-full md:w-auto byd-bg-blue text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-800 transition-all duration-300 transform hover:scale-105">
+HITUNG SEKARANG
+</button>
+</div>
+</div>
+
+<!-- Result Section -->
+<div class="bg-white p-6 rounded-2xl shadow-lg">
+<h2 class="text-2xl font-bold byd-blue mb-6 border-b pb-3">2. Hasil Perbandingan Biaya Tahunan</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Kolom Hasil BYD -->
+<div class="border border-blue-200 p-4 rounded-lg bg-blue-50">
+<h3 id="bydModelName" class="text-xl font-bold byd-blue text-center mb-4">BYD Atto 3 Superior</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Listrik:</span>
+<span id="bydYearlyCost" class="font-bold text-lg byd-blue">Rp 0</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Servis:</span>
+<span id="bydAnnualService" class="font-bold text-lg byd-blue">Rp 0</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Pajak:</span>
+<span id="bydAnnualTax" class="font-bold text-lg byd-blue">Rp 0</span>
+</div>
+<hr>
+<div class="flex justify-between items-center pt-2">
+<span class="font-extrabold text-lg text-gray-800">TOTAL:</span>
+<span id="bydTotalYearly" class="font-extrabold text-2xl byd-blue">Rp 0</span>
+</div>
+</div>
+</div>
+<!-- Kolom Hasil Mobil Bensin -->
+<div class="border border-gray-300 p-4 rounded-lg">
+<h3 class="text-xl font-bold text-gray-700 text-center mb-4">Mobil Bensin Populer</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Bensin:</span>
+<span id="iceYearlyCost" class="font-bold text-lg loss-red">Rp 0</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Servis:</span>
+<span id="iceAnnualService" class="font-bold text-lg loss-red">Rp 0</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-semibold text-gray-600">Biaya Pajak:</span>
+<span id="iceAnnualTax" class="font-bold text-lg loss-red">Rp 0</span>
+</div>
+<hr>
+<div class="flex justify-between items-center pt-2">
+<span class="font-extrabold text-lg text-gray-800">TOTAL:</span>
+<span id="iceTotalYearly" class="font-extrabold text-2xl loss-red">Rp 0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Elemen Canvas untuk Grafik -->
+<div class="mt-8">
+<h3 class="text-xl font-bold byd-blue text-center mb-4">Grafik Perbandingan Biaya Tahunan</h3>
+<canvas id="comparisonChart"></canvas>
+</div>
+</div>
+
+<!-- Formula Section (Collapsible) -->
+<div class="bg-gray-50 p-4 md:p-6 rounded-2xl shadow-lg mt-8 border">
+<button id="toggleFormulaBtn" class="w-full text-left font-bold text-lg byd-blue">
+<div class="flex justify-between items-center">
+<span>Lihat Detail Rumus Perhitungan</span>
+<span id="formula-arrow" class="transform transition-transform duration-300">▼</span>
+</div>
+</button>
+<div id="formulaDetails" class="hidden mt-4 pt-4 border-t border-gray-200 space-y-4">
+<div>
+<h4 class="font-semibold text-gray-700 mb-2">Biaya Listrik BYD</h4>
+<div class="space-y-2 text-xs md:text-sm text-gray-600">
+<p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Konsumsi per km (kWh):</strong> Kapasitas Baterai / Jarak Tempuh</p>
+<p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya Tahunan:</strong> Konsumsi per km * Harga Listrik * Jarak Tahunan</p>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-gray-700 mt-4 mb-2">Biaya Bahan Bakar Bensin</h4>
+<div class="space-y-2 text-xs md:text-sm text-gray-600">
+<p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya per km:</strong> Harga Bensin / Konsumsi BBM</p>
+<p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya Tahunan:</strong> Biaya per km * Jarak Tempuh Tahunan</p>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-gray-700 mt-4 mb-2">Total Penghematan</h4>
+<p class="text-xs md:text-sm text-gray-600 bg-gray-100 p-3 rounded-md font-mono">(Total Biaya Tahunan Bensin - Total Biaya Tahunan BYD) * Periode Kepemilikan</p>
+</div>
+</div>
+</div>
+
+<!-- Savings Section -->
+<div class="mt-8 savings-bg-green p-6 rounded-2xl shadow-lg border-2 border-green-500">
+<h2 class="text-2xl font-bold text-center savings-green mb-4">🎉 Total Potensi Penghematan Anda 🎉</h2>
+<div class="text-center">
+<p class="text-lg text-gray-700">Dengan beralih ke BYD, Anda berpotensi menghemat:</p>
+<div class="my-4">
+<span class="block text-xl font-semibold">Per Tahun</span>
+<div class="text-4xl md:text-5xl font-black savings-green" id="yearlySavings">Rp 0</div>
+</div>
+<div class="my-4">
+<span id="totalSavingsLabel" class="block text-xl font-semibold">Dalam 5 Tahun</span>
+<div class="text-4xl md:text-5xl font-black savings-green" id="totalSavings">Rp 0</div>
+</div>
+<p class="text-sm text-gray-600 mt-4">*Penghematan ini bisa digunakan untuk liburan, pendidikan, atau investasi lainnya!</p>
+</div>
+</div>
+
+<!-- Sales Watermark Section Telah Diperbarui -->
+<div class="mt-8 text-center border-t-2 border-dashed border-gray-300 pt-8">
+<h3 class="text-lg font-semibold text-gray-800">Informasi & Pemesanan:</h3>
+<p class="text-2xl font-bold byd-blue mt-2">AWI BYD</p>
+<p class="text-lg text-gray-600 mt-1">Sales Consultant - BYD Haka Makassar</p>
+<p class="text-lg text-gray-600 mt-1"><strong>Telp/WA:</strong> 082259452349</p>
+</div>
+
+<footer class="text-center text-xs text-gray-500 mt-8">
+<p>Data spesifikasi (baterai & jarak tempuh) berdasarkan brosur resmi BYD. Perhitungan ini adalah estimasi.</p>
+<p class="font-bold mt-2">BYD Haka Makassar</p>
+</footer>
+</div>
+
+<script>
+// Data spesifikasi model BYD
+const bydData = {
+'atto3_superior': { name: 'BYD Atto 3 Superior', battery: 60.48, range: 480 },
+'dolphin_premium': { name: 'BYD Dolphin Premium', battery: 60.48, range: 490 },
+'seal_premium': { name: 'BYD Seal Premium', battery: 82.56, range: 650 },
+'m6_superior': { name: 'BYD M6 Superior', battery: 71.8, range: 530 },
+'sealion7_premium': { name: 'BYD Sealion 7 Premium', battery: 82.56, range: 567 }
+};
+
+// Mengambil elemen-elemen DOM
+const calculateBtn = document.getElementById('calculateBtn');
+const toggleFormulaBtn = document.getElementById('toggleFormulaBtn');
+const formulaDetails = document.getElementById('formulaDetails');
+const formulaArrow = document.getElementById('formula-arrow');
+const bydModelSelect = document.getElementById('bydModel');
+const chartCanvas = document.getElementById('comparisonChart');
+let comparisonChart; // Variabel untuk menyimpan instance chart
+
+// Fungsi untuk memformat angka menjadi format mata uang Rupiah
+function formatCurrency(value) {
+return new Intl.NumberFormat('id-ID', {
+style: 'currency',
+currency: 'IDR',
+minimumFractionDigits: 0
+}).format(value);
+}
+
+// Fungsi untuk memperbarui info spesifikasi model
+function updateSpecInfo() {
+const modelKey = bydModelSelect.value;
+const selectedByd = bydData[modelKey];
+const specInfoDiv = document.getElementById('bydSpecInfo');
+specInfoDiv.innerHTML = `Kapasitas Baterai: <strong>${selectedByd.battery} kWh</strong> | Jarak Tempuh: <strong>${selectedByd.range} km</strong>`;
+}
+
+// Fungsi untuk mengupdate atau membuat grafik
+function updateChart(bydCosts, iceCosts) {
+const data = {
+labels: ['Energi', 'Servis', 'Pajak'],
+datasets: [
+{
+label: 'BYD',
+data: bydCosts,
+backgroundColor: 'rgba(0, 58, 112, 0.7)', // Warna BYD Blue
+borderColor: 'rgba(0, 58, 112, 1)',
+borderWidth: 1
+},
+{
+label: 'Mobil Bensin',
+data: iceCosts,
+backgroundColor: 'rgba(220, 38, 38, 0.7)', // Warna Loss Red
+borderColor: 'rgba(220, 38, 38, 1)',
+borderWidth: 1
+}
+]
+};
+
+if (comparisonChart) {
+comparisonChart.data = data;
+comparisonChart.update();
+} else {
+const ctx = chartCanvas.getContext('2d');
+comparisonChart = new Chart(ctx, {
+type: 'bar',
+data: data,
+options: {
+responsive: true,
+plugins: {
+legend: {
+position: 'top',
+},
+tooltip: {
+callbacks: {
+label: function(context) {
+let label = context.dataset.label || '';
+if (label) {
+label += ': ';
+}
+if (context.parsed.y !== null) {
+label += formatCurrency(context.parsed.y);
+}
+return label;
+}
+}
+}
+},
+scales: {
+y: {
+beginAtZero: true,
+ticks: {
+callback: function(value, index, values) {
+return formatCurrency(value);
+}
+}
+}
+}
+}
+});
+}
+}
+
+// Fungsi utama untuk melakukan kalkulasi
+function calculate() {
+// Mengambil semua nilai dari input
+const modelKey = bydModelSelect.value;
+const monthlyMileage = parseFloat(document.getElementById('monthlyMileage').value) || 0;
+const petrolPrice = parseFloat(document.getElementById('petrolPrice').value) || 0;
+const iceConsumption = parseFloat(document.getElementById('iceConsumption').value) || 1;
+const electricityPrice = parseFloat(document.getElementById('electricityPrice').value) || 0;
+const annualServiceIce = parseFloat(document.getElementById('annualServiceIce').value) || 0;
+const annualServiceByd = parseFloat(document.getElementById('annualServiceByd').value) || 0;
+const annualTaxIce = parseFloat(document.getElementById('annualTaxIce').value) || 0;
+const annualTaxByd = parseFloat(document.getElementById('annualTaxByd').value) || 0;
+const ownershipPeriod = parseInt(document.getElementById('ownershipPeriod').value) || 1;
+
+const selectedByd = bydData[modelKey];
+const yearlyMileage = monthlyMileage * 12;
+
+// --- Perhitungan BYD ---
+const bydKwhPerKm = selectedByd.battery / selectedByd.range;
+const bydCostPerKm = bydKwhPerKm * electricityPrice;
+const bydYearlyCost = bydCostPerKm * yearlyMileage;
+const bydTotalYearly = bydYearlyCost + annualServiceByd + annualTaxByd;
+
+// --- Perhitungan Mobil Bensin (ICE) ---
+const iceCostPerKm = petrolPrice / iceConsumption;
+const iceYearlyCost = iceCostPerKm * yearlyMileage;
+const iceTotalYearly = iceYearlyCost + annualServiceIce + annualTaxIce;
+
+// --- Perhitungan Penghematan ---
+const yearlySavings = iceTotalYearly - bydTotalYearly;
+const totalSavings = yearlySavings * ownershipPeriod;
+
+// --- Memperbarui tampilan (UI) ---
+document.getElementById('bydModelName').innerText = selectedByd.name;
+updateSpecInfo();
+
+// Update kolom BYD
+document.getElementById('bydYearlyCost').innerText = formatCurrency(bydYearlyCost);
+document.getElementById('bydAnnualService').innerText = formatCurrency(annualServiceByd);
+document.getElementById('bydAnnualTax').innerText = formatCurrency(annualTaxByd);
+document.getElementById('bydTotalYearly').innerText = formatCurrency(bydTotalYearly);
+
+// Update kolom Mobil Bensin
+document.getElementById('iceYearlyCost').innerText = formatCurrency(iceYearlyCost);
+document.getElementById('iceAnnualService').innerText = formatCurrency(annualServiceIce);
+document.getElementById('iceAnnualTax').innerText = formatCurrency(iceTotalYearly);
+
+// Update kolom Penghematan
+document.getElementById('yearlySavings').innerText = formatCurrency(yearlySavings > 0 ? yearlySavings : 0);
+document.getElementById('totalSavingsLabel').innerText = `Dalam ${ownershipPeriod} Tahun`;
+document.getElementById('totalSavings').innerText = formatCurrency(totalSavings > 0 ? totalSavings : 0);
+
+// Update Grafik
+updateChart([bydYearlyCost, annualServiceByd, annualTaxByd], [iceYearlyCost, annualServiceIce, annualTaxIce]);
+}
+
+// Event listener untuk tombol kalkulasi
+calculateBtn.addEventListener('click', calculate);
+
+// Event listener untuk tombol buka/tutup rumus
+toggleFormulaBtn.addEventListener('click', () => {
+formulaDetails.classList.toggle('hidden');
+formulaArrow.classList.toggle('rotate-180');
+});
+
+// Event listener untuk select model agar info spesifikasi langsung update
+bydModelSelect.addEventListener('change', updateSpecInfo);
+
+// Melakukan perhitungan awal dan update info spesifikasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+updateSpecInfo();
+calculate();
+});
+</script>
+</body>
+</html>
