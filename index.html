@@ -1,732 +1,418 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kalkulator TCO: Keunggulan Jangka Panjang BYD</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body {
-font-family: 'Inter', sans-serif;
-}
-.card {
-background-color: white;
-border-radius: 0.75rem;
-box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-transition: all 0.3s ease-in-out;
-}
-.card:hover {
-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
-}
-.input-group label {
-display: block;
-margin-bottom: 0.5rem;
-font-weight: 500;
-color: #4a5568;
-}
-.input-field {
-width: 100%;
-padding: 0.75rem;
-border: 1px solid #e2e8f0;
-border-radius: 0.5rem;
-transition: border-color 0.2s;
-}
-.input-field:focus {
-outline: none;
-border-color: #3b82f6;
-box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-.btn-primary {
-background-color: #3b82f6;
-color: white;
-padding: 0.75rem 1.5rem;
-border-radius: 0.5rem;
-font-weight: 600;
-transition: background-color 0.3s;
-width: 100%;
-}
-.btn-primary:hover {
-background-color: #2563eb;
-}
-.btn-secondary {
-background-color: #6366f1;
-color: white;
-padding: 0.75rem 1.5rem;
-border-radius: 0.5rem;
-font-weight: 600;
-transition: background-color 0.3s;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5rem;
-}
-.btn-secondary:hover {
-background-color: #4f46e5;
-}
-.result-card {
-border: 2px solid;
-padding: 1rem;
-border-radius: 0.5rem;
-text-align: center;
-}
-.winner {
-border-color: #10b981;
-background-color: #f0fdf4;
-}
-.loser {
-border-color: #ef4444;
-background-color: #fef2f2;
-}
-.saving-row {
-background-color: #f0fdf4;
-font-weight: 600;
-}
-.mascot-image {
-position: fixed;
-bottom: 20px;
-left: 20px;
-width: 150px;
-height: auto;
-z-index: 1000;
-transition: transform 0.3s ease;
-}
-.mascot-image:hover {
-transform: scale(1.05);
-}
-@media (max-width: 768px) {
-.mascot-image {
-width: 100px;
-bottom: 10px;
-left: 10px;
-}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Keunggulan Finansial BYD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .byd-blue { color: #003a70; }
+        .byd-bg-blue { background-color: #003a70; }
+        .savings-green { color: #16a34a; }
+        .savings-bg-green { background-color: #f0fdf4; }
+        .loss-red { color: #dc2626; }
+        #formulaDetails, #comparisonSection {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+        #resultSection {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .hidden-initially {
+            opacity: 0;
+            max-height: 0;
+        }
+        .input-description {
+            font-size: 0.75rem; /* 12px */
+            color: #6b7280; /* gray-500 */
+            margin-top: 0.25rem; /* 4px */
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+        .comparison-table .highlight {
+            font-weight: 700;
+            color: #003a70; /* byd-blue */
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100">
 
-<div class="container mx-auto p-4 md:p-8 max-w-7xl">
-<!-- Header -->
-<header class="text-center mb-10">
-<h1 class="text-4xl font-bold text-gray-900">Kalkulator Keunggulan TCO BYD</h1>
-<p class="mt-2 text-lg text-gray-600">Lihat bagaimana penghematan jangka panjang membuat mobil listrik BYD lebih unggul.</p>
-</header>
+<div class="container mx-auto max-w-4xl p-4 md:p-8">
 
-<!-- General Settings -->
-<div class="card p-6 mb-8">
-<h2 class="text-2xl font-bold mb-4 text-gray-800">Pengaturan Umum</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="input-group">
-<label for="ownershipPeriod">Periode Kepemilikan (Tahun)</label>
-<input type="number" id="ownershipPeriod" class="input-field" value="7">
-</div>
-<div class="input-group">
-<label for="annualDistance">Jarak Tempuh Tahunan (km)</label>
-<input type="number" id="annualDistance" class="input-field" value="15000">
-</div>
-<div class="input-group">
-<label for="fuelPriceSelect">Jenis & Harga Bensin</label>
-<select id="fuelPriceSelect" class="input-field">
-<option value="10000">Pertalite (RON 90) - Rp 10.000</option>
-<option value="12500" selected>Pertamax (RON 92) - Rp 12.500</option>
-<option value="14500">Pertamax Turbo (RON 98) - Rp 14.500</option>
-<option value="13000">Shell Super (RON 92) - Rp 13.000</option>
-<option value="14000">Shell V-Power (RON 95) - Rp 14.000</option>
-</select>
-</div>
-</div>
-<div class="mt-6 border-t pt-6">
-<h3 class="text-xl font-bold mb-4 text-gray-700">Pengaturan Biaya Listrik (untuk EV)</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="input-group">
-<label for="chargingMethod">Metode Pengisian EV</label>
-<select id="chargingMethod" class="input-field">
-<option value="mixed" selected>Mayoritas di Rumah (80/20)</option>
-<option value="home_only">Hanya di Rumah</option>
-<option value="spklu_only">Hanya di SPKLU</option>
-</select>
-</div>
-<div id="home-charging-options" class="input-group">
-<label for="homeElectricityPriceSelect">Golongan Listrik Rumah</label>
-<select id="homeElectricityPriceSelect" class="input-field">
-<option value="1444.70">1.300-2.200 VA (Rp 1.445/kWh)</option>
-<option value="1699.53" selected>3.500+ VA (Rp 1.700/kWh)</option>
-<option value="1352">900 VA Non-Subsidi (Rp 1.352/kWh)</option>
-</select>
-</div>
-<div id="spklu-charging-options" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="input-group">
-<label for="spkluChargingType">Tipe Charger SPKLU</label>
-<select id="spkluChargingType" class="input-field">
-<option value="0">Normal/Medium</option>
-<option value="25000">Fast Charging</option>
-<option value="57000">Ultrafast Charging</option>
-</select>
-</div>
-<div class="input-group">
-<label for="spkluFrequency">Frekuensi di SPKLU (kali/bulan)</label>
-<input type="number" id="spkluFrequency" class="input-field" value="2">
-</div>
-</div>
-</div>
-</div>
-</div>
+    <header class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold byd-blue">Kalkulator Keunggulan Finansial BYD</h1>
+        <p class="text-gray-600 mt-2">Buktikan penghematan nyata dengan beralih ke mobil listrik BYD.</p>
+    </header>
 
-<!-- Vehicle Comparison Section -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-<!-- Vehicle 1: BYD Product -->
-<div class="card p-6" id="vehicle1">
-<h3 class="text-xl font-bold mb-4 text-blue-600">Produk BYD</h3>
-<div class="input-group mb-4">
-<label for="vehicle1-select">Pilih Produk BYD</label>
-<select id="vehicle1-select" class="input-field">
-<option value="manual">-- Masukkan Manual --</option>
-</select>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="input-group">
-<label for="vehicle1-price">Harga OTR (Rp)</label>
-<input type="number" id="vehicle1-price" class="input-field">
-</div>
-<div class="input-group">
-<label for="vehicle1-type">Jenis</label>
-<select id="vehicle1-type" class="input-field">
-<option value="EV">EV</option>
-<option value="Hybrid">Hybrid</option>
-<option value="ICE">ICE</option>
-</select>
-</div>
-<div class="input-group">
-<label for="vehicle1-consumption">Konsumsi (km/kWh atau km/L)</label>
-<input type="number" step="0.1" id="vehicle1-consumption" class="input-field">
-</div>
-<div class="input-group">
-<label for="vehicle1-maintenance">Perawatan Tahunan (Rp)</label>
-<input type="number" id="vehicle1-maintenance" class="input-field">
-</div>
-<div class="input-group md:col-span-2">
-<label for="vehicle1-tax">Pajak Tahunan (PKB)</label>
-<input type="number" id="vehicle1-tax" class="input-field">
-</div>
-</div>
-</div>
+    <!-- Input Section -->
+    <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+        <h2 class="text-2xl font-bold byd-blue mb-6 border-b pb-3">1. Parameter Perbandingan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
 
-<!-- Vehicle 2: Comparison Vehicle -->
-<div class="card p-6" id="vehicle2">
-<h3 class="text-xl font-bold mb-4 text-green-600">Kendaraan Pembanding</h3>
-<div class="input-group mb-4">
-<label for="vehicle2-select">Pilih Mobil Pembanding</label>
-<select id="vehicle2-select" class="input-field">
-<option value="manual">-- Masukkan Manual --</option>
-</select>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="input-group">
-<label for="vehicle2-price">Harga OTR (Rp)</label>
-<input type="number" id="vehicle2-price" class="input-field">
-</div>
-<div class="input-group">
-<label for="vehicle2-type">Jenis</label>
-<select id="vehicle2-type" class="input-field">
-<option value="ICE">ICE</option>
-<option value="Hybrid">Hybrid</option>
-<option value="EV">EV</option>
-</select>
-</div>
-<div class="input-group">
-<label for="vehicle2-consumption">Konsumsi (km/L)</label>
-<input type="number" step="0.1" id="vehicle2-consumption" class="input-field">
-</div>
-<div class="input-group">
-<label for="vehicle2-maintenance">Perawatan Tahunan (Rp)</label>
-<input type="number" id="vehicle2-maintenance" class="input-field">
-</div>
-<div class="input-group md:col-span-2">
-<label for="vehicle2-tax">Pajak Tahunan (PKB)</label>
-<input type="number" id="vehicle2-tax" class="input-field">
-</div>
-</div>
-</div>
-</div>
+            <!-- Kolom Parameter Mobil Bensin -->
+            <div>
+                <h3 class="font-semibold text-lg mb-4 text-gray-700">Mobil Bensin Anda Saat Ini</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="iceConsumption" class="block text-sm font-medium text-gray-700">Konsumsi BBM (km/L)</label>
+                        <input type="number" id="iceConsumption" value="12" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Rata-rata jarak yang ditempuh dengan 1 liter bensin.</p>
+                    </div>
+                    <div>
+                        <label for="petrolPrice" class="block text-sm font-medium text-gray-700">Harga Bensin per Liter (Rp)</label>
+                        <input type="number" id="petrolPrice" value="14000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                         <p class="input-description">Harga bahan bakar yang biasa Anda gunakan.</p>
+                    </div>
+                    <div>
+                        <label for="annualServiceIce" class="block text-sm font-medium text-gray-700">Biaya Servis Tahunan (Rp)</label>
+                        <input type="number" id="annualServiceIce" value="1500000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Estimasi total biaya servis rutin dalam setahun.</p>
+                    </div>
+                    <div>
+                        <label for="annualTaxIce" class="block text-sm font-medium text-gray-700">Pajak Tahunan (PKB) (Rp)</label>
+                        <input type="number" id="annualTaxIce" value="4000000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Biaya Pajak Kendaraan Bermotor tahunan mobil Anda.</p>
+                    </div>
+                </div>
+            </div>
 
-<!-- Calculate Button -->
-<div class="text-center mb-10">
-<button id="calculateBtn" class="btn-primary">Hitung Total Biaya Kepemilikan</button>
-</div>
+            <!-- Kolom Parameter BYD & Umum -->
+            <div>
+                <h3 class="font-semibold text-lg mb-4 text-gray-700">Mobil BYD & Penggunaan</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="bydModel" class="block text-sm font-medium text-gray-700">Pilih Model BYD</label>
+                        <select id="bydModel" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="atto1_premium">BYD Atto 1 Premium</option>
+                            <option value="dolphin_premium">BYD Dolphin Premium</option>
+                            <option value="atto3_superior">BYD Atto 3 Superior</option>
+                            <option value="seal_premium">BYD Seal Premium</option>
+                            <option value="sealion7_premium">BYD Sealion 7 Premium</option>
+                            <option value="m6_superior">BYD M6 Superior</option>
+                            <option value="denza_d9_grandeur">DENZA D9 Grandeur</option>
+                        </select>
+                        <div id="bydSpecInfo" class="mt-2 text-xs text-gray-600 bg-gray-100 p-2 rounded-md"></div>
+                    </div>
+                    <div>
+                        <label for="monthlyMileage" class="block text-sm font-medium text-gray-700">Jarak Tempuh Bulanan (km)</label>
+                        <input type="number" id="monthlyMileage" value="1250" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Total kilometer perjalanan Anda setiap bulan.</p>
+                    </div>
+                    <div>
+                        <label for="electricityPrice" class="block text-sm font-medium text-gray-700">Harga Listrik per kWh (Rp)</label>
+                        <input type="number" id="electricityPrice" value="1700" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Harga per kWh sesuai tarif listrik rumah Anda.</p>
+                    </div>
+                    <div>
+                        <label for="annualServiceByd" class="block text-sm font-medium text-gray-700">Biaya Servis Tahunan BYD (Rp)</label>
+                        <input type="number" id="annualServiceByd" value="0" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Umumnya lebih rendah dari mobil bensin.</p>
+                    </div>
+                    <div>
+                        <label for="annualTaxByd" class="block text-sm font-medium text-gray-700">Pajak Tahunan (PKB) BYD (Rp)</label>
+                        <input type="number" id="annualTaxByd" value="450000" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <p class="input-description">Pajak EV mendapatkan insentif dari pemerintah.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-2">
+                <label for="ownershipPeriod" class="block text-sm font-medium text-gray-700">Hitung Penghematan untuk Periode Kepemilikan:</label>
+                <select id="ownershipPeriod" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="1">1 Tahun</option>
+                    <option value="2">2 Tahun</option>
+                    <option value="3">3 Tahun</option>
+                    <option value="4">4 Tahun</option>
+                    <option value="5" selected>5 Tahun</option>
+                    <option value="6">6 Tahun</option>
+                    <option value="7">7 Tahun</option>
+                    <option value="8">8 Tahun</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <button id="calculateBtn" class="w-full md:w-auto byd-bg-blue text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-800 transition-all duration-300 transform hover:scale-105">HITUNG SEKARANG</button>
+        </div>
+    </div>
 
-<!-- Results Section -->
-<div id="results" class="hidden">
-<h2 class="text-3xl font-bold text-center mb-8">Hasil Perbandingan TCO</h2>
+    <!-- Result Section -->
+    <div id="resultSection" class="bg-white p-6 rounded-2xl shadow-lg mt-8" style="display: none; opacity: 0;">
+        <h2 class="text-2xl font-bold byd-blue mb-6 border-b pb-3">2. Hasil Perbandingan Biaya</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="border border-blue-200 p-4 rounded-lg bg-blue-50">
+                <h3 id="bydModelNameResult" class="text-xl font-bold byd-blue text-center mb-4">BYD</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Listrik:</span><span id="bydYearlyCost" class="font-bold text-lg byd-blue">Rp 0</span></div>
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Servis:</span><span id="bydAnnualService" class="font-bold text-lg byd-blue">Rp 0</span></div>
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Pajak:</span><span id="bydAnnualTax" class="font-bold text-lg byd-blue">Rp 0</span></div><hr>
+                    <div class="flex justify-between items-center pt-2"><span class="font-extrabold text-lg text-gray-800">TOTAL:</span><span id="bydTotalYearly" class="font-extrabold text-2xl byd-blue">Rp 0</span></div>
+                </div>
+            </div>
+            <div class="border border-gray-300 p-4 rounded-lg">
+                <h3 class="text-xl font-bold text-gray-700 text-center mb-4">Mobil Bensin Populer</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Bensin:</span><span id="iceYearlyCost" class="font-bold text-lg loss-red">Rp 0</span></div>
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Servis:</span><span id="iceAnnualService" class="font-bold text-lg loss-red">Rp 0</span></div>
+                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-600">Biaya Pajak:</span><span id="iceAnnualTax" class="font-bold text-lg loss-red">Rp 0</span></div><hr>
+                    <div class="flex justify-between items-center pt-2"><span class="font-extrabold text-lg text-gray-800">TOTAL:</span><span id="iceTotalYearly" class="font-extrabold text-2xl loss-red">Rp 0</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8">
+            <h3 class="text-xl font-bold byd-blue text-center mb-4">Grafik Perbandingan Biaya Tahunan</h3>
+            <div class="relative h-80 w-full"><canvas id="comparisonChart"></canvas></div>
+        </div>
+        <div id="comparisonSection" class="hidden-initially mt-8"></div>
+		<div class="bg-gray-50 p-4 md:p-6 rounded-2xl shadow-lg mt-8 border">
+			<button id="toggleFormulaBtn" class="w-full text-left font-bold text-lg byd-blue"><div class="flex justify-between items-center"><span>Lihat Detail Rumus Perhitungan</span><span id="formula-arrow" class="transform transition-transform duration-300">▼</span></div></button>
+			<div id="formulaDetails" class="hidden-initially mt-4 pt-4 border-t border-gray-200 space-y-4">
+				<div><h4 class="font-semibold text-gray-700 mb-2">Biaya Listrik BYD</h4><div class="space-y-2 text-xs md:text-sm text-gray-600"><p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Konsumsi per km (kWh):</strong> Kapasitas Baterai / Jarak Tempuh</p><p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya Tahunan:</strong> Konsumsi per km * Harga Listrik * Jarak Tahunan</p></div></div>
+				<div><h4 class="font-semibold text-gray-700 mt-4 mb-2">Biaya Bahan Bakar Bensin</h4><div class="space-y-2 text-xs md:text-sm text-gray-600"><p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya per km:</strong> Harga Bensin / Konsumsi BBM</p><p class="bg-gray-100 p-3 rounded-md font-mono"><strong>Biaya Tahunan:</strong> Biaya per km * Jarak Tempuh Tahunan</p></div></div>
+				<div><h4 class="font-semibold text-gray-700 mt-4 mb-2">Total Penghematan</h4><p class="text-xs md:text-sm text-gray-600 bg-gray-100 p-3 rounded-md font-mono">(Total Biaya Tahunan Bensin - Total Biaya Tahunan BYD) * Periode Kepemilikan</p></div>
+			</div>
+		</div>
+		<div class="mt-8 savings-bg-green p-6 rounded-2xl shadow-lg border-2 border-green-500">
+			<h2 class="text-2xl font-bold text-center savings-green mb-4">🎉 Total Potensi Penghematan Anda 🎉</h2>
+			<div class="text-center">
+				<p class="text-lg text-gray-700">Dengan beralih ke BYD, Anda berpotensi menghemat:</p>
+				<div class="my-4"><span class="block text-xl font-semibold">Per Tahun</span><div class="text-4xl md:text-5xl font-black savings-green" id="yearlySavings">Rp 0</div></div>
+				<div class="my-4"><span id="totalSavingsLabel" class="block text-xl font-semibold">Dalam 5 Tahun</span><div class="text-4xl md:text-5xl font-black savings-green" id="totalSavings">Rp 0</div></div>
+				<p class="text-sm text-gray-600 mt-4">*Penghematan ini bisa digunakan untuk liburan, pendidikan, atau investasi lainnya!</p>
+			</div>
+		</div>
+    </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-<div id="result1" class="result-card">
-<h3 id="result1-name" class="text-2xl font-bold mb-2"></h3>
-<p class="text-4xl font-bold mb-2" id="result1-tco"></p>
-<p class="text-gray-600">Total Biaya Kepemilikan</p>
+    <div class="mt-8 text-center border-t-2 border-dashed border-gray-300 pt-8">
+        <h3 class="text-lg font-semibold text-gray-800">Informasi & Pemesanan:</h3>
+        <p class="text-2xl font-bold byd-blue mt-2">AWI BYD</p>
+        <p class="text-lg text-gray-600 mt-1">Sales Consultant - BYD Haka Makassar</p>
+        <p class="text-lg text-gray-600 mt-1"><strong>Telp/WA:</strong> 082259452349</p>
+    </div>
+    <footer class="text-center text-xs text-gray-500 mt-8">
+        <p>Data spesifikasi (baterai & jarak tempuh) berdasarkan brosur resmi BYD. Perhitungan ini adalah estimasi.</p>
+        <p class="font-bold mt-2">BYD Haka Makassar</p>
+    </footer>
 </div>
-<div id="result2" class="result-card">
-<h3 id="result2-name" class="text-2xl font-bold mb-2"></h3>
-<p class="text-4xl font-bold mb-2" id="result2-tco"></p>
-<p class="text-gray-600">Total Biaya Kepemilikan</p>
-</div>
-</div>
-
-<div class="text-center mb-8 text-lg" id="summary"></div>
-
-<div class="card p-6 mb-8">
-<h3 class="text-xl font-bold mb-4">Rincian Biaya</h3>
-<div class="overflow-x-auto">
-<table class="w-full text-left">
-<thead class="bg-gray-100">
-<tr>
-<th class="p-3">Kategori Biaya</th>
-<th class="p-3" id="table-header-1">Produk BYD</th>
-<th class="p-3" id="table-header-2">Kendaraan Pembanding</th>
-</tr>
-</thead>
-<tbody id="results-table">
-<!-- Rows will be injected by JS -->
-</tbody>
-</table>
-</div>
-</div>
-
-<div class="card p-6">
-<h3 class="text-xl font-bold mb-4">Visualisasi Biaya</h3>
-<canvas id="tcoChart"></canvas>
-</div>
-
-<!-- Gemini Feature Section -->
-<div class="mt-8 text-center">
-<button id="geminiBtn" class="btn-secondary">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.3 0 .6.1.8.4l.7.7c.2.2.3.5.3.8v2.8c0 .3-.1.6-.4.8l-2.8 2.8c-.2.2-.5.3-.8.3s-.6-.1-.8-.4l-.7-.7c-.2-.2-.3-.5-.3-.8V4.2c0-.3.1-.6.4-.8l2.8-2.8c.2-.2.5-.3.8-.3z" /><path d="M12 3c-.3 0-.6.1-.8.4l-.7.7c-.2.2-.3.5-.3.8v2.8c0 .3.1.6.4.8l2.8 2.8c.2.2.5.3.8.3s.6-.1.8-.4l.7-.7c.2-.2.3-.5.3-.8V4.2c0-.3-.1-.6-.4-.8l-2.8-2.8c-.2-.2-.5-.3-.8-.3z" transform="rotate(180 12 12)"/><path d="M3 12c0 .3.1.6.4.8l.7.7c.2.2.5.3.8.3h2.8c.3 0 .6-.1.8-.4l2.8-2.8c.2-.2.3-.5.3-.8s-.1-.6-.4-.8l-.7-.7c-.2-.2-.5-.3-.8-.3H4.2c-.3 0-.6.1-.8.4l-2.8 2.8c-.2.2-.3.5-.3.8z" /><path d="M3 12c0-.3.1-.6.4-.8l.7-.7c.2-.2.5-.3.8-.3h2.8c.3 0 .6.1.8.4l2.8 2.8c.2.2.5.3.8.3s.6-.1.8-.4l.7-.7c.2-.2.3-.5.3-.8s-.1-.6-.4-.8l-2.8-2.8c-.2-.2-.5-.3-.8-.3H4.2c-.3 0-.6.1-.8.4l-2.8 2.8c.2.2.3.5.3.8z" transform="rotate(180 12 12)"/></svg>
-Buat Ringkasan Finansial
-</button>
-</div>
-<div id="gemini-result-card" class="card p-6 mt-6 hidden">
-<h3 class="text-xl font-bold mb-4 text-indigo-600">✨ Ringkasan & Saran dari Gemini</h3>
-<div id="gemini-result" class="text-gray-700 text-left whitespace-pre-wrap"></div>
-</div>
-</div>
-<!-- Footer -->
-<footer class="text-center mt-12 text-gray-500 text-sm">
-<p><strong>Disclaimer:</strong> Kalkulator ini menggunakan estimasi dan asumsi untuk memberikan gambaran umum. Biaya aktual dapat bervariasi. Harga SPKLU diasumsikan Rp 2.466/kWh.</p>
-</footer>
-</div>
-
-<!-- Mascot Image -->
-<img src="https://i.ibb.co/hZ5yLzF/ChatGPT-Image-Jul-3-2025-10-27-27-PM.jpg" alt="AWI BYD Mascot" class="mascot-image">
-
 
 <script>
-const allVehicleData = {
-"byd-dolphin-dyn": { name: "BYD Dolphin Dynamic", price: 384000000, type: "EV", consumption: 9.13, maintenance: 1005000, tax: 450000, depreciation: 22, segment: "small_suv_hatch" },
-"byd-dolphin-prem": { name: "BYD Dolphin Premium", price: 444000000, type: "EV", consumption: 8.10, maintenance: 1005000, tax: 500000, depreciation: 22, segment: "small_suv_hatch" },
-"byd-atto3-adv": { name: "BYD Atto 3 Advanced", price: 485000000, type: "EV", consumption: 8.21, maintenance: 1005000, tax: 550000, depreciation: 22, segment: "medium_suv" },
-"byd-atto3-sup": { name: "BYD Atto 3 Superior", price: 535000000, type: "EV", consumption: 7.94, maintenance: 1005000, tax: 600000, depreciation: 22, segment: "medium_suv" },
-"byd-m6-std": { name: "BYD M6 Standart", price: 398000000, type: "EV", consumption: 7.58, maintenance: 1200000, tax: 500000, depreciation: 23, segment: "mpv" },
-"byd-m6-sup": { name: "BYD M6 Superior", price: 438000000, type: "EV", consumption: 7.38, maintenance: 1200000, tax: 550000, depreciation: 23, segment: "mpv" },
-"byd-seal-prem": { name: "BYD Seal Premium", price: 650000000, type: "EV", consumption: 7.87, maintenance: 1120000, tax: 750000, depreciation: 20, segment: "premium_sedan" },
-"byd-seal-perf": { name: "BYD Seal Performance", price: 741000000, type: "EV", consumption: 7.02, maintenance: 1120000, tax: 850000, depreciation: 20, segment: "premium_sedan" },
-"byd-sealion7-prem": { name: "BYD Sealion 7 Premium", price: 644000000, type: "EV", consumption: 6.87, maintenance: 1300000, tax: 750000, depreciation: 21, segment: "premium_suv" },
-"byd-sealion7-perf": { name: "BYD Sealion 7 Performance", price: 734000000, type: "EV", consumption: 6.56, maintenance: 1300000, tax: 850000, depreciation: 21, segment: "premium_suv" },
-"denza-d9-phev": { name: "Denza D9 PHEV", price: 1050000000, type: "Hybrid", consumption: 16.9, maintenance: 5000000, tax: 15000000, depreciation: 19, segment: "premium_mpv"},
-"wuling-alvez-ex": { name: "Wuling Alvez EX", price: 303000000, type: "ICE", consumption: 14, maintenance: 2980000, tax: 4700000, depreciation: 18, segment: "small_suv_hatch" },
-"honda-hrv-se": { name: "Honda HR-V SE CVT", price: 418200000, type: "ICE", consumption: 12, maintenance: 3450000, tax: 6485000, depreciation: 18, segment: "medium_suv" },
-"honda-wrv-rs": { name: "Honda WR-V RS", price: 317400000, type: "ICE", consumption: 16, maintenance: 3160000, tax: 4600000, depreciation: 18, segment: "small_suv_hatch" },
-"toyota-raize-gr": { name: "Toyota Raize GR Sport", price: 305100000, type: "ICE", consumption: 17, maintenance: 2950000, tax: 4511000, depreciation: 18, segment: "small_suv_hatch" },
-"mitsubishi-xforce": { name: "Mitsubishi Xforce Ultimate", price: 419100000, type: "ICE", consumption: 14, maintenance: 1900000, tax: 6128000, depreciation: 18, segment: "medium_suv" },
-"toyota-innova-zenix-g-hv": { name: "Toyota Innova Zenix G HV", price: 471600000, type: "Hybrid", consumption: 21, maintenance: 2500000, tax: 7000000, depreciation: 17, segment: "mpv" },
-"toyota-camry-hv": { name: "Toyota Camry 2.5 HV", price: 957700000, type: "Hybrid", consumption: 21.7, maintenance: 4100000, tax: 14700000, depreciation: 18, segment: "premium_sedan" },
-"toyota-alphard-hev": { name: "Toyota Alphard 2.5 HEV", price: 1372100000, type: "Hybrid", consumption: 16.5, maintenance: 5500000, tax: 18000000, depreciation: 16, segment: "premium_mpv"},
-"hyundai-ioniq5-prime-std": { name: "Hyundai Ioniq 5 Prime Std", price: 782000000, type: "EV", consumption: 6.8, maintenance: 1200000, tax: 900000, segment: "premium_suv" },
+const bydData = {
+    'atto1_premium': { name: 'BYD Atto 1 Premium', battery: 38.68, range: 380, price: 'Rp 245.000.000' },
+    'dolphin_premium': { name: 'BYD Dolphin Premium', battery: 60.48, range: 490, price: 'Rp 425.000.000' },
+    'atto3_superior': { name: 'BYD Atto 3 Superior', battery: 60.48, range: 480, price: 'Rp 515.000.000' },
+    'seal_premium': { name: 'BYD Seal Premium', battery: 82.56, range: 650, price: 'Rp 629.000.000' },
+    'sealion7_premium': { name: 'BYD Sealion 7 Premium', battery: 82.56, range: 567, price: 'Estimasi' },
+    'm6_superior': { name: 'BYD M6 Superior', battery: 71.8, range: 530, price: 'Estimasi' },
+    'denza_d9_grandeur': { name: 'DENZA D9 Grandeur', battery: 103.36, range: 520, price: 'Estimasi' }
 };
 
-const bydKeys = Object.keys(allVehicleData).filter(key => key.startsWith("byd-") || key.startsWith("denza-"));
-let tcoChart = null;
-let lastCalculationData = {};
-const formatCurrency = (value) => `Rp ${Math.round(value).toLocaleString('id-ID')}`;
-
-function populateSelects() {
-const select1 = document.getElementById('vehicle1-select');
-bydKeys.forEach(key => {
-const option = document.createElement('option');
-option.value = key;
-option.textContent = allVehicleData[key].name;
-select1.appendChild(option);
-});
-}
-
-function populateCompetitorSelect(segment) {
-const select2 = document.getElementById('vehicle2-select');
-select2.innerHTML = '<option value="manual">-- Masukkan Manual --</option>';
-for (const key in allVehicleData) {
-if (!bydKeys.includes(key) && allVehicleData[key].segment === segment) {
-const option = document.createElement('option');
-option.value = key;
-option.textContent = allVehicleData[key].name;
-select2.appendChild(option);
-}
-}
-}
-
-function populateForm(vehicleId, selectElement) {
-const selectedValue = selectElement.value;
-const isManual = selectedValue === 'manual';
-
-if (isManual) {
-document.getElementById(`${vehicleId}-price`).value = '';
-document.getElementById(`${vehicleId}-type`).value = vehicleId === 'vehicle1' ? 'EV' : 'ICE';
-document.getElementById(`${vehicleId}-consumption`).value = '';
-document.getElementById(`${vehicleId}-maintenance`).value = '';
-document.getElementById(`${vehicleId}-tax`).value = '';
-} else {
-const data = allVehicleData[selectedValue];
-document.getElementById(`${vehicleId}-price`).value = data.price;
-document.getElementById(`${vehicleId}-type`).value = data.type;
-document.getElementById(`${vehicleId}-consumption`).value = data.consumption;
-document.getElementById(`${vehicleId}-maintenance`).value = data.maintenance;
-document.getElementById(`${vehicleId}-tax`).value = data.tax;
-}
-}
-
-function calculateTCO() {
-const ownershipPeriod = parseFloat(document.getElementById('ownershipPeriod').value) || 0;
-const annualDistance = parseFloat(document.getElementById('annualDistance').value) || 0;
-const fuelPrice = parseFloat(document.getElementById('fuelPriceSelect').value) || 0;
-const chargingMethod = document.getElementById('chargingMethod').value;
-
-const getVehicleInfo = (id) => {
-const vehicleKey = document.getElementById(`vehicle${id}-select`).value;
-const type = document.getElementById(`vehicle${id}-type`).value;
-const price = parseFloat(document.getElementById(`vehicle${id}-price`).value) || 0;
-const consumption = parseFloat(document.getElementById(`vehicle${id}-consumption`).value) || 0;
-const maintenance = parseFloat(document.getElementById(`vehicle${id}-maintenance`).value) || 0;
-const tax = parseFloat(document.getElementById(`vehicle${id}-tax`).value) || 0;
-const depreciationRate = (allVehicleData[vehicleKey]?.depreciation || 0) / 100;
-let name = document.getElementById(`vehicle${id}-select`).options[document.getElementById(`vehicle${id}-select`).selectedIndex].text;
-if (name === '-- Masukkan Manual --') {
-name = id === 1 ? 'Produk BYD (Manual)' : 'Pembanding (Manual)';
-}
-
-let energyCost = 0;
-if (consumption > 0) {
-if (type === 'EV' || type === 'Hybrid') {
-const homeElectricityPrice = parseFloat(document.getElementById('homeElectricityPriceSelect').value) || 0;
-const spkluPrice = 2466;
-const spkluFee = parseFloat(document.getElementById('spkluChargingType').value) || 0;
-const spkluFrequency = parseFloat(document.getElementById('spkluFrequency').value) || 0;
-const spkluFixedCost = spkluFrequency * 12 * ownershipPeriod * spkluFee;
-
-const totalEnergyNeeded = (annualDistance * ownershipPeriod) / consumption;
-let homeEnergy = 0;
-let spkluEnergy = 0;
-
-if(chargingMethod === 'mixed'){
-homeEnergy = totalEnergyNeeded * 0.8;
-spkluEnergy = totalEnergyNeeded * 0.2;
-} else if (chargingMethod === 'home_only'){
-homeEnergy = totalEnergyNeeded;
-} else { // spklu_only
-spkluEnergy = totalEnergyNeeded;
-}
-
-if (type === 'Hybrid') {
-energyCost = ((annualDistance / consumption) * fuelPrice * ownershipPeriod * 0.5) + ((homeEnergy * homeElectricityPrice + spkluEnergy * spkluPrice + spkluFixedCost) * 0.5);
-} else { // Full EV
-energyCost = (homeEnergy * homeElectricityPrice) + (spkluEnergy * spkluPrice) + spkluFixedCost;
-}
-
-} else { // ICE
-energyCost = (annualDistance / consumption) * fuelPrice * ownershipPeriod;
-}
-}
-
-const maintenanceCost = maintenance * ownershipPeriod;
-const taxCost = tax * ownershipPeriod;
-const totalDepreciation = price * (1 - Math.pow(1 - depreciationRate, ownershipPeriod));
-const resaleValue = price - totalDepreciation;
-const tco = totalDepreciation + energyCost + maintenanceCost + taxCost;
-
-return { name, price, tco, resaleValue, totalDepreciation, energyCost, maintenanceCost, taxCost };
+const competitorData = {
+    'atto1_premium': {
+        ice: { name: 'Toyota Agya GR Sport', price: 'Rp 253.500.000', battery: '-', range: '15 km/L (BBM)' },
+        ev: { name: 'Wuling BinguoEV', price: 'Rp 358.000.000', battery: '31.9 kWh', range: '333 km' }
+    },
+    'dolphin_premium': {
+        ice: { name: 'Honda City Hatchback RS', price: 'Rp 374.600.000', battery: '-', range: '17 km/L (BBM)' },
+        ev: { name: 'Wuling BinguoEV', price: 'Rp 358.000.000', battery: '31.9 kWh', range: '333 km' }
+    },
+    'atto3_superior': {
+        ice: { name: 'Honda HR-V SE', price: 'Rp 416.100.000', battery: '-', range: '15 km/L (BBM)' },
+        ev: { name: 'Hyundai Ioniq 5 Prime SR', price: 'Rp 782.000.000', battery: '58 kWh', range: '384 km' }
+    },
+    'seal_premium': {
+        ice: { name: 'Honda Accord RS e:HEV', price: 'Rp 959.900.000', battery: '-', range: '22 km/L (BBM)' },
+        ev: { name: 'Hyundai Ioniq 6', price: 'Rp 1.220.000.000', battery: '77.4 kWh', range: '519 km' }
+    },
+    'sealion7_premium': {
+        ice: { name: 'Mazda CX-5 Elite', price: 'Rp 628.800.000', battery: '-', range: '12 km/L (BBM)' },
+        ev: { name: 'Hyundai Ioniq 5 Bluelink', price: 'Rp 895.000.000', battery: '72.6 kWh', range: '451 km' }
+    },
+    'm6_superior': {
+        ice: { name: 'Toyota Kijang Innova Zenix G', price: 'Rp 425.600.000', battery: '-', range: '15 km/L (BBM)' },
+        ev: { name: 'Hyundai Ioniq 5 Prime SR', price: 'Rp 782.000.000', battery: '58 kWh', range: '384 km' }
+    },
+    'denza_d9_grandeur': {
+        ice: { name: 'Toyota Alphard 2.5 X', price: 'Rp 1.383.100.000', battery: '-', range: '9 km/L (BBM)' },
+        ev: { name: 'Kia EV9 GT-Line', price: 'Rp 1.975.000.000', battery: '99.8 kWh', range: '505 km' }
+    }
 };
 
-const vehicle1 = getVehicleInfo(1);
-const vehicle2 = getVehicleInfo(2);
+const calculateBtn = document.getElementById('calculateBtn');
+const toggleFormulaBtn = document.getElementById('toggleFormulaBtn');
+const formulaDetails = document.getElementById('formulaDetails');
+const formulaArrow = document.getElementById('formula-arrow');
+const bydModelSelect = document.getElementById('bydModel');
+const chartCanvas = document.getElementById('comparisonChart');
+const resultSection = document.getElementById('resultSection');
+const comparisonContainer = document.getElementById('comparisonSection');
+let comparisonChart;
 
-lastCalculationData = { v1: vehicle1, v2: vehicle2, period: ownershipPeriod };
-displayResults(vehicle1, vehicle2, ownershipPeriod);
+function formatCurrency(value) {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(value);
 }
 
-function displayResults(v1, v2, period) {
-document.getElementById('results').classList.remove('hidden');
-document.getElementById('gemini-result-card').classList.add('hidden');
-document.getElementById('gemini-result').innerHTML = '';
-
-
-document.getElementById('result1-name').textContent = v1.name;
-document.getElementById('result1-tco').textContent = formatCurrency(v1.tco);
-document.getElementById('result2-name').textContent = v2.name;
-document.getElementById('result2-tco').textContent = formatCurrency(v2.tco);
-
-const resultCard1 = document.getElementById('result1');
-const resultCard2 = document.getElementById('result2');
-
-resultCard1.className = 'result-card';
-resultCard2.className = 'result-card';
-
-if (v1.tco < v2.tco) {
-resultCard1.classList.add('winner');
-resultCard2.classList.add('loser');
-} else {
-resultCard1.classList.add('loser');
-resultCard2.classList.add('winner');
+function updateSpecInfo() {
+    const modelKey = bydModelSelect.value;
+    const selectedByd = bydData[modelKey];
+    document.getElementById('bydSpecInfo').innerHTML = `Kapasitas Baterai: <strong>${selectedByd.battery} kWh</strong> | Jarak Tempuh: <strong>${selectedByd.range} km</strong>`;
 }
 
-const difference = Math.abs(v1.tco - v2.tco);
-const cheaperVehicle = v1.tco < v2.tco ? v1.name : v2.name;
-document.getElementById('summary').innerHTML = `
-<p>Dengan memilih <strong>${cheaperVehicle}</strong>, Anda berpotensi menghemat <strong class="text-green-600">${formatCurrency(difference)}</strong> selama ${period} tahun.</p>
-`;
-
-const tableBody = document.getElementById('results-table');
-document.getElementById('table-header-1').textContent = v1.name;
-document.getElementById('table-header-2').textContent = v2.name;
-
-const operationalSaving = (v2.energyCost + v2.maintenanceCost + v2.taxCost) - (v1.energyCost + v1.maintenanceCost + v1.taxCost);
-
-tableBody.innerHTML = `
-<tr class="border-b">
-<td class="p-3 font-medium">Harga Beli Awal (Referensi)</td>
-<td class="p-3">${formatCurrency(v1.price)}</td>
-<td class="p-3">${formatCurrency(v2.price)}</td>
-</tr>
-<tr class="bg-gray-50 border-b">
-<td class="p-3 font-medium">Total Depresiasi</td>
-<td class="p-3">${formatCurrency(v1.totalDepreciation)}</td>
-<td class="p-3">${formatCurrency(v2.totalDepreciation)}</td>
-</tr>
-<tr class="border-b">
-<td class="p-3 font-medium">Total Biaya Energi/BBM</td>
-<td class="p-3">${formatCurrency(v1.energyCost)}</td>
-<td class="p-3">${formatCurrency(v2.energyCost)}</td>
-</tr>
-<tr class="bg-gray-50 border-b">
-<td class="p-3 font-medium">Total Biaya Perawatan</td>
-<td class="p-3">${formatCurrency(v1.maintenanceCost)}</td>
-<td class="p-3">${formatCurrency(v2.maintenanceCost)}</td>
-</tr>
-<tr class="border-b">
-<td class="p-3 font-medium">Total Biaya Pajak (PKB)</td>
-<td class="p-3">${formatCurrency(v1.taxCost)}</td>
-<td class="p-3">${formatCurrency(v2.taxCost)}</td>
-</tr>
-<tr class="saving-row border-b">
-<td class="p-3">Total Penghematan Operasional</td>
-<td class="p-3 text-green-700" colspan="2">Anda menghemat ${formatCurrency(operationalSaving)} dengan BYD</td>
-</tr>
-<tr class="bg-gray-100 font-bold text-lg">
-<td class="p-3">Total Biaya Kepemilikan</td>
-<td class="p-3">${formatCurrency(v1.tco)}</td>
-<td class="p-3">${formatCurrency(v2.tco)}</td>
-</tr>
-`;
-
-updateChart(v1, v2);
+function displayComparison(modelKey) {
+    const selectedByd = bydData[modelKey];
+    const competitors = competitorData[modelKey];
+    
+    const tableHTML = `
+        <h3 class="text-xl font-bold byd-blue text-center mb-4">Perbandingan Spesifikasi Kunci</h3>
+        <div class="overflow-x-auto">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Fitur</th>
+                        <th class="highlight">${selectedByd.name}</th>
+                        <th>Kompetitor EV (${competitors.ev.name})</th>
+                        <th>Kompetitor ICE (${competitors.ice.name})</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Harga (OTR)</td>
+                        <td class="highlight">${selectedByd.price}</td>
+                        <td>${competitors.ev.price}</td>
+                        <td>${competitors.ice.price}</td>
+                    </tr>
+                    <tr>
+                        <td>Kapasitas Baterai</td>
+                        <td class="highlight">${selectedByd.battery} kWh</td>
+                        <td>${competitors.ev.battery}</td>
+                        <td>${competitors.ice.battery}</td>
+                    </tr>
+                    <tr>
+                        <td>Jarak Tempuh</td>
+                        <td class="highlight">${selectedByd.range} km</td>
+                        <td>${competitors.ev.range}</td>
+                        <td>${competitors.ice.range}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    comparisonContainer.innerHTML = tableHTML;
+    comparisonContainer.classList.remove('hidden-initially');
+    comparisonContainer.style.maxHeight = comparisonContainer.scrollHeight + "px";
+    comparisonContainer.style.opacity = 1;
 }
 
-function updateChart(v1, v2) {
-const ctx = document.getElementById('tcoChart').getContext('2d');
-const labels = ['Depresiasi', 'Energi/BBM', 'Perawatan', 'Pajak (PKB)'];
-const data1 = [v1.totalDepreciation, v1.energyCost, v1.maintenanceCost, v1.taxCost];
-const data2 = [v2.totalDepreciation, v2.energyCost, v2.maintenanceCost, v2.taxCost];
-
-if (tcoChart) {
-tcoChart.destroy();
+function updateChart(bydCosts, iceCosts) {
+    const data = {
+        labels: ['Energi', 'Servis', 'Pajak'],
+        datasets: [
+            { label: 'BYD', data: bydCosts, backgroundColor: 'rgba(0, 58, 112, 0.7)', borderColor: 'rgba(0, 58, 112, 1)', borderWidth: 1 },
+            { label: 'Mobil Bensin', data: iceCosts, backgroundColor: 'rgba(220, 38, 38, 0.7)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1 }
+        ]
+    };
+    if (comparisonChart) {
+        comparisonChart.data = data;
+        comparisonChart.update();
+    } else {
+        const ctx = chartCanvas.getContext('2d');
+        comparisonChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label || ''}: ${formatCurrency(context.parsed.y)}` } }
+                },
+                scales: { y: { beginAtZero: true, ticks: { callback: (value) => formatCurrency(value) } } }
+            }
+        });
+    }
 }
 
-tcoChart = new Chart(ctx, {
-type: 'bar',
-data: {
-labels: labels,
-datasets: [
-{
-label: v1.name,
-data: data1,
-backgroundColor: 'rgba(59, 130, 246, 0.7)',
-borderColor: 'rgba(59, 130, 246, 1)',
-borderWidth: 1
-},
-{
-label: v2.name,
-data: data2,
-backgroundColor: 'rgba(16, 185, 129, 0.7)',
-borderColor: 'rgba(16, 185, 129, 1)',
-borderWidth: 1
+function calculate() {
+    const modelKey = bydModelSelect.value;
+    const monthlyMileage = parseFloat(document.getElementById('monthlyMileage').value) || 0;
+    const petrolPrice = parseFloat(document.getElementById('petrolPrice').value) || 0;
+    const iceConsumption = parseFloat(document.getElementById('iceConsumption').value) || 1;
+    const electricityPrice = parseFloat(document.getElementById('electricityPrice').value) || 0;
+    const annualServiceIce = parseFloat(document.getElementById('annualServiceIce').value) || 0;
+    const annualServiceByd = parseFloat(document.getElementById('annualServiceByd').value) || 0;
+    const annualTaxIce = parseFloat(document.getElementById('annualTaxIce').value) || 0;
+    const annualTaxByd = parseFloat(document.getElementById('annualTaxByd').value) || 0;
+    const ownershipPeriod = parseInt(document.getElementById('ownershipPeriod').value) || 1;
+    const selectedByd = bydData[modelKey];
+    const yearlyMileage = monthlyMileage * 12;
+
+    const bydKwhPerKm = selectedByd.battery / selectedByd.range;
+    const bydYearlyCost = bydKwhPerKm * electricityPrice * yearlyMileage;
+    const bydTotalYearly = bydYearlyCost + annualServiceByd + annualTaxByd;
+    const iceYearlyCost = (yearlyMileage / iceConsumption) * petrolPrice;
+    const iceTotalYearly = iceYearlyCost + annualServiceIce + annualTaxIce;
+    const yearlySavings = iceTotalYearly - bydTotalYearly;
+    const totalSavings = yearlySavings * ownershipPeriod;
+
+    resultSection.style.display = 'block';
+    setTimeout(() => { resultSection.style.opacity = 1; }, 10);
+    
+    document.getElementById('bydModelNameResult').innerText = selectedByd.name;
+    updateSpecInfo();
+
+    document.getElementById('bydYearlyCost').innerText = formatCurrency(bydYearlyCost);
+    document.getElementById('bydAnnualService').innerText = formatCurrency(annualServiceByd);
+    document.getElementById('bydAnnualTax').innerText = formatCurrency(annualTaxByd);
+    document.getElementById('bydTotalYearly').innerText = formatCurrency(bydTotalYearly);
+
+    document.getElementById('iceYearlyCost').innerText = formatCurrency(iceYearlyCost);
+    document.getElementById('iceAnnualService').innerText = formatCurrency(annualServiceIce);
+    document.getElementById('iceAnnualTax').innerText = formatCurrency(annualTaxIce);
+    document.getElementById('iceTotalYearly').innerText = formatCurrency(iceTotalYearly);
+
+    document.getElementById('yearlySavings').innerText = formatCurrency(yearlySavings > 0 ? yearlySavings : 0);
+    document.getElementById('totalSavingsLabel').innerText = `Dalam ${ownershipPeriod} Tahun`;
+    document.getElementById('totalSavings').innerText = formatCurrency(totalSavings > 0 ? totalSavings : 0);
+    
+    updateChart([bydYearlyCost, annualServiceByd, annualTaxByd], [iceYearlyCost, annualServiceIce, annualTaxIce]);
+    displayComparison(modelKey);
 }
-]
-},
-options: {
-responsive: true,
-plugins: {
-legend: {
-position: 'top',
-},
-tooltip: {
-callbacks: {
-label: function(context) {
-let label = context.dataset.label || '';
-if (label) {
-label += ': ';
-}
-if (context.parsed.y !== null) {
-label += formatCurrency(context.parsed.y);
-}
-return label;
-}
-}
-}
-},
-scales: {
-y: {
-beginAtZero: true,
-ticks: {
-callback: function(value, index, values) {
-return formatCurrency(value);
-}
-}
-}
-}
-}
+
+calculateBtn.addEventListener('click', calculate);
+toggleFormulaBtn.addEventListener('click', () => {
+    formulaDetails.classList.toggle('hidden-initially');
+    if (!formulaDetails.classList.contains('hidden-initially')) {
+        formulaDetails.style.maxHeight = formulaDetails.scrollHeight + "px";
+        formulaDetails.style.opacity = 1;
+        formulaArrow.classList.add('rotate-180');
+    } else {
+        formulaDetails.style.maxHeight = 0;
+        formulaDetails.style.opacity = 0;
+        formulaArrow.classList.remove('rotate-180');
+    }
 });
-}
-
-function toggleChargingOptions() {
-const method = document.getElementById('chargingMethod').value;
-const homeOptions = document.getElementById('home-charging-options');
-const spkluOptions = document.getElementById('spklu-charging-options');
-
-if (method === 'mixed') {
-homeOptions.style.display = 'block';
-spkluOptions.style.display = 'grid';
-} else if (method === 'home_only') {
-homeOptions.style.display = 'block';
-spkluOptions.style.display = 'none';
-} else { // spklu_only
-homeOptions.style.display = 'none';
-spkluOptions.style.display = 'grid';
-}
-}
-
-async function getGeminiSummary() {
-const geminiResultDiv = document.getElementById('gemini-result');
-const geminiCard = document.getElementById('gemini-result-card');
-const geminiBtn = document.getElementById('geminiBtn');
-
-if (!lastCalculationData.v1) {
-alert("Silakan hitung TCO terlebih dahulu.");
-return;
-}
-
-geminiCard.classList.remove('hidden');
-geminiResultDiv.innerHTML = 'Menganalisis data dan membuat ringkasan...';
-geminiBtn.disabled = true;
-
-const { v1, v2, period } = lastCalculationData;
-const prompt = `
-Anda adalah seorang penasihat keuangan otomotif yang ramah. Buat ringkasan perbandingan Total Cost of Ownership (TCO) antara dua mobil berikut dalam format poin-poin yang mudah dibaca.
-
-Data Perbandingan:
-- Mobil 1: ${v1.name}
-- Mobil 2: ${v2.name}
-- Periode Kepemilikan: ${period} tahun
-
-Rincian Mobil 1 (${v1.name}):
-- Harga Beli: ${formatCurrency(v1.price)}
-- Total Biaya Kepemilikan: ${formatCurrency(v1.tco)}
-- Total Biaya Energi: ${formatCurrency(v1.energyCost)}
-- Total Biaya Perawatan: ${formatCurrency(v1.maintenanceCost)}
-- Total Biaya Pajak: ${formatCurrency(v1.taxCost)}
-- Total Depresiasi: ${formatCurrency(v1.totalDepreciation)}
-
-Rincian Mobil 2 (${v2.name}):
-- Harga Beli: ${formatCurrency(v2.price)}
-- Total Biaya Kepemilikan: ${formatCurrency(v2.tco)}
-- Total Biaya Energi: ${formatCurrency(v2.energyCost)}
-- Total Biaya Perawatan: ${formatCurrency(v2.maintenanceCost)}
-- Total Biaya Pajak: ${formatCurrency(v2.taxCost)}
-- Total Depresiasi: ${formatCurrency(v2.totalDepreciation)}
-
-Tugas Anda:
-1. Tentukan mobil mana yang lebih unggul dari segi TCO secara keseluruhan dan sebutkan total penghematannya.
-2. Bandingkan biaya operasional (energi, perawatan, pajak) dan jelaskan mengapa salah satu mobil lebih hemat.
-3. Bahas faktor depresiasi sebagai komponen biaya terbesar dan bagaimana hal itu memengaruhi TCO.
-4. Berikan saran singkat kepada calon pembeli berdasarkan perbandingan ini. Gunakan format yang jelas dengan sub-judul dan poin-poin.
-`;
-
-try {
-let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-const payload = { contents: chatHistory };
-const apiKey = "";
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-const response = await fetch(apiUrl, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify(payload)
-});
-
-const result = await response.json();
-
-if (result.candidates && result.candidates[0] && result.candidates[0].content) {
-const text = result.candidates[0].content.parts[0].text;
-geminiResultDiv.innerText = text;
-} else {
-geminiResultDiv.innerText = "Maaf, terjadi kesalahan saat membuat ringkasan. Silakan coba lagi.";
-}
-} catch (error) {
-console.error("Gemini API Error:", error);
-geminiResultDiv.innerText = "Tidak dapat terhubung ke layanan AI. Pastikan Anda memiliki koneksi internet dan coba lagi.";
-} finally {
-geminiBtn.disabled = false;
-}
-}
-
-
+bydModelSelect.addEventListener('change', calculate);
 document.addEventListener('DOMContentLoaded', () => {
-populateSelects();
-populateCompetitorSelect();
-
-document.getElementById('chargingMethod').addEventListener('change', toggleChargingOptions);
-toggleChargingOptions();
-
-document.getElementById('vehicle1-select').addEventListener('change', (e) => {
-const selectedBydKey = e.target.value;
-populateForm('vehicle1', e.target);
-
-if (selectedBydKey !== 'manual') {
-const segment = allVehicleData[selectedBydKey].segment;
-populateCompetitorSelect(segment);
-const competitorSelect = document.getElementById('vehicle2-select');
-if(competitorSelect.options.length > 1) {
-competitorSelect.selectedIndex = 1;
-populateForm('vehicle2', competitorSelect);
-}
-}
-});
-
-document.getElementById('vehicle2-select').addEventListener('change', (e) => {
-populateForm('vehicle2', e.target);
-});
-
-document.getElementById('vehicle1-select').value = 'byd-dolphin-prem';
-document.getElementById('vehicle1-select').dispatchEvent(new Event('change'));
-
-document.getElementById('calculateBtn').addEventListener('click', calculateTCO);
-document.getElementById('geminiBtn').addEventListener('click', getGeminiSummary);
+    updateSpecInfo();
+    calculate();
 });
 </script>
+
 </body>
 </html>
