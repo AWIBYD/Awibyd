@@ -155,6 +155,13 @@ button{font:inherit}
 .ico.box{background:var(--teal);border-radius:2px}
 .ico.smog{background:#6b6257;border-radius:50%}
 .sound{font-size:12px}
+.trip{border:3px solid var(--ink);border-radius:12px;padding:10px;text-align:left;display:grid;gap:5px;background:#fffbe8}
+.trip-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:800}
+.trip-h .km{font-family:var(--f-display);font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
+.trip-row{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.trip-row span:last-child{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.trip-row.diff{border-top:2px dashed var(--line);padding-top:5px;color:#0a8478}
+.trip-row.fuel span:last-child{color:#c2410c}
 .nick{display:grid;gap:3px;text-align:left;font-size:12px;font-weight:700}
 .nick input{font:inherit;font-size:16px;font-weight:600;padding:7px 9px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink);width:100%}
 .nick small{font-weight:500;color:var(--muted)}
@@ -231,6 +238,7 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
         <div class="meters">
           <div class="batt" id="hBatt" aria-label="Baterai"><i id="hBattFill"></i></div>
           <span class="pill"><span class="dot"></span><span id="hCoins">0</span></span>
+          <span class="pill" id="hKm">0,0 KM</span>
         </div>
         <div class="chips" id="hChips"></div>
       </div>
@@ -328,12 +336,19 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
             <span class="pill"><span class="dot"></span>+<span id="oCoins">0</span></span>
             <span class="pill">DOMPET <span id="oWallet">0</span></span>
           </div>
+          <div class="trip">
+            <div class="trip-h"><span>Jarak tempuh</span><span class="km"><span id="oKm">0</span> KM</span></div>
+            <div class="trip-row fuel"><span>Kalau pakai mobil bensin</span><span id="oFuel">Rp0</span></div>
+            <div class="trip-row"><span>Kalau pakai BYD (listrik)</span><span id="oEv">Rp0</span></div>
+            <div class="trip-row diff"><span id="oDiffLbl">Selisih biaya</span><span id="oDiff">Rp0</span></div>
+            <span class="note" id="oAsm"></span>
+          </div>
+          <button class="btn" id="bRestart" type="button">MAIN LAGI</button>
           <div class="zone">
             <b id="oZoneTitle">Menuju Zona 2</b>
             <div class="track"><i id="oZoneBar"></i></div>
             <span class="note" id="oZoneNote"></span>
           </div>
-          <button class="btn" id="bRestart" type="button">MAIN LAGI</button>
           <div class="cta-box">
             <p id="oCta">Di game kamu hemat koin. Di jalan beneran, berapa yang bisa kamu hemat tiap bulan?</p>
             <a class="btn alt" href="#hemat" id="bHemat">HITUNG HEMATKU</a>
@@ -473,7 +488,7 @@ var reduced=false; try{reduced=window.matchMedia('(prefers-reduced-motion: reduc
 var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},
            set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 function loadSave(){
-  var d={v:2,best:0,bestCoins:0,rounds:0,wallet:0,totalCoins:0,maxZone:1,secrets:0,owned:['atto1'],skin:'atto1',env:'auto',ach:[],daily:null,streak:0,bestStreak:0,lastAll:'',muted:false,nick:''};
+  var d={v:2,best:0,bestCoins:0,rounds:0,wallet:0,totalCoins:0,maxZone:1,secrets:0,owned:['atto1'],skin:'atto1',env:'auto',ach:[],daily:null,streak:0,bestStreak:0,lastAll:'',muted:false,nick:'',bestKm:0,totalKm:0};
   var s=store.get('fbyd_v2',null);
   if(s&&typeof s==='object'){ for(var k in d) if(s[k]!==undefined) d[k]=s[k]; }
   else { d.best=store.get('fbyd_best',0)|0; d.muted=!!store.get('fbyd_mute',false); }
@@ -579,7 +594,7 @@ function disc(c,cx,cy,r,col){ r=Math.round(r); c.fillStyle=col;
   for(var dy=-r;dy<=r;dy++){ var w=Math.floor(Math.sqrt(r*r-dy*dy)); c.fillRect(Math.round(cx-w),Math.round(cy+dy),w*2+1,1);} }
 function halfDisc(c,cx,cy,r,col){ c.fillStyle=col; for(var dy=-r;dy<=0;dy++){ var w=Math.floor(Math.sqrt(r*r-dy*dy)); c.fillRect(cx-w,cy+dy,w*2+1,1);} }
 function ell(c,cx,cy,rx,ry,col){ c.fillStyle=col; for(var dy=-ry;dy<=ry;dy++){ var w=Math.round(rx*Math.sqrt(Math.max(0,1-(dy*dy)/(ry*ry)))); c.fillRect(cx-w,cy+dy,w*2+1,1);} }
-var FONT={P:'111101111100100',A:'010101111101101',N:'101111111111101',T:'111010010010010',I:'111010010010111',L:'100100100100111',O:'111101101101111',S:'111100111001111',R:'110101110101101'};
+var FONT={P:'111101111100100',A:'010101111101101',N:'101111111111101',T:'111010010010010',I:'111010010010111',L:'100100100100111',O:'111101101101111',S:'111100111001111',R:'110101110101101','0':'111101101101111','1':'010110010010111','2':'111001111100111','3':'111001111001111','4':'101101111001001','5':'111100111001111','6':'111100111101111','7':'111001001001001','8':'111101111101111','9':'111101111001111',K:'101101110101101',M:'101111111101101',',':'000000000010100'};
 function glyph(c,ch,x,y,s,col){ var m=FONT[ch]; if(!m) return; c.fillStyle=col; for(var i=0;i<15;i++) if(m[i]==='1') c.fillRect(x+(i%3)*s,y+Math.floor(i/3)*s,s,s); }
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 var rnd=mulberry(11), SKYLINE=[], SKY_W=0;
@@ -757,10 +772,13 @@ function claim(id){
 
 /* ---------- Game state ---------- */
 var state='menu', car, obs, items, parts, smoke, score, coins, battery, zone, shieldT, magnetT, doubleT, ecoT, secretT, secretKind, secretUsed, portalOut, toNext,
-    bg=0, t=0, shake=0, flashA=0, lightning=0, overAt=0, runNew=[], runBoxes=0, sessionRounds=0, lastReason='', isNewBest=false, lastRunCoins=0;
+    bg=0, dist=0, t=0, shake=0, flashA=0, lightning=0, overAt=0, runNew=[], runBoxes=0, sessionRounds=0, lastReason='', isNewBest=false, lastRunCoins=0;
 function reset(){ car={x:52,y:140,vy:0,rot:0,jet:0}; obs=[]; items=[]; parts=[]; smoke=[]; score=0; coins=0; battery=100; zone=1;
-  shieldT=0; magnetT=0; doubleT=0; ecoT=0; secretT=0; secretKind=null; secretUsed=false; portalOut=false; toNext=60; runNew=[]; runBoxes=0; }
+  shieldT=0; magnetT=0; doubleT=0; ecoT=0; secretT=0; secretKind=null; secretUsed=false; portalOut=false; toNext=60; runNew=[]; runBoxes=0; dist=0; }
 reset();
+var PX_PER_KM=100;
+function kmNow(){ return dist/PX_PER_KM; }
+function kmTxt(v){ return v.toLocaleString('id-ID',{minimumFractionDigits:1,maximumFractionDigits:1}); }
 function skin(){ return byId(SKINS,save.skin)||SKINS[0]; }
 function speed(){ if(secretT>0) return 92; var s=66+Math.min(score,60)*0.9; return ecoT>0?s*0.65:s; }
 function spacing(){ return Math.max(84,112-Math.min(score,70)*0.4); }
@@ -814,6 +832,7 @@ function updHud(){
   var b=Math.max(0,Math.round(battery));
   if(last.b!==b){ elBatt.style.width=b+'%'; elBatt.style.backgroundColor=b>50?'#39d98a':b>25?'#ffcf3f':'#ff5a3c'; last.b=b; }
   if(last.c!==coins){ elCoins.textContent=coins; last.c=coins; }
+  var kt=kmTxt(kmNow())+' KM'; if(last.k!==kt){ $('hKm').textContent=kt; last.k=kt; }
   var ch='';
   if(shieldT>0) ch+='<span class="chip">PERISAI '+Math.ceil(shieldT)+'</span>';
   if(magnetT>0) ch+='<span class="chip m">MAGNET '+Math.ceil(magnetT)+'</span>';
@@ -844,14 +863,21 @@ function die(reason){
   save.rounds++; sessionRounds++; dstat('rounds',1);
   lastRunCoins=coins; save.wallet+=coins; save.totalCoins+=coins; save.bestCoins=Math.max(save.bestCoins,coins);
   save.maxZone=Math.max(save.maxZone,zone);
+  save.bestKm=Math.max(save.bestKm||0,kmNow()); save.totalKm=(save.totalKm||0)+kmNow();
   isNewBest=score>save.best; if(isNewBest) save.best=score;
   persist();
-  setTimeout(function(){ if(state!=='over') return; fillOver(); show('ovOver'); hud.hidden=true; },650);
+  setTimeout(function(){ if(state!=='over') return; fillOver(); show('ovOver'); hud.hidden=true; },1500);
 }
 function fillOver(){
   $('oReason').textContent=REASONS[lastReason]||'';
   $('oScore').textContent=score; $('oBest').textContent=save.best; $('oCoins').textContent=lastRunCoins; $('oWallet').textContent=save.wallet;
   $('oNew').hidden=!isNewBest;
+  var km=kmNow(), a=energyAssump(); $('oKm').textContent=kmTxt(km);
+  if(a){ var cf=km/a.kmpl*a.fuel, ce=km/a.kmkwh*a.tarif, d=cf-ce;
+    $('oFuel').textContent=fmtRp(cf); $('oEv').textContent=fmtRp(ce);
+    $('oDiffLbl').textContent=d>=0?'Lebih hemat pakai BYD':'Selisih (listrik lebih mahal)'; $('oDiff').textContent=fmtRp(Math.abs(d));
+    $('oAsm').textContent='Jarak simulasi game. Hitungan: bensin '+a.kmpl.toLocaleString('id-ID')+' km/L × Rp'+a.fuel.toLocaleString('id-ID')+'/L, BYD '+a.kmkwh.toLocaleString('id-ID')+' km/kWh × Rp'+a.tarif.toLocaleString('id-ID',{maximumFractionDigits:2})+'/kWh. Ubah asumsinya di kalkulator di bawah.';
+  } else { $('oFuel').textContent='-'; $('oEv').textContent='-'; $('oDiff').textContent='-'; $('oAsm').textContent='Lengkapi isian kalkulator di bawah untuk melihat biayanya.'; }
   var zi=zoneOf(score);
   if(zi<ZONES.length){ var from=ZONES[zi-1].from, to=ZONES[zi].from, need=to-score;
     $('oZoneTitle').textContent='Menuju Zona '+(zi+1)+': '+ZONES[zi].name;
@@ -864,7 +890,7 @@ function fillOver(){
   var ch=$('oChal');
   if(challenge>0){ ch.hidden=false; ch.textContent=score>challenge?((myName()||'Kamu')+' mengalahkan '+rivalName()+'! '+score+' vs '+challenge+'. Pasang kartunya di sosmed!'):(rivalName()+' masih unggul: '+challenge+' vs '+score+'. Kurang '+(challenge-score+1)+' poin.'); } else ch.hidden=true;
   renderMissionMini($('oMissions'));
-  $('oCta').textContent=lastRunCoins>0?('Di game kamu kumpulin '+lastRunCoins+' koin. Di jalan beneran, berapa rupiah yang bisa kamu hemat tiap bulan?'):'Di jalan beneran, berapa rupiah yang bisa kamu hemat tiap bulan pakai BYD?';
+  $('oCta').textContent='Itu baru '+kmTxt(km)+' km. Hitung untuk jarak harianmu selama sebulan dan setahun.';
   $('bChallenge').href='https://wa.me/?text='+encodeURIComponent(challengeText());
   var br=$('oBreak'); br.hidden=!(sessionRounds>0&&sessionRounds%10===0); br.textContent='Sudah '+sessionRounds+' ronde. Istirahatkan mata sebentar, progresmu aman tersimpan.';
   refreshMenu();
@@ -912,7 +938,7 @@ function renderGarage(){
   });
 }
 function renderRecords(){
-  var rows=[['Rekor skor',save.best],['Koin terbanyak 1 ronde',save.bestCoins],['Total koin terkumpul',save.totalCoins],['Ronde dimainkan',save.rounds],['Zona terjauh','Zona '+save.maxZone],['Zona rahasia ditemukan',save.secrets],['Streak misi terbaik',save.bestStreak+' hari']];
+  var rows=[['Rekor skor',save.best],['Koin terbanyak 1 ronde',save.bestCoins],['Total koin terkumpul',save.totalCoins],['Ronde dimainkan',save.rounds],['Jarak terjauh 1 ronde',kmTxt(save.bestKm||0)+' km'],['Total jarak ditempuh',kmTxt(save.totalKm||0)+' km'],['Zona terjauh','Zona '+save.maxZone],['Zona rahasia ditemukan',save.secrets],['Streak misi terbaik',save.bestStreak+' hari']];
   $('recList').innerHTML=rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>';}).join('');
   $('achCount').textContent=save.ach.length+'/'+ACH.length;
   $('achList').innerHTML=ACH.map(function(a){ var has=save.ach.indexOf(a.id)>=0; return '<div class="ach'+(has?'':' off')+'"><b>'+(has||!a.secret?a.name:'??? Rahasia')+'</b>'+a.hint+'</div>'; }).join('');
@@ -968,7 +994,7 @@ function update(dt){
   if(sceneTod()===3&&secretT<=0&&Math.random()<dt*0.12) lightning=0.45;
   if(state==='menu'){ bg+=38*dt; car.y=140+Math.sin(t*3)*8; car.rot=Math.cos(t*3)*0.1; car.jet=Math.cos(t*3)<0?0.1:0; updParts(dt); return; }
   if(state==='over'){ car.vy=Math.min(360,car.vy+900*dt); car.y=Math.min(GROUND-8,car.y+car.vy*dt); car.rot=Math.min(1.2,car.rot+dt*4); updParts(dt); return; }
-  var sp=speed(); bg+=sp*dt;
+  var sp=speed(); bg+=sp*dt; dist+=sp*dt;
   car.vy=Math.min(360,car.vy+880*dt); car.y+=car.vy*dt; car.rot=Math.max(-0.45,Math.min(0.9,car.vy/420)); if(car.jet>0) car.jet-=dt;
   if(car.y<10){ car.y=10; if(car.vy<0) car.vy=0; }
   if(shieldT>0) shieldT-=dt; if(magnetT>0) magnetT-=dt; if(doubleT>0) doubleT-=dt; if(ecoT>0) ecoT-=dt;
@@ -1012,6 +1038,24 @@ function update(dt){
   updHud();
 }
 
+/* ---------- Kilometer posts ---------- */
+function pixW(str,s){ return str.length*4*s-s; }
+function ptext(c,str,x,y,s,col){ for(var i=0;i<str.length;i++) glyph(c,str[i],x+i*4*s,y,s,col); }
+function drawKmPosts(c){
+  var step=5*PX_PER_KM, first=Math.floor((dist-car.x)/step);
+  for(var k=Math.max(1,first);k<=first+3;k++){
+    var x=Math.round(car.x+(k*step-dist)); if(x<-12||x>W+12) continue;
+    var lbl=String(k*5);
+    R(c,x-3,258,7,14,INK); R(c,x-2,259,5,12,'#ffffff'); R(c,x-2,259,5,3,'#e8352b');
+    var w=pixW(lbl,1); R(c,x-Math.ceil(w/2)-2,249,w+4,8,INK); R(c,x-Math.ceil(w/2)-1,250,w+2,6,'#ffffff'); ptext(c,lbl,x-Math.ceil(w/2),250,1,INK);
+  }
+}
+function drawFinishBoard(c){
+  var k=Math.min(1,(Date.now()-overAt)/450), lbl=kmTxt(kmNow()).replace('.','')+'KM', s=2, w=pixW(lbl,s), bx=Math.round(Math.min(W-w-8,Math.max(4,car.x-w/2))), top=Math.round(GROUND-46*k);
+  R(c,bx+Math.round(w/2)-1,top+18,3,GROUND-top-18,INK); R(c,bx+Math.round(w/2),top+18,1,GROUND-top-18,'#cfd6e0');
+  R(c,bx-5,top-2,w+10,20,INK); R(c,bx-4,top-1,w+8,18,'#1a9e52'); R(c,bx-3,top,w+6,1,'#5fd18f');
+  ptext(c,lbl,bx,top+3,s,'#ffffff');
+}
 /* ---------- Render ---------- */
 function render(){
   var td=sceneTod();
@@ -1020,12 +1064,13 @@ function render(){
   if(secretKind==='kilat') drawKilat(g,bg,t); else if(secretKind==='samalona') drawSamalona(g,bg,t); else drawScene(g,bg,td,t);
   for(var i=0;i<obs.length;i++) drawObstacle(g,obs[i]);
   smoke.forEach(function(s){ g.globalAlpha=Math.max(0,s.life)*0.55; disc(g,s.x,s.y,s.r,'#9aa3b2'); }); g.globalAlpha=1;
-  if(secretKind) drawSecretGround(g,bg,secretKind); else drawRoad(g,bg,td);
+  if(secretKind) drawSecretGround(g,bg,secretKind); else { drawRoad(g,bg,td); if(state==='play'||state==='over'||state==='pause') drawKmPosts(g); }
   for(i=0;i<items.length;i++) drawItem(g,items[i],t);
   if(shieldT>0&&(shieldT>1.5||Math.floor(t*10)%2)){ g.globalAlpha=0.3+0.15*Math.sin(t*12); disc(g,car.x,car.y-1,15,'#7ff6ff'); g.globalAlpha=1; }
   drawCar(g,car.x,car.y,car.rot,skin(),t,car.jet>0);
   parts.forEach(function(p){ g.globalAlpha=Math.max(0,p.life/p.max); R(g,Math.round(p.x),Math.round(p.y),p.s,p.s,p.c); }); g.globalAlpha=1;
   if(td===3&&!secretKind) drawRain(g,t);
+  if(state==='over') drawFinishBoard(g);
   if(ecoT>0){ g.fillStyle='rgba(57,217,138,0.10)'; g.fillRect(0,0,W,H); }
   g.restore();
   var fl=Math.max(flashA,reduced?0:lightning*0.6);
@@ -1052,7 +1097,7 @@ function gameUrl(){ return hosted()?location.href.split('#')[0]:SITE; }
 function challengeText(){ var h=nickToHash(save.nick), url=hosted()?gameUrl()+'#tantang'+score+(h?'-'+h:''):gameUrl();
   var won=challenge>0&&score>challenge, me=myName()?myName()+' di sini. ':'';
   if(won) return me+'Aku baru mengalahkan '+rivalName()+' di Flappy BYD: '+score+' vs '+challenge+'! Sekarang giliranmu kalahkan '+score+'. Main gratis, tanpa daftar: '+url;
-  return me+'Aku dapat skor '+score+' di Flappy BYD: EV Saver Challenge (sampai Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name+'). Berani kalahkan? Main gratis, tanpa daftar: '+url; }
+  return me+'Aku tempuh '+kmTxt(kmNow())+' km dan dapat skor '+score+' di Flappy BYD: EV Saver Challenge (sampai Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name+'). Berani kalahkan? Main gratis, tanpa daftar: '+url; }
 
 /* ---------- Input ---------- */
 var stage=$('stage');
@@ -1105,7 +1150,7 @@ function buildCard(){
   x.fillStyle=INK; x.fillRect(80,210,560,520); x.fillStyle='#ffffff'; x.fillRect(80,200,560,520); x.strokeStyle=INK; x.lineWidth=8; x.strokeRect(80,200,560,520);
   txt(myName()?('SKOR '+myName().toUpperCase()):'SKOR',360,270,'700 30px '+df,'#46618a');
   txt(String(score),360,410,'700 150px '+df,INK);
-  txt('Rekor '+save.best+'  ·  '+lastRunCoins+' koin',360,470,'800 32px '+bf,INK);
+  txt(kmTxt(kmNow())+' km  ·  Rekor '+save.best+'  ·  '+lastRunCoins+' koin',360,470,'800 30px '+bf,INK);
   txt('Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name,360,515,'800 32px '+bf,'#0a8478');
   txt('Prestasi '+save.ach.length+'/'+ACH.length+'  ·  '+skin().name,360,560,'600 26px '+bf,'#46618a');
   if(challenge>0){
@@ -1146,6 +1191,11 @@ $('bShareClose').addEventListener('click',function(){ show('ovOver'); });
 var fmt=function(n){ return 'Rp'+Math.round(n).toLocaleString('id-ID'); };
 var num=function(n,d){ return n.toLocaleString('id-ID',{maximumFractionDigits:d==null?1:d}); };
 function val(id){ var v=parseFloat(String($(id).value).replace(',','.')); return isFinite(v)&&v>0?v:0; }
+function fmtRp(n){ return 'Rp'+Math.round(n).toLocaleString('id-ID'); }
+function energyAssump(){ var kmpl=val('kmpl'), kmkwh=val('kmkwh');
+  var fuel=$('fuelSel').value==='custom'?val('fuelCustom'):parseFloat($('fuelSel').value);
+  var tarif=$('tarifSel').value==='custom'?val('tarifCustom'):parseFloat($('tarifSel').value);
+  return (kmpl&&kmkwh&&fuel&&tarif)?{kmpl:kmpl,kmkwh:kmkwh,fuel:fuel,tarif:tarif}:null; }
 function calc(){
   $('fuelCustomWrap').hidden=$('fuelSel').value!=='custom';
   $('tarifCustomWrap').hidden=$('tarifSel').value!=='custom';
