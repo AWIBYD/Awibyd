@@ -193,7 +193,7 @@ button{font:inherit}
 .bar-top span:last-child{font-variant-numeric:tabular-nums}
 .bar{height:16px;border:2px solid var(--ink);border-radius:4px;background:var(--tint);overflow:hidden}
 .bar i{display:block;height:100%;transition:width .3s}
-.bar.fuel i{background:var(--coral)}.bar.ev i{background:var(--teal)}
+.bar.fuel i{background:var(--coral)}.bar.ev i{background:var(--teal)}.bar.sp i{background:var(--sea)}
 .formula{font-size:13px;background:var(--tint);border-radius:10px;padding:10px 12px;display:grid;gap:4px;color:var(--ink);overflow-x:auto}
 .formula code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;white-space:nowrap}
 .cta-row{display:grid;gap:10px}
@@ -339,7 +339,8 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
           <div class="trip">
             <div class="trip-h"><span>Jarak tempuh</span><span class="km"><span id="oKm">0</span> KM</span></div>
             <div class="trip-row fuel"><span>Kalau pakai mobil bensin</span><span id="oFuel">Rp0</span></div>
-            <div class="trip-row"><span>Kalau pakai BYD (listrik)</span><span id="oEv">Rp0</span></div>
+            <div class="trip-row"><span id="oEvLbl">BYD, charge di rumah</span><span id="oEv">Rp0</span></div>
+            <div class="trip-row"><span id="oSpLbl">BYD, charge di SPKLU</span><span id="oSp">Rp0</span></div>
             <div class="trip-row diff"><span id="oDiffLbl">Selisih biaya</span><span id="oDiff">Rp0</span></div>
             <span class="note" id="oAsm"></span>
           </div>
@@ -411,32 +412,43 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
           <div class="f" id="fuelCustomWrap" hidden><label for="fuelCustom">Harga BBM per liter (Rp)</label><input id="fuelCustom" type="number" inputmode="numeric" min="1" step="any" value="16000"></div>
         </fieldset>
         <fieldset class="grp ev">
-          <legend>BYD (LISTRIK)</legend>
-          <div class="f"><label for="kmkwh">Efisiensi (km per kWh)</label><input id="kmkwh" type="number" inputmode="decimal" min="1" step="any" value="6.5"><div class="help">Contoh konservatif, bukan klaim resmi model tertentu. Tanya AWI untuk angka model incaranmu.</div></div>
+          <legend>MOBIL BYD</legend>
+          <div class="f"><label for="modelSel">Model</label><select id="modelSel"></select></div>
+          <div class="f"><label for="kmkwh">Efisiensi (km per kWh)</label><input id="kmkwh" type="number" inputmode="decimal" min="1" step="any" value="6.45"><div class="help" id="kmkwhSrc"></div></div>
         </fieldset>
         <fieldset class="grp ev">
           <legend>CHARGING</legend>
-          <div class="f"><label for="tarifSel">Tarif listrik</label>
+          <div class="f"><label for="tarifSel">Charge di rumah</label>
             <select id="tarifSel">
-              <option value="1444.70">Rumah 1.300–2.200 VA · Rp1.444,70/kWh</option>
-              <option value="1699.53">Rumah ≥3.500 VA · Rp1.699,53/kWh</option>
-              <option value="1352">Rumah 900 VA (mampu) · Rp1.352/kWh</option>
-              <option value="custom">Isi tarif sendiri (mis. SPKLU)</option>
+              <option value="1444.70">1.300–2.200 VA · Rp1.444,70</option>
+              <option value="1699.53">≥3.500 VA · Rp1.699,53</option>
+              <option value="1352">900 VA mampu · Rp1.352</option>
+              <option value="custom">Isi tarif sendiri</option>
             </select>
           </div>
-          <div class="f" id="tarifCustomWrap" hidden><label for="tarifCustom">Tarif per kWh (Rp)</label><input id="tarifCustom" type="number" inputmode="decimal" min="1" step="any" value="2500"><div class="help">Cek tarif di aplikasi atau papan SPKLU yang kamu pakai.</div></div>
+          <div class="f" id="tarifCustomWrap" hidden><label for="tarifCustom">Tarif rumah per kWh (Rp)</label><input id="tarifCustom" type="number" inputmode="decimal" min="1" step="any" value="1500"></div>
+          <div class="f"><label for="spkluSel">Charge di SPKLU</label>
+            <select id="spkluSel">
+              <option value="0">Medium AC · Rp2.466,78/kWh</option>
+              <option value="25000">Fast DC · +Rp25rb/sesi</option>
+              <option value="57000">Ultra fast · +Rp57rb/sesi</option>
+            </select>
+            <div class="help" id="spkluHelp"></div>
+          </div>
         </fieldset>
       </form>
 
       <div class="results" aria-live="polite">
         <div class="save">
-          <span class="lbl" id="rSaveLbl">ESTIMASI HEMAT PER BULAN</span>
+          <span class="lbl" id="rSaveLbl">ESTIMASI HEMAT PER BULAN · CHARGE DI RUMAH</span>
           <span class="num" id="rSave">Rp0</span>
           <span class="yr" id="rYear">Rp0 per tahun</span>
+          <span class="yr" id="rSpkluSave"></span>
         </div>
         <div class="bars">
           <div class="bar-row"><div class="bar-top"><span>Bensin / bulan</span><span id="rFuel">Rp0</span></div><div class="bar fuel"><i id="barFuel"></i></div></div>
-          <div class="bar-row"><div class="bar-top"><span>Listrik BYD / bulan</span><span id="rEv">Rp0</span></div><div class="bar ev"><i id="barEv"></i></div></div>
+          <div class="bar-row"><div class="bar-top"><span id="rEvLbl">BYD charge di rumah / bulan</span><span id="rEv">Rp0</span></div><div class="bar ev"><i id="barEv"></i></div></div>
+          <div class="bar-row"><div class="bar-top"><span id="rSpLbl">BYD di SPKLU / bulan</span><span id="rSp">Rp0</span></div><div class="bar sp"><i id="barSp"></i></div></div>
         </div>
         <div class="formula" id="rFormula"></div>
         <div class="cta-row">
@@ -450,9 +462,11 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
         <ul>
           <li>Harga BBM Pertamina per Oktober 2026: Pertalite Rp10.000/L, Pertamax Rp15.950/L (harga acuan; Pertamax di beberapa wilayah bisa sedikit berbeda, sesuaikan dengan SPBU kamu).</li>
           <li>Tarif listrik PLN nonsubsidi rumah tangga yang berlaku awal Oktober 2026: 900 VA mampu Rp1.352/kWh, 1.300–2.200 VA Rp1.444,70/kWh, ≥3.500 VA Rp1.699,53/kWh. Tarif dievaluasi pemerintah tiap 3 bulan.</li>
-          <li>Konsumsi BBM dan efisiensi listrik adalah isianmu. Angka awal 12 km/L dan 6,5 km/kWh hanya contoh.</li>
-          <li>Yang dihitung hanya biaya energi. Belum termasuk PPJ &amp; biaya admin token, selisih tarif SPKLU umum, servis, pajak, asuransi, maupun cicilan.</li>
-          <li>Rumus: km/bulan = km/hari × hari. Bensin = km/bulan ÷ km/L × harga BBM. Listrik = km/bulan ÷ km/kWh × tarif. Per tahun = per bulan × 12.</li>
+          <li>Tarif SPKLU: tarif layanan khusus PLN Rp1.644,52/kWh × faktor maksimal 1,5 = Rp2.466,78/kWh. Biaya layanan per sesi paling banyak Rp25.000 (fast) dan Rp57.000 (ultra fast) sesuai Kepmen ESDM 182.K/TL.04/MEM.S/2023. Biaya layanan dihitung dengan batas maksimal dan dibagi rata per sesi isi 20%→80% baterai. Pajak di struk SPKLU (jika ada) belum termasuk.</li>
+          <li>Efisiensi listrik per model memakai angka konsumsi WLTP versi Eropa/Australia (EV Database, Zecar), yang sudah memperhitungkan rugi charging: Atto 1 Dynamic 155 Wh/km, Atto 1 Premium 160, Dolphin 159, Atto 3 156, Seal 166, Sealion 7 199, Denza D9 199. M6 belum punya angka WLTP; dipakai hasil uji jalan detikOto dalam kota 7,2 km/kWh. Kapasitas baterai versi Indonesia bisa berbeda dari versi yang diuji.</li>
+          <li>Konsumsi BBM mobil bensin adalah isianmu (angka awal 12 km/L hanya contoh).</li>
+          <li>Yang dihitung hanya biaya energi. Belum termasuk biaya admin token, servis, pajak kendaraan, asuransi, maupun cicilan.</li>
+          <li>Rumus: km/bulan = km/hari × hari. Bensin = km ÷ km/L × harga BBM. Listrik = km ÷ km/kWh × tarif. SPKLU = kWh × Rp2.466,78 + (kWh ÷ kWh per sesi) × biaya layanan. Per tahun = per bulan × 12.</li>
         </ul>
       </details>
     </section>
@@ -873,11 +887,12 @@ function fillOver(){
   $('oScore').textContent=score; $('oBest').textContent=save.best; $('oCoins').textContent=lastRunCoins; $('oWallet').textContent=save.wallet;
   $('oNew').hidden=!isNewBest;
   var km=kmNow(), a=energyAssump(); $('oKm').textContent=kmTxt(km);
-  if(a){ var cf=km/a.kmpl*a.fuel, ce=km/a.kmkwh*a.tarif, d=cf-ce;
-    $('oFuel').textContent=fmtRp(cf); $('oEv').textContent=fmtRp(ce);
-    $('oDiffLbl').textContent=d>=0?'Lebih hemat pakai BYD':'Selisih (listrik lebih mahal)'; $('oDiff').textContent=fmtRp(Math.abs(d));
-    $('oAsm').textContent='Jarak simulasi game. Hitungan: bensin '+a.kmpl.toLocaleString('id-ID')+' km/L × Rp'+a.fuel.toLocaleString('id-ID')+'/L, BYD '+a.kmkwh.toLocaleString('id-ID')+' km/kWh × Rp'+a.tarif.toLocaleString('id-ID',{maximumFractionDigits:2})+'/kWh. Ubah asumsinya di kalkulator di bawah.';
-  } else { $('oFuel').textContent='-'; $('oEv').textContent='-'; $('oDiff').textContent='-'; $('oAsm').textContent='Lengkapi isian kalkulator di bawah untuk melihat biayanya.'; }
+  if(a){ var c=costs(km,a), d=c.fuel-c.home, mn=a.model.id==='custom'?'BYD':'BYD '+a.model.name;
+    $('oFuel').textContent=fmtRp(c.fuel); $('oEvLbl').textContent=mn+', charge di rumah'; $('oEv').textContent=fmtRp(c.home);
+    $('oSpLbl').textContent=mn+', '+spkluName(a.fee); $('oSp').textContent=fmtRp(c.spklu);
+    $('oDiffLbl').textContent=d>=0?'Hemat vs bensin (charge di rumah)':'Selisih (listrik lebih mahal)'; $('oDiff').textContent=fmtRp(Math.abs(d));
+    $('oAsm').textContent='Jarak simulasi game. '+mn+' '+a.kmkwh.toLocaleString('id-ID')+' km/kWh ('+a.model.src+'); bensin '+a.kmpl.toLocaleString('id-ID')+' km/L × Rp'+a.fuel.toLocaleString('id-ID')+'/L; rumah Rp'+a.tarif.toLocaleString('id-ID',{maximumFractionDigits:2})+'/kWh; SPKLU Rp2.466,78/kWh'+(a.fee?' + biaya layanan maks Rp'+a.fee.toLocaleString('id-ID')+'/sesi':'')+'. Ganti model & asumsi di kalkulator di bawah.';
+  } else { $('oFuel').textContent='-'; $('oEv').textContent='-'; $('oSp').textContent='-'; $('oDiff').textContent='-'; $('oAsm').textContent='Lengkapi isian kalkulator di bawah untuk melihat biayanya.'; }
   var zi=zoneOf(score);
   if(zi<ZONES.length){ var from=ZONES[zi-1].from, to=ZONES[zi].from, need=to-score;
     $('oZoneTitle').textContent='Menuju Zona '+(zi+1)+': '+ZONES[zi].name;
@@ -1192,29 +1207,53 @@ var fmt=function(n){ return 'Rp'+Math.round(n).toLocaleString('id-ID'); };
 var num=function(n,d){ return n.toLocaleString('id-ID',{maximumFractionDigits:d==null?1:d}); };
 function val(id){ var v=parseFloat(String($(id).value).replace(',','.')); return isFinite(v)&&v>0?v:0; }
 function fmtRp(n){ return 'Rp'+Math.round(n).toLocaleString('id-ID'); }
-function energyAssump(){ var kmpl=val('kmpl'), kmkwh=val('kmkwh');
+var SPKLU_BASE=2466.78;
+var EV_MODELS=[
+ {id:'atto1d',name:'Atto 1 Dynamic',kmkwh:6.45,batt:30.08,src:'WLTP 155 Wh/km (Dolphin Surf 30 kWh, EV Database)'},
+ {id:'atto1p',name:'Atto 1 Premium',kmkwh:6.25,batt:38.88,src:'WLTP 160 Wh/km (Dolphin Surf 43,2 kWh, EV Database)'},
+ {id:'dolphin',name:'Dolphin',kmkwh:6.29,batt:60.48,src:'WLTP 159 Wh/km (Dolphin 60,4 kWh, EV Database)'},
+ {id:'atto3',name:'Atto 3',kmkwh:6.41,batt:49.92,src:'WLTP 156 Wh/km (Atto 3 60,5 kWh, EV Database)'},
+ {id:'m6',name:'M6',kmkwh:7.2,batt:71.8,src:'Uji jalan detikOto dalam kota 7,2 km/kWh (belum ada angka WLTP)'},
+ {id:'seal',name:'Seal',kmkwh:6.02,batt:82.56,src:'WLTP 166 Wh/km (Seal 82,5 kWh RWD, EV Database)'},
+ {id:'sealion7',name:'Sealion 7',kmkwh:5.03,batt:82.56,src:'WLTP 199 Wh/km (Sealion 7 82,5 kWh RWD, EV Database)'},
+ {id:'d9',name:'Denza D9',kmkwh:5.03,batt:103.36,src:'WLTP 199 Wh/km (Denza D9, Zecar Australia)'},
+ {id:'custom',name:'Isi sendiri',kmkwh:0,batt:60,src:'Isi efisiensi sendiri. Biaya layanan SPKLU dihitung dengan baterai 60 kWh.'}
+];
+(function(){ var sel=$('modelSel'); EV_MODELS.forEach(function(m){ var o=document.createElement('option'); o.value=m.id; o.textContent=m.id==='custom'?'Isi sendiri':('BYD '+m.name+(m.kmkwh?' · '+m.kmkwh.toLocaleString('id-ID')+' km/kWh':'')); sel.appendChild(o); }); })();
+function curModel(){ return byId(EV_MODELS,$('modelSel').value)||EV_MODELS[0]; }
+function applyModel(){ var m=curModel(); if(m.kmkwh) $('kmkwh').value=m.kmkwh; $('kmkwhSrc').textContent='Sumber: '+m.src+'.'; }
+function energyAssump(){ var kmpl=val('kmpl'), kmkwh=val('kmkwh'), m=curModel();
   var fuel=$('fuelSel').value==='custom'?val('fuelCustom'):parseFloat($('fuelSel').value);
   var tarif=$('tarifSel').value==='custom'?val('tarifCustom'):parseFloat($('tarifSel').value);
-  return (kmpl&&kmkwh&&fuel&&tarif)?{kmpl:kmpl,kmkwh:kmkwh,fuel:fuel,tarif:tarif}:null; }
+  var fee=parseFloat($('spkluSel').value)||0, sessKwh=m.batt*0.6;
+  return (kmpl&&kmkwh&&fuel&&tarif)?{kmpl:kmpl,kmkwh:kmkwh,fuel:fuel,tarif:tarif,fee:fee,sessKwh:sessKwh,model:m}:null; }
+function costs(km,a){ var kwh=km/a.kmkwh; return {liter:km/a.kmpl,kwh:kwh,fuel:km/a.kmpl*a.fuel,home:kwh*a.tarif,spklu:kwh*SPKLU_BASE+(a.fee?kwh/a.sessKwh*a.fee:0)}; }
+function spkluName(fee){ return fee===57000?'SPKLU ultra fast':fee===25000?'SPKLU fast':'SPKLU medium'; }
 function calc(){
   $('fuelCustomWrap').hidden=$('fuelSel').value!=='custom';
   $('tarifCustomWrap').hidden=$('tarifSel').value!=='custom';
-  var kmDay=val('kmDay'), days=Math.min(31,val('daysMonth')), kmpl=val('kmpl'), kmkwh=val('kmkwh');
-  var fuel=$('fuelSel').value==='custom'?val('fuelCustom'):parseFloat($('fuelSel').value);
-  var tarif=$('tarifSel').value==='custom'?val('tarifCustom'):parseFloat($('tarifSel').value);
-  if(!(kmDay&&days&&kmpl&&kmkwh&&fuel&&tarif)){ $('rSave').textContent='Lengkapi isian'; $('rYear').textContent='Semua kolom harus lebih dari 0'; return; }
-  var km=kmDay*days, liter=km/kmpl, kwh=km/kmkwh, cf=liter*fuel, ce=kwh*tarif, sv=cf-ce, pct=cf>0?sv/cf*100:0;
-  $('rSaveLbl').textContent=sv>=0?'ESTIMASI HEMAT PER BULAN':'SELISIH PER BULAN (LISTRIK LEBIH MAHAL)';
+  var kmDay=val('kmDay'), days=Math.min(31,val('daysMonth')), a=energyAssump();
+  if(!(kmDay&&days&&a)){ $('rSave').textContent='Lengkapi isian'; $('rYear').textContent='Semua kolom harus lebih dari 0'; $('rSpkluSave').textContent=''; return; }
+  var km=kmDay*days, c=costs(km,a), sv=c.fuel-c.home, svs=c.fuel-c.spklu, pct=c.fuel>0?sv/c.fuel*100:0, sp=spkluName(a.fee), mn=a.model.id==='custom'?'BYD':'BYD '+a.model.name;
+  var sess=c.kwh/a.sessKwh;
+  $('spkluHelp').textContent=a.fee?('1 sesi = isi 20%→80% baterai (±'+num(a.sessKwh)+' kWh). Pemakaianmu ±'+num(sess)+' sesi/bulan.'):'Tanpa biaya layanan per sesi.';
+  $('rSaveLbl').textContent=sv>=0?'ESTIMASI HEMAT PER BULAN · CHARGE DI RUMAH':'SELISIH PER BULAN (LISTRIK LEBIH MAHAL)';
   $('rSave').textContent=fmt(Math.abs(sv));
   $('rYear').textContent=fmt(Math.abs(sv)*12)+' per tahun'+(sv>=0?' · '+num(pct,0)+'% lebih hemat':'');
-  $('rFuel').textContent=fmt(cf)+' ('+num(liter)+' L)';
-  $('rEv').textContent=fmt(ce)+' ('+num(kwh)+' kWh)';
-  var mx=Math.max(cf,ce)||1; $('barFuel').style.width=(cf/mx*100)+'%'; $('barEv').style.width=(ce/mx*100)+'%';
+  $('rSpkluSave').textContent=svs>=0?('Kalau selalu di '+sp+': hemat '+fmt(svs)+'/bulan ('+fmt(svs*12)+'/tahun)'):('Kalau selalu di '+sp+': lebih mahal '+fmt(-svs)+'/bulan dari bensin');
+  $('rFuel').textContent=fmt(c.fuel)+' ('+num(c.liter)+' L)';
+  $('rEvLbl').textContent=mn+', charge di rumah / bulan'; $('rEv').textContent=fmt(c.home)+' ('+num(c.kwh)+' kWh)';
+  $('rSpLbl').textContent=mn+', '+sp+' / bulan'; $('rSp').textContent=fmt(c.spklu);
+  var mx=Math.max(c.fuel,c.home,c.spklu)||1; $('barFuel').style.width=(c.fuel/mx*100)+'%'; $('barEv').style.width=(c.home/mx*100)+'%'; $('barSp').style.width=(c.spklu/mx*100)+'%';
   $('rFormula').innerHTML='<code>'+num(kmDay)+' km × '+num(days,0)+' hari = '+num(km,0)+' km/bulan</code>'+
-    '<code>Bensin: '+num(km,0)+' ÷ '+num(kmpl)+' km/L × '+fmt(fuel)+' = '+fmt(cf)+'</code>'+
-    '<code>Listrik: '+num(km,0)+' ÷ '+num(kmkwh)+' km/kWh × Rp'+num(tarif,2)+' = '+fmt(ce)+'</code>';
-  $('bWaCalc').href=wa('Halo AWI, saya habis hitung di kalkulator Flappy BYD.\nPemakaian: '+num(kmDay)+' km/hari, '+num(days,0)+' hari/bulan.\nEstimasi bensin '+fmt(cf)+'/bulan vs listrik BYD '+fmt(ce)+'/bulan.\nSaya mau konsultasi model BYD yang cocok.');
+    '<code>Bensin: '+num(km,0)+' ÷ '+num(a.kmpl)+' km/L × '+fmt(a.fuel)+' = '+fmt(c.fuel)+'</code>'+
+    '<code>Rumah: '+num(km,0)+' ÷ '+num(a.kmkwh,2)+' km/kWh × Rp'+num(a.tarif,2)+' = '+fmt(c.home)+'</code>'+
+    '<code>SPKLU: '+num(c.kwh)+' kWh × Rp2.466,78'+(a.fee?' + '+num(sess)+' sesi × '+fmt(a.fee):'')+' = '+fmt(c.spklu)+'</code>';
+  $('bWaCalc').href=wa('Halo AWI, saya habis hitung di kalkulator Flappy BYD.\nModel: '+mn+'\nPemakaian: '+num(kmDay)+' km/hari, '+num(days,0)+' hari/bulan.\nEstimasi bensin '+fmt(c.fuel)+'/bulan vs charge di rumah '+fmt(c.home)+'/bulan ('+sp+' '+fmt(c.spklu)+'/bulan).\nSaya mau konsultasi soal '+mn+'.');
 }
+$('modelSel').addEventListener('change',function(){ applyModel(); calc(); });
+$('kmkwh').addEventListener('input',function(){ var m=curModel(); if(m.kmkwh&&Math.abs(val('kmkwh')-m.kmkwh)>0.001){ $('modelSel').value='custom'; $('kmkwhSrc').textContent='Sumber: '+byId(EV_MODELS,'custom').src; } });
+applyModel();
 $('bWaTd').href=wa('Halo AWI, saya mau jadwalkan test drive BYD di Haka Karebosi (Jl. Ahmad Yani No. 15, Makassar).\nNama:\nModel yang mau dicoba:\nHari & jam:');
 $('topWa').href=wa('Halo AWI, saya lihat dari game Flappy BYD. Mau tanya-tanya soal mobil BYD.');
 $('calcForm').addEventListener('input',calc); $('calcForm').addEventListener('change',calc);
