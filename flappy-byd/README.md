@@ -7,3 +7,4 @@ Game arcade HTML5 (pixel art orisinal) + kalkulator hemat bensin vs BYD untuk **
 - Website: https://www.bydhakamakassar.id
 - Progres pemain tersimpan di perangkat (localStorage).
 - Link tantangan: tambahkan `#tantang<skor>` di akhir URL, misal `#tantang56`.
+- Link tantangan bernama: `#tantang<skor>-<Nama_Panggilan>`, misal `#tantang56-Andi_Makassar`. Nama panggilan opsional, hanya tersimpan di perangkat pemain.

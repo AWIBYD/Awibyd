@@ -155,6 +155,9 @@ button{font:inherit}
 .ico.box{background:var(--teal);border-radius:2px}
 .ico.smog{background:#6b6257;border-radius:50%}
 .sound{font-size:12px}
+.nick{display:grid;gap:3px;text-align:left;font-size:12px;font-weight:700}
+.nick input{font:inherit;font-size:16px;font-weight:600;padding:7px 9px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink);width:100%}
+.nick small{font-weight:500;color:var(--muted)}
 
 /* Calculator */
 .side{display:flex;flex-direction:column;gap:24px;min-width:0}
@@ -247,6 +250,7 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
             <span class="pill"><span class="dot"></span><span id="sWallet">0</span></span>
             <span class="pill">STREAK <span id="sStreak">0</span></span>
           </div>
+          <label class="nick" for="nickMenu">Nama panggilan (opsional)<input id="nickMenu" maxlength="16" autocomplete="off" placeholder="mis. Andi"><small>Muncul di kartu skor &amp; link tantangan. Pakai nama panggilan saja.</small></label>
           <button class="btn" id="bStart" type="button">MAIN</button>
           <div class="row3">
             <button class="btn ghost sm" id="bGarage" type="button">GARASI</button>
@@ -352,6 +356,7 @@ footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
       <div class="ov" id="ovShare" hidden>
         <div class="panel">
           <div class="ov-h">KARTU SKOR</div>
+          <label class="nick" for="nickShare">Namamu di kartu (opsional)<input id="nickShare" maxlength="16" autocomplete="off" placeholder="mis. Andi"></label>
           <img class="share-img" id="shareImg" alt="Kartu skor Flappy BYD">
           <p class="note">Tekan lama gambar untuk menyimpan, lalu posting ke Story.</p>
           <button class="btn" id="bShareNative" type="button" hidden>BAGIKAN</button>
@@ -468,7 +473,7 @@ var reduced=false; try{reduced=window.matchMedia('(prefers-reduced-motion: reduc
 var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},
            set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 function loadSave(){
-  var d={v:2,best:0,bestCoins:0,rounds:0,wallet:0,totalCoins:0,maxZone:1,secrets:0,owned:['atto1'],skin:'atto1',env:'auto',ach:[],daily:null,streak:0,bestStreak:0,lastAll:'',muted:false};
+  var d={v:2,best:0,bestCoins:0,rounds:0,wallet:0,totalCoins:0,maxZone:1,secrets:0,owned:['atto1'],skin:'atto1',env:'auto',ach:[],daily:null,streak:0,bestStreak:0,lastAll:'',muted:false,nick:''};
   var s=store.get('fbyd_v2',null);
   if(s&&typeof s==='object'){ for(var k in d) if(s[k]!==undefined) d[k]=s[k]; }
   else { d.best=store.get('fbyd_best',0)|0; d.muted=!!store.get('fbyd_mute',false); }
@@ -857,7 +862,7 @@ function fillOver(){
   runNew.slice(0,3).forEach(function(id){ var a=byId(ACH,id); if(!a) return; var s=document.createElement('span'); s.className='badge'; s.textContent='BARU · '+a.name; wrap.appendChild(s); });
   if(runNew.length>3){ var more=document.createElement('span'); more.className='badge'; more.textContent='+'+(runNew.length-3)+' prestasi lain'; wrap.appendChild(more); }
   var ch=$('oChal');
-  if(challenge>0){ ch.hidden=false; ch.textContent=score>challenge?('Tantangan temanmu ('+challenge+') terkalahkan!'):('Tantangan teman: '+challenge+'. Kurang '+(challenge-score+1)+' poin.'); } else ch.hidden=true;
+  if(challenge>0){ ch.hidden=false; ch.textContent=score>challenge?((myName()||'Kamu')+' mengalahkan '+rivalName()+'! '+score+' vs '+challenge+'. Pasang kartunya di sosmed!'):(rivalName()+' masih unggul: '+challenge+' vs '+score+'. Kurang '+(challenge-score+1)+' poin.'); } else ch.hidden=true;
   renderMissionMini($('oMissions'));
   $('oCta').textContent=lastRunCoins>0?('Di game kamu kumpulin '+lastRunCoins+' koin. Di jalan beneran, berapa rupiah yang bisa kamu hemat tiap bulan?'):'Di jalan beneran, berapa rupiah yang bisa kamu hemat tiap bulan pakai BYD?';
   $('bChallenge').href='https://wa.me/?text='+encodeURIComponent(challengeText());
@@ -1031,13 +1036,23 @@ function frame(now){ var dt=(now-lastT)/1000; lastT=now; if(!(dt>0)) dt=0; if(dt
 requestAnimationFrame(frame);
 
 /* ---------- Challenge link ---------- */
-var challenge=0;
-try{ var mh=/tantang(\d{1,4})/.exec(location.hash||''); if(mh) challenge=parseInt(mh[1],10)||0; }catch(e){}
-if(challenge>0){ var cb=$('chalBanner'); cb.hidden=false; cb.textContent='Temanmu menantang: kalahkan skor '+challenge+'!'; }
+var challenge=0, challengeName='';
+function cleanNick(v){ return String(v||'').replace(/[<>"'`]/g,'').replace(/\s+/g,' ').trim().slice(0,16); }
+function nickToHash(v){ return cleanNick(v).replace(/[^A-Za-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,16); }
+function myName(){ return cleanNick(save.nick); }
+function rivalName(){ return challengeName||'Temanmu'; }
+try{ var mh=/tantang(\d{1,4})(?:-([A-Za-z0-9_]{1,16}))?/.exec(location.hash||''); if(mh){ challenge=parseInt(mh[1],10)||0; challengeName=mh[2]?mh[2].replace(/_/g,' '):''; } }catch(e){}
+if(challenge>0){ var cb=$('chalBanner'); cb.hidden=false; cb.textContent=(challengeName?challengeName+' menantangmu':'Temanmu menantang')+': kalahkan skor '+challenge+'!'; }
+function syncNick(v,from){ save.nick=cleanNick(v); persist(); if(from!=='menu') $('nickMenu').value=save.nick; if(from!=='share') $('nickShare').value=save.nick; }
+$('nickMenu').value=save.nick; $('nickShare').value=save.nick;
+$('nickMenu').addEventListener('input',function(){ syncNick(this.value,'menu'); });
+$('nickShare').addEventListener('input',function(){ syncNick(this.value,'share'); if(lastCard) renderCard(); });
 function hosted(){ try{ return /^https?:$/.test(location.protocol)&&!/claude\.ai|claudeusercontent|anthropic/.test(location.hostname); }catch(e){ return false; } }
 function gameUrl(){ return hosted()?location.href.split('#')[0]:SITE; }
-function challengeText(){ var url=hosted()?gameUrl()+'#tantang'+score:gameUrl();
-  return 'Aku dapat skor '+score+' di Flappy BYD: EV Saver Challenge (sampai Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name+'). Berani kalahkan? Main gratis, tanpa daftar: '+url; }
+function challengeText(){ var h=nickToHash(save.nick), url=hosted()?gameUrl()+'#tantang'+score+(h?'-'+h:''):gameUrl();
+  var won=challenge>0&&score>challenge, me=myName()?myName()+' di sini. ':'';
+  if(won) return me+'Aku baru mengalahkan '+rivalName()+' di Flappy BYD: '+score+' vs '+challenge+'! Sekarang giliranmu kalahkan '+score+'. Main gratis, tanpa daftar: '+url;
+  return me+'Aku dapat skor '+score+' di Flappy BYD: EV Saver Challenge (sampai Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name+'). Berani kalahkan? Main gratis, tanpa daftar: '+url; }
 
 /* ---------- Input ---------- */
 var stage=$('stage');
@@ -1088,29 +1103,34 @@ function buildCard(){
   txt('FLAPPY BYD',360,110,'700 76px '+df,'#ffffff',14);
   txt('EV SAVER CHALLENGE',360,160,'700 28px '+df,'#ffcf3f',8);
   x.fillStyle=INK; x.fillRect(80,210,560,520); x.fillStyle='#ffffff'; x.fillRect(80,200,560,520); x.strokeStyle=INK; x.lineWidth=8; x.strokeRect(80,200,560,520);
-  txt('SKOR',360,270,'700 30px '+df,'#46618a');
+  txt(myName()?('SKOR '+myName().toUpperCase()):'SKOR',360,270,'700 30px '+df,'#46618a');
   txt(String(score),360,410,'700 150px '+df,INK);
   txt('Rekor '+save.best+'  ·  '+lastRunCoins+' koin',360,470,'800 32px '+bf,INK);
   txt('Zona '+zoneOf(score)+': '+ZONES[zoneOf(score)-1].name,360,515,'800 32px '+bf,'#0a8478');
   txt('Prestasi '+save.ach.length+'/'+ACH.length+'  ·  '+skin().name,360,560,'600 26px '+bf,'#46618a');
-  var car2=document.createElement('canvas'); car2.width=34; car2.height=26; drawCar(car2.getContext('2d'),17,14,0,skin(),0,true);
-  x.drawImage(car2,0,0,34,26,292,575,136,104);
-  txt('TANTANG AKU!',360,705,'700 28px '+df,'#ff5a3c');
+  if(challenge>0){
+    var won=score>challenge, me=(myName()||'Aku').toUpperCase(), riv=rivalName().toUpperCase();
+    x.fillStyle=won?'#ffcf3f':'#e8eef7'; x.fillRect(110,585,500,120); x.strokeStyle=INK; x.lineWidth=5; x.strokeRect(110,585,500,120);
+    txt(won?'MENANG DUEL!':'DUEL BELUM MENANG',360,628,'700 30px '+df,won?INK:'#46618a');
+    var fit=function(sz){ x.font='800 '+sz+'px '+bf; return x.measureText(me+' '+score+'  vs  '+challenge+' '+riv).width<470?sz:fit(sz-2); };
+    txt(me+' '+score+'  vs  '+challenge+' '+riv,360,680,'800 '+fit(34)+'px '+bf,INK);
+  } else {
+    var car2=document.createElement('canvas'); car2.width=34; car2.height=26; drawCar(car2.getContext('2d'),17,14,0,skin(),0,true);
+    x.drawImage(car2,0,0,34,26,292,575,136,104);
+    txt('TANTANG AKU!',360,705,'700 28px '+df,'#ff5a3c');
+  }
   x.fillStyle='#ffcf3f'; x.fillRect(0,820,720,140); x.fillStyle=INK; x.fillRect(0,820,720,6);
   txt('AWI · BYD HAKA KAREBOSI',360,875,'700 30px '+df,INK);
   txt('WA 0822-5945-2349  ·  bydhakamakassar.id',360,920,'800 26px '+bf,INK);
   return c;
 }
 var lastCard=null;
+function renderCard(){ lastCard=buildCard(); var url=lastCard.toDataURL('image/png');
+  $('shareImg').src=url; $('bSave').href=url; $('bSave').hidden=!hosted();
+  $('bShareWa').href='https://wa.me/?text='+encodeURIComponent(challengeText()); $('bChallenge').href=$('bShareWa').href; }
 $('bShare').addEventListener('click',function(){
   var ready=(document.fonts&&document.fonts.load)?Promise.all([document.fonts.load('700 40px Silkscreen'),document.fonts.load('800 30px "Plus Jakarta Sans"')]).catch(function(){}):Promise.resolve();
-  ready.then(function(){
-    lastCard=buildCard(); var url=lastCard.toDataURL('image/png');
-    $('shareImg').src=url; $('bSave').href=url; $('bSave').hidden=!hosted();
-    $('bShareWa').href='https://wa.me/?text='+encodeURIComponent(challengeText());
-    $('bShareNative').hidden=!(navigator.share);
-    show('ovShare');
-  });
+  ready.then(function(){ renderCard(); $('bShareNative').hidden=!(navigator.share); show('ovShare'); });
 });
 $('bShareNative').addEventListener('click',function(){
   if(!lastCard||!navigator.share) return;
