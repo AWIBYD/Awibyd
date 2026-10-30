@@ -10,9 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          mkdir -p tmp-upload/haka
+          mkdir -p tmp-upload/haka/img; cd tmp-upload/haka/img
+          B=https://cms.hakaauto.co.id/storage/images/findus
+          for f in facility/showroom-area-images-1783497114.webp facility/service-area-images-1783497265.webp facility/test-drive-images-1764742061.webp facility/spklu-dc-fast-charging-60-kw-images-1756267599.webp facility/service-counter-images-1756267757.jpg facility/workshop-images-1756267953.webp facility/showroom-event-images-1764743060.webp facility/kids-corner-images-1764744462.webp "facility/customer-smile-%26-satisfaction-images-1783497446.webp" branch/byd-haka-karebosi-images-1782978011.webp branch/byd-haka-karebosi-images-2-1782978011.webp; do
+            o=$(basename "$f" | sed 's/%26/and/'); curl -sSL -A "Mozilla/5.0" -o "$o" "$B/$f"; file "$o" | cut -c1-100
+          done
+          cd ../../..
           npm i -s playwright@1.47.2 >/dev/null 2>&1 && npx playwright install --with-deps chromium >/dev/null 2>&1
           node tmp-upload/haka.js || true
           rm -rf node_modules package.json package-lock.json
           git config user.name awi-bot; git config user.email actions@users.noreply.github.com
-          git add tmp-upload/haka; git commit -m haka; git push
+          git add tmp-upload/haka; git commit -m haka2; git push
