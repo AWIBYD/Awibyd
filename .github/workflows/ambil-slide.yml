@@ -13,11 +13,11 @@ jobs:
       - run: |
           mkdir -p tmp-upload/slide; cd tmp-upload/slide
           B=https://byd-makassar.id/wp-content/uploads
-          for p in 2025/11/byd-slide-1.webp 2025/11/byd-slide-2.webp 2025/11/byd-slide-3.webp 2025/11/byd-slide-4-2.webp 2025/11/byd-slide-5.webp 2025/11/byd-slide-.webp 2025/11/byd-slide-4-1.webp 2025/11/byd-slide.webp 2025/11/byd-slide-4.webp 2026/10/serah-terima-byd-m6-capt-seat-sophian-liady-20261030.jpg 2026/10/serah-terima-byd-m6-capt-saet-nur-nikma-20261030.jpg 2026/10/serah-terima-byd-atto-1-dynamic-taqwa-20261030.jpg; do
+          for p in 2025/11/Untitled-design-55.jpg 2025/11/WhatsApp-Image-2026-05-18-at-13.33.55.jpeg 2025/11/WhatsApp-Image-2026-05-18-at-13.34.01.jpeg 2025/11/WhatsApp-Image-2026-05-18-at-13.34.02.jpeg 2025/11/WhatsApp-Image-2026-05-18-at-13.34.04.jpeg 2025/11/WhatsApp-Image-2026-05-18-at-13.34.09.jpeg; do
             curl -sSL -A "Mozilla/5.0" -o "$(echo $p | tr / _)" "$B/$p"
           done
-          curl -sSL -A "Mozilla/5.0" -o testimoni.html https://byd-makassar.id/testimoni/
-          grep -oE 'https://byd-makassar.id/wp-content/uploads/[^"'"'"' ]+\.(webp|jpg|jpeg|png)' testimoni.html | sort -u > testi-imgs.txt
-          ls -la; wc -l testi-imgs.txt
+          curl -sSL -A "Mozilla/5.0" -o galeri.html "https://byd-makassar.id/wp-json/wp/v2/media?search=WhatsApp&per_page=100&_fields=source_url"
+          grep -oE 'https://byd-makassar.id/wp-content/uploads/[^"'"'"' ]+\.(webp|jpg|jpeg|png)' galeri.html | sort -u > wa-imgs.txt
+          ls -la; wc -l wa-imgs.txt
           git config user.name awi-bot; git config user.email actions@users.noreply.github.com
           cd ../..; git add tmp-upload/slide; git commit -m slide; git push
