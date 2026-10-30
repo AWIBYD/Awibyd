@@ -1,0 +1,19 @@
+Title:           BYD ATTO 1 2026 FLYER_V3-1
+Creator:         Adobe Illustrator 30.2 (Macintosh)
+Producer:        Adobe PDF library 18.00
+CreationDate:    Thu Aug 20 03:03:23 2026 UTC
+ModDate:         Thu Aug 20 03:03:23 2026 UTC
+Custom Metadata: no
+Metadata Stream: yes
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           2
+Encrypted:       no
+Page size:       427.779 x 605.101 pts
+Page rot:        0
+File size:       102405986 bytes
+Optimized:       yes
+PDF version:     1.4
