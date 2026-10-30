@@ -1,0 +1,19 @@
+Title:           ATTO 2-0426-BPS-UK-V2-web
+Creator:         Adobe Illustrator 25.3 (Macintosh)
+Producer:        Adobe PDF library 15.00
+CreationDate:    Thu Apr 30 14:12:16 2026 UTC
+ModDate:         Thu Apr 30 14:12:16 2026 UTC
+Custom Metadata: no
+Metadata Stream: yes
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           8
+Encrypted:       no
+Page size:       623.622 x 850.394 pts
+Page rot:        0
+File size:       2475120 bytes
+Optimized:       yes
+PDF version:     1.4

@@ -1,0 +1,3 @@
+https://www.byd.com/content/dam/byd-site/vn/proudct-specs/view_Leaflet_BYD_ATTO2_EV.pdf -> empty 0
+https://prod.byd.com/material/byd-site/byd-uk/specifications/ATTO%202%20EV%20UK%20Leaflet.pdf -> PDF document, version 1.4, 8 page(s) (zip deflate encoded) 2475120
+OK https://prod.byd.com/material/byd-site/byd-uk/specifications/ATTO%202%20EV%20UK%20Leaflet.pdf

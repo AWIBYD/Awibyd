@@ -1,0 +1,27 @@
+page   num  type   width height color comp bpc  enc interp  object ID x-ppi y-ppi size ratio
+--------------------------------------------------------------------------------------------
+   1     0 image    1434  1859  cmyk    4   8  jpeg   no       109  0   150   150  667K 6.4%
+   2     1 image    1216   798  cmyk    4   8  jpeg   no        35  0   150   150  328K 8.7%
+   2     2 image    1434  1859  cmyk    4   8  jpeg   no       109  0   150   150  667K 6.4%
+   2     3 image    1224   467  cmyk    4   8  jpeg   no        36  0   150   150  119K 5.3%
+   2     4 image     727   364  cmyk    4   8  jpeg   no        37  0   150   150 85.8K 8.3%
+   2     5 image     502   364  cmyk    4   8  jpeg   no        38  0   150   150 59.6K 8.3%
+   3     6 image    1222   566  cmyk    4   8  jpeg   no        42  0   150   150  257K 9.5%
+   3     7 image    1206   529  cmyk    4   8  jpeg   no        43  0   150   150  259K  10%
+   3     8 image    1209   541  cmyk    4   8  jpeg   no        44  0   150   150  329K  13%
+   6     9 image     295   188  cmyk    4   8  jpeg   no        54  0   150   150 37.7K  17%
+   6    10 image     285   185  cmyk    4   8  jpeg   no        55  0   150   151 36.3K  18%
+   6    11 image     300   154  cmyk    4   8  jpeg   no        57  0   150   150 6316B 3.4%
+   6    12 smask     300   154  gray    1   8  jpeg   no        57  0   150   150  688B 1.5%
+   6    13 image     288   147  cmyk    4   8  jpeg   no        59  0   150   150 10.1K 6.1%
+   6    14 smask     288   147  gray    1   8  jpeg   no        59  0   150   150  651B 1.5%
+   6    15 image     287   153  cmyk    4   8  jpeg   no        61  0   150   150 6991B 4.0%
+   6    16 smask     287   153  gray    1   8  jpeg   no        61  0   150   150  668B 1.5%
+   6    17 image     285   153  cmyk    4   8  jpeg   no        63  0   150   150 8847B 5.1%
+   6    18 smask     285   153  gray    1   8  jpeg   no        63  0   150   150  668B 1.5%
+   6    19 image     215   168  cmyk    4   8  jpeg   no        65  0   150   151 23.5K  17%
+   6    20 smask     215   168  gray    1   8  image  no        65  0   150   151 2034B 5.6%
+   6    21 image     409   168  cmyk    4   8  jpeg   no        67  0   150   151 39.6K  15%
+   6    22 smask     409   168  gray    1   8  image  no        67  0   150   151 3485B 5.1%
+   6    23 image     200   170  cmyk    4   8  jpeg   no        69  0   150   150 21.5K  16%
+   6    24 smask     200   170  gray    1   8  image  no        69  0   150   150 2479B 7.3%
