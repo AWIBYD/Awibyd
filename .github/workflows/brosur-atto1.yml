@@ -26,6 +26,7 @@ jobs:
           pdfinfo /tmp/b.pdf > $OUT/info.txt
           pdftotext -layout /tmp/b.pdf $OUT/text.txt
           pdftoppm -r 110 -jpeg -jpegopt quality=82 /tmp/b.pdf $OUT/pages/p
+          mkdir -p $OUT/hi && pdftoppm -r 300 -jpeg -jpegopt quality=92 /tmp/b.pdf $OUT/hi/p
           mkdir -p /tmp/raw && pdfimages -list /tmp/b.pdf > $OUT/images-list.txt
           pdfimages -all /tmp/b.pdf /tmp/raw/x
           for f in /tmp/raw/*; do
