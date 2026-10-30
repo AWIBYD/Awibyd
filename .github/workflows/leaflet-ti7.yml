@@ -1,0 +1,52 @@
+name: Pecah leaflet Ti7
+on:
+  push:
+    paths:
+      - 'tmp-upload/ti7-trigger.txt'
+permissions:
+  contents: write
+jobs:
+  pecah:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cari & unduh leaflet resmi BYD
+        continue-on-error: true
+        run: |
+          OUT=tmp-upload/ti7; mkdir -p $OUT
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36"
+          : > /tmp/cand.txt
+          for pg in https://www.byd.com/uk/car/ti7 https://www.byd.com/uk/car/ti-7 https://www.byd.com/uk/ti7 https://www.byd.com/uk/specifications https://www.byd.com/uk/brochures https://www.byd.com/th/car/ti7 https://www.byd.com/my/car/ti7 https://www.byd.com/au/car/ti7 https://www.byd.com/eu/car/ti7; do
+            curl -sSL --max-time 60 -A "$UA" -o /tmp/pg.html "$pg" || true
+            echo "$pg $(stat -c%s /tmp/pg.html 2>/dev/null)" >> $OUT/pages-log.txt
+            grep -oiE '(https?:)?//[^"'"'"' )]+\.pdf|/(content|material)/[^"'"'"' )]+\.pdf' /tmp/pg.html | grep -iE 'ti.?7|tai' >> /tmp/cand.txt || true
+            grep -oiE '(https?:)?//[^"'"'"' )]+\.(jpg|jpeg|png|webp)|/(content|material)/[^"'"'"' )]+\.(jpg|jpeg|png|webp)' /tmp/pg.html | grep -iE 'ti.?7' >> $OUT/img-urls.txt || true
+          done
+          for g in "BYD%20TI7%20UK%20Leaflet.pdf" "BYD%20Ti7%20UK%20Leaflet.pdf" "TI7%20UK%20Leaflet.pdf" "BYD%20TI7%20DM-i%20UK%20Leaflet.pdf" "BYD%20TI7%20UK%20Leaflet-v1.pdf"; do
+            echo "https://www.byd.com/material/byd-site/byd-uk/specifications/$g" >> /tmp/cand.txt
+          done
+          sed -i -E 's#^//#https://#; s#^/(content|material)#https://www.byd.com/\1#' /tmp/cand.txt
+          sort -u /tmp/cand.txt | tee $OUT/cand.txt
+          sort -u -o $OUT/img-urls.txt $OUT/img-urls.txt || true
+          while read u; do
+            curl -sSL --max-time 300 -A "$UA" -o /tmp/l.pdf "$u" || true
+            echo "$u -> $(file -b /tmp/l.pdf | cut -c1-60) $(stat -c%s /tmp/l.pdf)" >> $OUT/download-log.txt
+            if file /tmp/l.pdf | grep -q PDF; then echo "OK $u" >> $OUT/download-log.txt; break; fi
+          done < $OUT/cand.txt
+          cat $OUT/download-log.txt
+      - name: Pasang alat
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils imagemagick > /dev/null
+      - name: Render & ekstrak
+        continue-on-error: true
+        run: |
+          OUT=tmp-upload/ti7
+          mkdir -p $OUT/hi
+          pdfinfo /tmp/l.pdf > $OUT/info.txt
+          pdftotext -layout /tmp/l.pdf $OUT/text.txt
+          pdftoppm -r 200 -jpeg -jpegopt quality=90 /tmp/l.pdf $OUT/hi/p
+          ls $OUT/hi
+      - name: Simpan
+        if: always()
+        run: |
+          git config user.name "awi-bot"; git config user.email "actions@users.noreply.github.com"
+          git add tmp-upload/ti7; git commit -m "leaflet ti7" || echo nothing; git pull --rebase -q; git push
