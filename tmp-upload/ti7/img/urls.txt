@@ -1,0 +1,10 @@
+i00 340182 https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/charge/v2l.webp
+i01 157520 https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/bc-1.webp
+i02 150512 https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/1.webp
+i03 117584 https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/2.webp
+i04 97612 https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/jadegreen/1.webp
+i05 94514 https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/starlightsilver/1.webp
+i06 92942 https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/mountaingreen/1.webp
+i07 89674 https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/titaniumgrey/1.webp
+i08 85970 https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/obsidianblack/1.webp
+i09 81798 https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/herobanner/car-1.webp

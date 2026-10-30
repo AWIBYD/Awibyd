@@ -1,36 +1,51 @@
 {
  "pages": {
-  "https://www.byd.com/eu/car/ti7": {
-   "final": "https://www.byd.com/eu/car/ti7",
-   "title": "Error | BYD EU"
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481": {
+   "final": "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481",
+   "title": "BYD Ti-7: Urban Box Family SUV | BYD"
   },
-  "https://www.byd.com/uk/car/ti7": {
-   "final": "https://www.byd.com/uk/car/ti7",
-   "title": "Error | BYD UK"
-  },
-  "https://www.byd.com/eu/car/ti7/specs": {
-   "final": "https://www.byd.com/eu/car/ti7/specs",
-   "title": "Error | BYD EU"
-  },
-  "https://www.byd.com/uk": {
-   "final": "https://www.byd.com/uk",
-   "title": "BYD Official Site | Electric Vehicles | BYD UK"
+  "https://www.byd.com/uk/hybrid-cars/ti-7": {
+   "final": "https://www.byd.com/uk/hybrid-cars/ti-7",
+   "title": "BYD Ti-7: Urban Box Family SUV | BYD"
   }
  },
  "imgs": {
-  "https://eu-us-apac.consentmanager.net/delivery/info/?id=75695&did=1&cfdid=1&t=pv.d_ncs.d_ancs.d_bncs.cv&h=https%3A%2F%2Fwww.byd.com%2Feu%2Fcar%2Fti7&o=1793367679719&l=EN&lv=82927&d=1&ct=14&e=&e2=&e3=&i=&sv=57&dv=276&": 43,
-  "https://eu-us-apac.consentmanager.net/delivery/info/?id=75441&did=1&cfdid=30248&t=pv.d_ncs.d_ancs.d_bncs.cf.cfx.cv&h=https%3A%2F%2Fwww.byd.com%2Fuk%2Fcar%2Fti7&o=1793367696457&l=EN&lv=82927&d=1&ct=14&e=&e2=&e3=&i=&sv=63&dv=276&": 43,
-  "https://eu-us-apac-cdn.consentmanager.net/delivery/alertdomain/d183NTQ0MS5zXzEuZF9jaGF0X2NvbnZlcnNpY2FfY29t.gif?ref=https%3A%2F%2Fwww.byd.com%2Fuk%2Fcar%2Fti7": 43,
-  "https://eu-us-apac.consentmanager.net/delivery/info/?id=75695&did=1&cfdid=30248&t=pv.d_ncs.d_ancs.d_bncs.cf.cfx.cv&h=https%3A%2F%2Fwww.byd.com%2Feu%2Fcar%2Fti7%2Fspecs&o=1793367715049&l=EN&lv=82927&d=1&ct=14&e=&e2=&e3=&i=&sv=57&dv=276&": 43
+  "https://eu-us-apac-cdn.consentmanager.net/delivery/alertdomain/d183NTQ0MS5zXzEuZF9jaGF0X2NvbnZlcnNpY2FfY29t.gif?ref=https%3A%2F%2Fwww.byd.com%2Fuk%2Fhybrid-cars%2Fti-7%3Fmktcode%3DUKA165942481": 43,
+  "https://eu-us-apac.consentmanager.net/delivery/info/?id=75441&did=1&cfdid=30248&t=pv.d_ncs.d_ancs.d_bncs.cf.cfx.cv&h=https%3A%2F%2Fwww.byd.com%2Fuk%2Fhybrid-cars%2Fti-7&o=1793367827212&l=EN&lv=82927&d=1&ct=14&e=&e2=&e3=&i=&sv=63&dv=276&": 43,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/herobanner/car-1.webp": 81798,
+  "https://www.byd.com/material/byd-site/byd-uk/models/ti-7/model-page/TI-7%20_Side%20_%201.0.png": 15162,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/exterior-detail/2.webp": 31252,
+  "https://www.byd.com/material/byd-site/byd-uk/models/ti-7/model-page/TI-7%20_Back%20_%201.0_.png": 17534,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/jadegreen/1.webp": 97612,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/starlightsilver/1.webp": 94514,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/mountaingreen/1.webp": 92942,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/obsidianblack/1.webp": 85970,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/icon/exterior-gallery/mountaingreen.webp": 2722,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/pc/exterior-gallery/titaniumgrey/1.webp": 89674,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/icon/exterior-gallery/jadegreen.webp": 3718,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/icon/exterior-gallery/obsidianblack.webp": 2992,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/icon/exterior-gallery/starlightsilver.webp": 2156,
+  "https://www.byd.com/material/__EU/byd-site/byd-uk/models/ti-7/icon/exterior-gallery/titaniumgrey.webp": 3492,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/bc-1.webp": 157520,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/charge/v2l.webp": 340182,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/1.webp": 150512,
+  "https://www.byd.com/material/byd-site/eu-v3/model/ti7/pc/interior/2.webp": 117584,
+  "https://eu-us-apac-cdn.consentmanager.net/delivery/alertdomain/d183NTQ0MS5zXzEuZF9jaGF0X2NvbnZlcnNpY2FfY29t.gif?ref=https%3A%2F%2Fwww.byd.com%2Fuk%2Fhybrid-cars%2Fti-7": 43,
+  "https://eu-us-apac.consentmanager.net/delivery/info/?id=75441&did=1&cfdid=30248&t=pv.d_ncs.d_ancs.d_bncs.cf.cfx.cv&h=https%3A%2F%2Fwww.byd.com%2Fuk%2Fhybrid-cars%2Fti-7&o=1793367844873&l=EN&lv=82927&d=1&ct=14&e=&e2=&e3=&i=&sv=63&dv=276&": 43
  },
  "pdfs": [
-  "https://www.byd.com/material/byd-site/byd-uk/pdf/BYD-UK-sustainability-carbon-reduction-plan.pdf | Carbon Reduction Plan",
-  "https://www.byd.com/eu/car/ti7/specs# | ©️ BYD Europe B.V. All rights reserved.",
-  "https://www.byd.com/eu/car/ti7/specs# | ",
-  "https://www.byd.com/eu/car/ti7/specs# | Reject all",
-  "https://www.byd.com/eu/car/ti7/specs# | Accept all",
-  "https://www.byd.com/eu/car/ti7/specs# | Save + Exit",
-  "https://www.byd.com/eu/car/ti7/specs# | Customize your choice",
-  "https://www.byd.com/eu/car/ti7/specs# | Privacy settings"
+  "javascript:void(0); | BYD Ti 7 DM-p",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | ",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | Reject all",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | Accept all",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | Save + Exit",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | Customize your choice",
+  "https://www.byd.com/uk/hybrid-cars/ti-7?mktcode=UKA165942481# | Privacy settings",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | ",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | Reject all",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | Accept all",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | Save + Exit",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | Customize your choice",
+  "https://www.byd.com/uk/hybrid-cars/ti-7# | Privacy settings"
  ]
 }
