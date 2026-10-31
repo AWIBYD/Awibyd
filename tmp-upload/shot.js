@@ -1,14 +1,13 @@
-const { chromium } = require('playwright');
+const { chromium } = require('playwright'); const fs=require('fs');
 (async () => {
   const b = await chromium.launch();
-  const p = await b.newPage({ viewport: { width: 412, height: 900 }, deviceScaleFactor: 2, isMobile: true });
+  const p = await b.newPage({ viewport: { width: 412, height: 900 }, isMobile: true });
   await p.goto('https://byd-makassar.id/?nc=' + Date.now(), { waitUntil: 'networkidle', timeout: 90000 });
-  await p.waitForTimeout(1500);
-  await p.screenshot({ path: 'tmp-upload/shot/m1.jpg', type: 'jpeg', quality: 70 });
-  await p.evaluate(() => window.scrollBy(0, 1800)); await p.waitForTimeout(1200);
-  await p.screenshot({ path: 'tmp-upload/shot/m2.jpg', type: 'jpeg', quality: 70 });
-  const d = await b.newPage({ viewport: { width: 1366, height: 800 } });
-  await d.goto('https://byd-makassar.id/?nc=' + Date.now(), { waitUntil: 'networkidle', timeout: 90000 });
-  await d.waitForTimeout(1200); await d.screenshot({ path: 'tmp-upload/shot/d1.jpg', type: 'jpeg', quality: 60 });
+  const r = await p.evaluate(() => {
+    const out = { hasStyle: !!document.getElementById('awi-jam-mobile') };
+    const els = [...document.querySelectorAll('*')].filter(e => e.children.length===0 && /Sen.Sab 08/.test(e.textContent));
+    out.list = els.map(e => { const chain=[]; let n=e; for(let i=0;i<7&&n;i++){ const cs=getComputedStyle(n); const rc=n.getBoundingClientRect(); chain.push({tag:n.tagName, cls:n.className, pos:cs.position, top:cs.top, right:cs.right, disp:cs.display, rect:[rc.x|0,rc.y|0,rc.width|0,rc.height|0]}); n=n.parentElement;} return chain; });
+    return out; });
+  fs.writeFileSync('tmp-upload/shot/dom.json', JSON.stringify(r,null,1));
   await b.close();
 })();
