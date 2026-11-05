@@ -1,0 +1,52 @@
+[
+ {
+  "tag": "DIV",
+  "src": "",
+  "cls": "model__leftvideo",
+  "y": 1830,
+  "h": 675,
+  "chain": [
+   "DIV.model__leftvideo",
+   "DIV.specs__inner specs__left dealer__clear",
+   "DIV.model__left",
+   "DIV.dealer__clear",
+   "DIV.specs__outer",
+   "DIV.container"
+  ],
+  "outer": "<div class=\"model__leftvideo\">\n\t\t\t\t\t\t\t\t<a href=\"https://www.youtube.com/watch?v=LF7J90xYxHM\" target=\"_blank\" rel=\"noopener\" aria-label=\"Putar video di YouTube\" style=\"display:block;position:relative;width:100%;aspect-ratio:16/9;background:#000 url(https://i.ytimg.com/vi/LF7J90xYxHM/hqdefault.jpg) ce"
+ },
+ {
+  "tag": "A",
+  "src": "https://www.youtube.com/watch?v=LF7J90xYxHM",
+  "cls": "",
+  "y": 1830,
+  "h": 675,
+  "chain": [
+   "A.",
+   "DIV.model__leftvideo",
+   "DIV.specs__inner specs__left dealer__clear",
+   "DIV.model__left",
+   "DIV.dealer__clear",
+   "DIV.specs__outer"
+  ],
+  "outer": "<a href=\"https://www.youtube.com/watch?v=LF7J90xYxHM\" target=\"_blank\" rel=\"noopener\" aria-label=\"Putar video di YouTube\" style=\"display:block;position:relative;width:100%;aspect-ratio:16/9;background:#000 url(https://i.ytimg.com/vi/LF7J90xYxHM/hqdefault.jpg) center/cover no-repeat;border-radius:8px;"
+ },
+ {
+  "tag": "IFRAME",
+  "src": "about:blank",
+  "cls": "",
+  "y": 28057,
+  "h": 400,
+  "chain": [
+   "IFRAME.",
+   "DIV.embedmaps dealer__clear",
+   "DIV.wrapper tema_idealer",
+   "BODY.wp-singular model-template-default single single-model posti",
+   "HTML.wf-poppins-n4-active wf-active"
+  ],
+  "outer": "<iframe data-lazyloaded=\"1\" src=\"about:blank\" data-src=\"https://maps.google.com/maps?q=BYD%20HAKA%20MAKASSAR&amp;ll=-5.1327028,119.4090959&amp;hl=id&amp;z=17&amp;output=embed\" width=\"100%\" height=\"320\" allowfullscreen=\"\"></iframe>"
+ },
+ {
+  "ourVideoY": 3309
+ }
+]
