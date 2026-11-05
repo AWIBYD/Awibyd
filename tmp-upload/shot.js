@@ -1,7 +1,7 @@
 const { chromium } = require('playwright'); const fs=require('fs');
 (async () => {
   const b = await chromium.launch();
-  for (const [name,w,h,y] of [['m',412,900,330],['d',1366,900,300]]) {
+  for (const [name,w,h,y] of [['d',1366,900,1100]]) {
     const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: name=='m'?2:1, isMobile: name=='m' });
     await p.goto('https://byd-makassar.id/model/byd-denza-d9/?nc=' + Date.now(), { waitUntil: 'load', timeout: 90000 });
     await p.waitForTimeout(3000);
