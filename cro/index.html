@@ -4,12 +4,579 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Login Tim CRO · BYD Karebosi Connect</title>
-<meta http-equiv="refresh" content="0; url=https://n8n.srv1955808.hstgr.cloud/webhook/cro">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<style>body{font-family:system-ui,sans-serif;background:#0d1321;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center}a{color:#2ec4d6}</style>
+<title>CRO Control Center · BYD HAKA Karebosi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --ink:#0d1321; --ink2:#3a4357; --muted:#6b7488; --line:#e4e7ee; --bg:#f3f4f7; --card:#fff;
+  --accent:#0f7c8c; --accent-2:#0a5f6b; --accent-soft:#e3f3f5;
+  --red:#c2341b; --red-soft:#fdecea; --amber:#a15c07; --amber-soft:#fdf3e1; --green:#18794e; --green-soft:#e6f4ec;
+  --blue:#2554c7; --blue-soft:#e8eefc; --violet:#6a3fc2; --violet-soft:#f0eafb; --gray-soft:#eef0f4;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
+.top{background:var(--ink);color:#fff;position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:54px;gap:10px}
+.brand{font-weight:800;letter-spacing:-.01em;font-size:15px;white-space:nowrap}
+.brand small{display:block;font-weight:500;font-size:11px;color:#9aa3b5;letter-spacing:.04em}
+.conn{font-size:11px;color:#9aa3b5;display:flex;align-items:center;gap:6px}
+.conn i{width:7px;height:7px;border-radius:50%;background:#6b7488;display:inline-block}
+.conn.ok i{background:#3ccf8e}.conn.bad i{background:#ef5b45}
+nav.tabs{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:54px;z-index:19}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+nav.tabs a{padding:12px 12px;text-decoration:none;color:var(--muted);font-weight:600;font-size:13px;border-bottom:2px solid transparent;white-space:nowrap}
+nav.tabs a.on{color:var(--ink);border-color:var(--accent)}
+.banner{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:13px;display:none}
+.banner.show{display:block}
+.banner.warn{background:var(--amber-soft);color:var(--amber)}
+.banner.err{background:var(--red-soft);color:var(--red)}
+main{padding:14px 0 60px}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border-radius:14px;box-shadow:0 1px 2px rgba(13,19,33,.05);border:1px solid #eceef3;padding:16px}
+h2{font-size:17px;margin:0 0 2px;letter-spacing:-.01em}
+h3{font-size:14px;margin:0 0 8px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 14px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:#fff;border:1px solid #eceef3;border-radius:12px;padding:12px}
+.kpi .l{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.kpi .v{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--muted)}
+.kpi.alert .v{color:var(--red)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.search{flex:1 1 220px;min-width:0;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-bottom:10px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;color:var(--ink2)}
+.chip b{font-variant-numeric:tabular-nums;color:var(--muted);margin-left:4px;font-weight:600}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.on b{color:#c9cfdb}
+.list{display:grid;gap:8px}
+.tk{background:#fff;border:1px solid #eceef3;border-radius:12px;padding:12px 14px;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 10px;text-align:left;width:100%}
+.tk:hover{border-color:#cdd2dc}
+.tk .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted)}
+.tk .nm{font-weight:700;font-size:14px}
+.tk .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
+.tk .flag{color:var(--red);font-weight:600}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;background:#fff;border-radius:12px;border:1px dashed #d6dae3}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.02em;white-space:nowrap;align-self:start}
+.s-NEW{background:var(--red-soft);color:var(--red)}
+.s-ASSIGNED{background:var(--blue-soft);color:var(--blue)}
+.s-IN_PROGRESS{background:var(--accent-soft);color:var(--accent-2)}
+.s-WAIT_CUSTOMER{background:var(--amber-soft);color:var(--amber)}
+.s-WAIT_INTERNAL{background:var(--violet-soft);color:var(--violet)}
+.s-RESOLVED{background:var(--green-soft);color:var(--green)}
+.s-CLOSED{background:var(--gray-soft);color:var(--muted)}
+.s-REOPENED{background:var(--red-soft);color:var(--red)}
+.grid2{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:620px){.grid2{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:5px}
+.in{width:100%;padding:10px 11px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.in:focus{outline:none;border-color:var(--accent)}
+textarea.in{min-height:84px;resize:vertical}
+.f{margin-bottom:10px}
+.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:13px}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover:not(:disabled){background:var(--accent-2)}
+.btn-d{background:var(--ink);color:#fff}
+.btn-g{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.btn-r{background:#fff;border:1.5px solid #f2c4bb;color:var(--red)}
+.btn-wa{background:#1fa855;color:#fff}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.msg{font-size:12px;margin-top:6px;min-height:16px}
+.msg.ok{color:var(--green)}.msg.bad{color:var(--red)}
+.scrim{position:fixed;inset:0;background:rgba(13,19,33,.45);z-index:40;display:none}
+.scrim.on{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--bg);z-index:41;transform:translateX(100%);transition:transform .2s ease;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dh{background:#fff;border-bottom:1px solid var(--line);padding:12px 14px;display:flex;align-items:flex-start;gap:10px}
+.dh .x{margin-left:auto;background:var(--gray-soft);border:0;border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1}
+.db{overflow-y:auto;padding:12px 14px 40px;display:grid;gap:10px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;font-size:13px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;word-break:break-word}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.quick button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 8px;font-size:12px;cursor:pointer}
+.tl{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:10px 1fr;gap:10px;font-size:13px}
+.tl li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px}
+.tl .t{font-size:11px;color:var(--muted)}
+.confirm-box{display:none;background:var(--red-soft);border-radius:10px;padding:10px;margin-top:8px;font-size:13px}
+.confirm-box.on{display:block}
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:150px 1fr 36px;align-items:center;gap:8px;font-size:12px}
+.bar .t{height:10px;background:var(--gray-soft);border-radius:6px;overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--accent);border-radius:6px}
+.bar .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.two-col{display:grid;gap:10px}
+@media(min-width:760px){.two-col{grid-template-columns:1fr 1fr}}
+.poster{background:var(--ink);color:#fff;border-radius:18px;padding:24px;text-align:center;max-width:360px;margin:0 auto}
+.poster .k{font-size:11px;letter-spacing:.12em;color:#9aa3b5;font-weight:700}
+.poster h3{font-size:24px;margin:8px 0 4px;letter-spacing:-.01em}
+.poster p{color:#c9cfdb;font-size:13px;margin:0 0 16px}
+.qrbox{background:#fff;border-radius:14px;padding:16px;display:inline-block}
+.qrbox img,.qrbox canvas{display:block}
+.poster .tags{font-size:11px;color:#c9cfdb;margin-top:14px;line-height:1.7}
+.login{min-height:calc(100vh - 54px);display:grid;place-items:center;padding:20px}
+.login .card{width:100%;max-width:360px}
+.who{display:flex;align-items:center;gap:10px;font-size:12px;color:#c9cfdb}
+.who button{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
+.staff-row{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.staff-row:last-child{border-bottom:0}
+.staff-row small{color:var(--muted)}
+.hide{display:none!important}
+@media(max-width:520px){.conn span,.brand small{display:none}}
+</style>
 </head>
 <body>
-<p>Membuka dashboard CRO…<br><a href="https://n8n.srv1955808.hstgr.cloud/webhook/cro">Klik di sini kalau tidak terbuka otomatis</a></p>
+<div class="top"><div class="wrap">
+<div class="brand">CRO Control Center<small>BYD HAKA KAREBOSI · JANGKAR</small></div>
+<div class="who hide" id="who"><span id="who-name"></span><button id="logout">Keluar</button></div>
+<div class="conn hide" id="conn"><i></i><span>Menghubungkan…</span></div>
+</div></div>
+<section class="login" id="login-view">
+<div class="card">
+<h2>Masuk tim CRO</h2>
+<p class="sub">Pakai nama dan PIN 6 digit dari admin.</p>
+<div class="f"><label>Nama</label><input class="in" id="l-nama" autocomplete="username" maxlength="40"></div>
+<div class="f"><label>PIN</label><input class="in" id="l-pin" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password"></div>
+<button class="btn btn-p" id="l-btn" style="width:100%">Masuk</button>
+<div class="msg" id="l-msg"></div>
+</div>
+</section>
+<div id="app" class="hide">
+<nav class="tabs"><div class="wrap">
+<a href="#tiket" data-v="tiket">Tiket</a>
+<a href="#input" data-v="input">+ Tiket baru</a>
+<a href="#kpi" data-v="kpi">KPI</a>
+<a href="#qr" data-v="qr">QR Code</a>
+<a href="#tim" data-v="tim" id="tab-tim" class="hide">Tim</a>
+</div></nav>
+<div class="wrap"><div class="banner err" id="db-banner"></div></div>
+<main class="wrap">
+<section class="view" id="v-tiket">
+<div class="kpis" id="kpi-strip"></div>
+<div class="toolbar"><input class="search" id="q" placeholder="Cari kode, nama, nomor WA, PIC…"></div>
+<div class="chips" id="chips"></div>
+<div class="list" id="list"><div class="empty">Memuat tiket…</div></div>
+</section>
+<section class="view" id="v-input">
+<div class="card" style="margin-bottom:10px">
+<h2>Tempel pesan dari Connect QR</h2>
+<p class="sub">Tiket dari bydkarebosiconnect.online biasanya sudah otomatis masuk. Pakai ini untuk pesan yang hanya sampai lewat WhatsApp.</p>
+<textarea class="in" id="paste" placeholder="*TIKET BYD KAREBOSI CONNECT*&#10;Kode: CASE-2026-XXXX&#10;Nama: …"></textarea>
+<div class="btns" style="margin-top:8px"><button class="btn btn-d" id="parse-btn">Baca pesan</button></div>
+<div class="msg" id="parse-msg"></div>
+</div>
+<div class="card">
+<h2>Data tiket</h2>
+<p class="sub">Untuk walk-in, telepon, atau chat langsung. Karyawan pertama yang menerima wajib mencatat.</p>
+<div class="grid2">
+<div class="f"><label>Kode tiket</label><input class="in" id="i-code" readonly></div>
+<div class="f"><label>Sumber</label>
+<select class="in" id="i-source"><option>Connect QR</option><option>Walk-in</option><option>Telepon</option><option>WhatsApp langsung</option><option>Sales</option><option>Aftersales</option></select></div>
+<div class="f"><label>Nama pelanggan *</label><input class="in" id="i-name" maxlength="80"></div>
+<div class="f"><label>Nomor WhatsApp *</label><input class="in" id="i-phone" inputmode="tel" maxlength="16" placeholder="08…"></div>
+<div class="f"><label>Kendaraan</label><input class="in" id="i-model" list="models" maxlength="40"></div>
+<div class="f"><label>Plat nomor</label><input class="in" id="i-plate" maxlength="15"></div>
+<div class="f"><label>Kategori *</label><select class="in" id="i-cat"></select></div>
+<div class="f"><label>Waktu dihubungi</label><input class="in" id="i-when" maxlength="40" value="Secepatnya"></div>
+</div>
+<datalist id="models"><option>Belum punya / calon pembeli</option><option>BYD Atto 1</option><option>BYD Atto 3</option><option>BYD Dolphin</option><option>BYD Seal</option><option>BYD Sealion 7</option><option>BYD M6</option><option>Denza D9</option></datalist>
+<div class="f"><label>Kronologi / kebutuhan *</label><textarea class="in" id="i-desc" maxlength="1500"></textarea></div>
+<div class="grid2">
+<div class="f"><label>PIC langsung (opsional)</label><input class="in" id="i-pic" maxlength="60" placeholder="Nama PIC"></div>
+<div class="f"><label>Departemen PIC</label><select class="in" id="i-dept"></select></div>
+</div>
+<div class="btns"><button class="btn btn-p" id="save-btn">Simpan tiket</button><button class="btn btn-g" id="reset-btn">Kosongkan</button></div>
+<div class="msg" id="save-msg"></div>
+</div>
+</section>
+<section class="view" id="v-kpi">
+<div class="toolbar">
+<select class="in" id="period" style="max-width:220px">
+<option value="30">30 hari terakhir</option><option value="7">7 hari terakhir</option><option value="month">Bulan ini</option><option value="all">Semua waktu</option>
+</select>
+</div>
+<div class="kpis" id="kpi-big"></div>
+<div class="two-col">
+<div class="card"><h3>Tiket per kategori</h3><div class="bars" id="by-cat"></div></div>
+<div class="card"><h3>Tiket per status</h3><div class="bars" id="by-status"></div></div>
+<div class="card"><h3>Beban per PIC (tiket aktif)</h3><div class="bars" id="by-pic"></div></div>
+<div class="card"><h3>Catatan pengukuran</h3><p class="sub" style="margin:0">Bulan pertama dipakai sebagai baseline. Tetapkan target bersama pimpinan setelah angka awal terlihat. Kepatuhan update dihitung dari update yang dicatat sebelum jadwal yang dijanjikan ke pelanggan.</p></div>
+</div>
+</section>
+<section class="view" id="v-qr">
+<div class="card" style="margin-bottom:10px">
+<h2>QR Connect untuk showroom & area servis</h2>
+<p class="sub">Screenshot poster di bawah untuk dicetak.</p>
+<input class="in" id="qr-url">
+</div>
+<div class="poster">
+<div class="k">BYD HAKA KAREBOSI CONNECT</div>
+<h3>Scan untuk bantuan</h3>
+<p>Satu pintu untuk Sales & Aftersales. Satu PIC sampai tuntas.</p>
+<div class="qrbox"><div id="qr"></div></div>
+<div class="tags">Informasi pembelian · BYD Apps · Charger<br>Booking servis · Keluhan · Suku cadang<br>STNK / BPKB · Garansi baterai</div>
+</div>
+</section>
+<section class="view" id="v-tim">
+<div class="two-col">
+<div class="card"><h3>Anggota tim</h3><div id="staff-list"><p class="sub">Memuat…</p></div></div>
+<div class="card">
+<h3 id="sf-title">Tambah anggota</h3>
+<input type="hidden" id="sf-id">
+<div class="f"><label>Nama (dipakai untuk login)</label><input class="in" id="sf-nama" maxlength="40"></div>
+<div class="grid2">
+<div class="f"><label>Departemen</label><select class="in" id="sf-dept"></select></div>
+<div class="f"><label>Peran</label><select class="in" id="sf-role"><option value="staff">Staf</option><option value="admin">Admin</option></select></div>
+</div>
+<div class="f"><label>PIN 6 digit <span id="sf-pin-hint" style="font-weight:400;color:var(--muted)"></span></label><input class="in" id="sf-pin" inputmode="numeric" maxlength="6"></div>
+<label style="display:flex;gap:8px;align-items:center;font-weight:500;font-size:13px;margin:4px 0 10px"><input type="checkbox" id="sf-aktif" checked> Aktif (boleh login)</label>
+<div class="btns"><button class="btn btn-p" id="sf-save">Simpan</button><button class="btn btn-g" id="sf-new">Baru</button></div>
+<div class="msg" id="sf-msg"></div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+<div class="dh">
+<div><div id="d-code" style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted)"></div>
+<div style="font-weight:800;font-size:16px" id="d-name"></div>
+<span class="pill" id="d-pill"></span></div>
+<button class="x" id="d-close" aria-label="Tutup">×</button>
+</div>
+<div class="db" id="d-body"></div>
+</aside>
+<script>
+(function(){
+const API = "https://n8n.srv1955808.hstgr.cloud/webhook/cro-api";
+const PORTAL_URL = "https://bydkarebosiconnect.online/";
+const STATUSES = ["NEW","ASSIGNED","IN PROGRESS","WAIT CUSTOMER","WAIT INTERNAL","RESOLVED","CLOSED","REOPENED"];
+const STATUS_ID = {"NEW":"Baru","ASSIGNED":"PIC ditetapkan","IN PROGRESS":"Diproses","WAIT CUSTOMER":"Tunggu pelanggan","WAIT INTERNAL":"Tunggu internal","RESOLVED":"Solusi diberikan","CLOSED":"Ditutup","REOPENED":"Dibuka ulang"};
+const DONE = new Set(["RESOLVED","CLOSED"]);
+const CATS = [["Informasi pembelian","Sales Consultant"],["BYD Apps & Digital Key","BYD Apps & IT Support"],["Charger & instalasi","Sales Consultant"],["Booking servis","Service Advisor"],["Keluhan","CRO"],["Suku cadang","Service Advisor"],["STNK / TNKB / BPKB","Document Admin"],["Garansi Blade Battery","Service Advisor"]];
+const DEPTS = ["CRO","Sales Consultant","Service Advisor","Document Admin","BYD Apps & IT Support","Manajemen"];
+const DEALER = "BYD HAKA Karebosi";
+const ERR = {login:"Nama atau PIN salah.",locked:"Terlalu banyak percobaan. Coba lagi 15 menit lagi.",unauthorized:"Sesi berakhir, silakan masuk lagi.",invalid:"Lengkapi nama, nomor WA yang valid, dan kronologi.",invalid_category:"Kategori tidak dikenal.",duplicate:"Kode tiket sudah dipakai.",need_pic:"Tetapkan PIC dulu (One Customer, One PIC).",need_pic_name:"Isi nama PIC.",need_note:"Tulis apa yang disampaikan ke pelanggan.",need_next:"Tentukan kapan kabar berikutnya (standar JANGKAR).",next_past:"Jadwal kabar berikutnya harus di masa depan.",need_resolved:"Tiket harus RESOLVED dulu sebelum CLOSED.",need_confirm:"Tiket tidak boleh ditutup sebelum pelanggan mengonfirmasi solusi.",forbidden:"Hanya admin yang boleh melakukan ini.",not_found:"Tiket tidak ditemukan.",pin_format:"PIN harus 6 angka.",name_taken:"Nama sudah dipakai anggota lain.",need_name:"Isi nama.",self_lock:"Anda tidak bisa menonaktifkan / menurunkan peran akun sendiri.",network:"Koneksi gagal. Cek internet lalu coba lagi."};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const sc = s => "s-" + String(s).replace(/ /g,"_");
+let clockSkew = 0;
+const now = () => Date.now() + clockSkew;
+const TZ = {timeZone:"Asia/Makassar"};
+const fmtDT = ms => ms ? new Date(ms).toLocaleString("id-ID",{...TZ,day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}) : "-";
+function fmtDur(ms){ if(ms==null||isNaN(ms)) return "-"; const m=ms/60000; if(m<60) return Math.max(1,Math.round(m))+" mnt"; const h=m/60; if(h<24) return h.toFixed(h<10?1:0).replace(".",",")+" jam"; const d=h/24; return d.toFixed(d<10?1:0).replace(".",",")+" hari"; }
+function normPhone(v){ let d=(v||"").replace(/\D/g,""); if(d.startsWith("62")) d="0"+d.slice(2); if(d.startsWith("8")) d="0"+d; return d; }
+function waIntl(p){ const d=normPhone(p); return d.startsWith("0") ? "62"+d.slice(1) : d; }
+function makeCode(){ const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; const r=new Uint32Array(4); crypto.getRandomValues(r); return "CASE-"+new Date().getFullYear()+"-"+[...r].map(x=>a[x%a.length]).join(""); }
+function deptOf(cat){ const c=CATS.find(x=>x[0]===cat); return c?c[1]:"CRO"; }
+function toLocalInput(ms){ const d=new Date(ms - new Date(ms).getTimezoneOffset()*60000); return d.toISOString().slice(0,16); }
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(_){ return null; } }
+function lsSet(k,v){ try{ v==null ? localStorage.removeItem(k) : localStorage.setItem(k,v); }catch(_){ } }
+function setMsg(el, ok, text){ el.className = "msg " + (ok===null ? "" : ok ? "ok" : "bad"); el.textContent = text; }
+let token = lsGet("cro_token"), me = null;
+async function api(action, data){
+let res;
+try{
+const r = await fetch(API, {method:"POST", headers:{"Content-Type":"text/plain"}, body: JSON.stringify({...(data||{}), action, token})});
+res = await r.json();
+}catch(_){ return {ok:false, error:"network"}; }
+if(res && res.error==="unauthorized" && action!=="login"){ doLogout(true); }
+return res || {ok:false, error:"network"};
+}
+const errText = r => ERR[r && r.error] || ("Gagal: " + ((r && r.error) || "tidak diketahui"));
+async function doLogin(){
+const m=$("#l-msg"), b=$("#l-btn");
+const nama=$("#l-nama").value.trim(), pin=$("#l-pin").value.trim();
+if(!nama || !/^\d{6}$/.test(pin)){ setMsg(m,false,"Isi nama dan PIN 6 digit."); return; }
+b.disabled=true; setMsg(m,null,"Memeriksa…");
+const r = await api("login",{nama,pin});
+b.disabled=false;
+if(!r.ok){ setMsg(m,false,errText(r)); return; }
+token=r.token; lsSet("cro_token",token); lsSet("cro_nama",nama);
+$("#l-pin").value=""; setMsg(m,null,"");
+startApp(r.me);
+}
+$("#l-btn").addEventListener("click", doLogin);
+$("#l-pin").addEventListener("keydown", e=>{ if(e.key==="Enter") doLogin(); });
+$("#l-nama").value = lsGet("cro_nama") || "";
+function doLogout(expired){
+if(!expired && token) api("logout");
+token=null; me=null; lsSet("cro_token",null);
+clearInterval(pollTimer); pollTimer=null;
+closeDrawer();
+$("#app").classList.add("hide"); $("#who").classList.add("hide"); $("#conn").classList.add("hide");
+$("#login-view").classList.remove("hide");
+if(expired) setMsg($("#l-msg"),false,ERR.unauthorized);
+}
+$("#logout").addEventListener("click", ()=>doLogout(false));
+function startApp(m){
+me=m;
+$("#login-view").classList.add("hide"); $("#app").classList.remove("hide");
+$("#who").classList.remove("hide"); $("#conn").classList.remove("hide");
+$("#who-name").textContent = me.nama + (me.role==="admin" ? " · admin" : "");
+$("#tab-tim").classList.toggle("hide", me.role!=="admin");
+route(); refresh();
+clearInterval(pollTimer); pollTimer=setInterval(()=>{ if(!document.hidden) refresh(); }, 15000);
+}
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && me) refresh(); });
+let tickets=[], byId=new Map(), pollTimer=null, loading=false;
+let filter="aktif", query="", openId=null, openLog=null;
+function setConn(state,text){ const c=$("#conn"); c.className="conn "+state; c.querySelector("span").textContent=text; }
+function showErr(t){ const b=$("#db-banner"); b.textContent=t||""; b.classList.toggle("show",!!t); }
+async function refresh(){
+if(loading || !token) return; loading=true;
+const r = await api("list");
+loading=false;
+if(!r.ok){ if(r.error!=="unauthorized"){ setConn("bad","Terputus"); showErr("Data belum bisa dimuat. Mencoba lagi otomatis…"); } return; }
+if(r.now) clockSkew = r.now - Date.now();
+if(r.me){ me=r.me; }
+setConn("ok","Tersambung · "+new Date().toLocaleTimeString("id-ID",{...TZ,hour:"2-digit",minute:"2-digit"}));
+showErr("");
+setTickets(r.tickets||[]);
+}
+function setTickets(list){ tickets=list; byId=new Map(tickets.map(t=>[t.id,t])); renderAll(); }
+function upsertLocal(t){ const i=tickets.findIndex(x=>x.id===t.id); if(i>=0) tickets[i]=t; else tickets.unshift(t); byId.set(t.id,t); renderAll(); }
+function route(){
+const v=(location.hash||"#tiket").slice(1);
+let name=["tiket","input","kpi","qr","tim"].includes(v)?v:"tiket";
+if(name==="tim" && (!me || me.role!=="admin")) name="tiket";
+document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on", x.id==="v-"+name));
+document.querySelectorAll("nav.tabs a").forEach(a=>a.classList.toggle("on", a.dataset.v===name));
+if(name==="kpi") renderKpi();
+if(name==="qr") renderQr();
+if(name==="tim") loadStaff();
+}
+window.addEventListener("hashchange", route);
+function isOverdue(t){ return !DONE.has(t.status) && t.status!=="NEW" && t.nextUpdateAt && t.nextUpdateAt < now(); }
+function noSchedule(t){ return !DONE.has(t.status) && t.status!=="NEW" && !t.nextUpdateAt; }
+function sortKey(t){ if(isOverdue(t)) return 0; if(t.status==="NEW"||t.status==="REOPENED") return 1; if(!DONE.has(t.status)) return 2; return t.status==="RESOLVED"?3:4; }
+const FILTERS = [
+["aktif","Aktif",t=>!DONE.has(t.status)],
+["new","Baru",t=>t.status==="NEW"||t.status==="REOPENED"],
+["nopic","Tanpa PIC",t=>!DONE.has(t.status)&&!t.pic],
+["late","Update terlambat",isOverdue],
+["wait","Menunggu",t=>t.status==="WAIT CUSTOMER"||t.status==="WAIT INTERNAL"],
+["resolved","Perlu konfirmasi",t=>t.status==="RESOLVED"],
+["closed","Ditutup",t=>t.status==="CLOSED"],
+["all","Semua",()=>true]
+];
+function renderStrip(){
+const open=tickets.filter(t=>!DONE.has(t.status));
+const nopic=open.filter(t=>!t.pic).length, late=tickets.filter(isOverdue).length, nw=tickets.filter(t=>t.status==="NEW").length;
+const oldest=open.length?Math.max(...open.map(t=>now()-t.createdAt)):null;
+$("#kpi-strip").innerHTML=[
+["Tiket aktif",open.length,open.length?"tertua "+fmtDur(oldest):"tidak ada antrean",false],
+["Belum direspons",nw,"status NEW",nw>0],
+["Tanpa PIC",nopic,"harus 0",nopic>0],
+["Update terlambat",late,"lewat jadwal janji",late>0]
+].map(([l,v,d,a])=>`<div class="kpi ${a?"alert":""}"><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+}
+function renderChips(){ $("#chips").innerHTML=FILTERS.map(([k,l,fn])=>`<button class="chip ${filter===k?"on":""}" data-k="${k}">${l}<b>${tickets.filter(fn).length}</b></button>`).join(""); }
+$("#chips").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(!b) return; filter=b.dataset.k; renderList(); renderChips(); });
+$("#q").addEventListener("input",e=>{ query=e.target.value.trim().toLowerCase(); renderList(); });
+function renderList(){
+const fn=FILTERS.find(f=>f[0]===filter)[2];
+let rows=tickets.filter(fn);
+if(query) rows=rows.filter(t=>[t.id,t.name,t.phone,t.pic,t.category,t.plate].join(" ").toLowerCase().includes(query));
+rows.sort((a,b)=>sortKey(a)-sortKey(b)||b.createdAt-a.createdAt);
+const el=$("#list");
+if(!rows.length){ el.innerHTML=`<div class="empty">${tickets.length?"Tidak ada tiket di filter ini.":"Belum ada tiket. Tiket dari halaman Connect akan muncul di sini otomatis."}</div>`; return; }
+el.innerHTML=rows.map(t=>{
+const flags=[];
+if(isOverdue(t)) flags.push(`<span class="flag">⚠ Update terlambat ${fmtDur(now()-t.nextUpdateAt)}</span>`);
+else if(noSchedule(t)) flags.push(`<span class="flag">Belum ada jadwal update</span>`);
+if(!t.pic&&!DONE.has(t.status)) flags.push(`<span class="flag">Tanpa PIC</span>`);
+return `<button class="tk" data-id="${esc(t.id)}">
+<div><div class="code">${esc(t.id)} · ${esc(t.category)}</div><div class="nm">${esc(t.name)}</div></div>
+<span class="pill ${sc(t.status)}">${esc(t.status)}</span>
+<div class="meta"><span>PIC: <b style="color:var(--ink2)">${esc(t.pic||"—")}</b></span><span>${esc(t.model||"")}</span><span>${esc(t.source)}</span><span>Masuk ${fmtDur(now()-t.createdAt)} lalu</span>${t.nextUpdateAt&&!DONE.has(t.status)&&!isOverdue(t)?`<span>Update berikutnya ${fmtDT(t.nextUpdateAt)}</span>`:""}${flags.join("")}</div>
+</button>`;
+}).join("");
+}
+$("#list").addEventListener("click",e=>{ const b=e.target.closest(".tk"); if(b) openDrawer(b.dataset.id); });
+function renderAll(){ renderStrip(); renderChips(); renderList(); if($("#v-kpi").classList.contains("on")) renderKpi(); if(openId) renderDrawer(); }
+$("#period").addEventListener("change",renderKpi);
+function inPeriod(t){ const p=$("#period").value; if(p==="all") return true; if(p==="month"){ const d=new Date(now()), s=new Date(d.getFullYear(),d.getMonth(),1).getTime(); return t.createdAt>=s; } return t.createdAt>=now()-(+p)*864e5; }
+function bars(el,pairs){ const max=Math.max(1,...pairs.map(p=>p[1])); el.innerHTML=pairs.length?pairs.map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><span class="t"><i style="width:${(v/max*100).toFixed(1)}%"></i></span><span class="n">${v}</span></div>`).join(""):`<p class="sub" style="margin:0">Belum ada data.</p>`; }
+function renderKpi(){
+const T=tickets.filter(inPeriod), n=T.length, withPic=T.filter(t=>t.pic).length;
+const resp=T.filter(t=>t.firstResponseAt).map(t=>t.firstResponseAt-t.createdAt);
+const avgResp=resp.length?resp.reduce((a,b)=>a+b,0)/resp.length:null;
+const sched=T.reduce((a,t)=>a+(+t.sched||0),0), ontime=T.reduce((a,t)=>a+(+t.ontime||0),0), lateNow=T.filter(isOverdue).length;
+const compl=(sched+lateNow)?ontime/(sched+lateNow):null;
+const solved=T.filter(t=>t.resolvedAt), avgSolve=solved.length?solved.reduce((a,t)=>a+(t.resolvedAt-t.createdAt),0)/solved.length:null;
+const closed=T.filter(t=>t.status==="CLOSED").length, reopened=T.filter(t=>t.reopened).length, open=T.filter(t=>!DONE.has(t.status)).length;
+const pct=x=>x==null?"-":Math.round(x*100)+"%";
+$("#kpi-big").innerHTML=[
+["Tiket masuk",n,"periode terpilih"],["Kasus dengan PIC jelas",n?pct(withPic/n):"-",`${withPic} dari ${n}`],
+["Waktu respons awal",fmtDur(avgResp),`rata-rata, ${resp.length} tiket`],["Kepatuhan update",pct(compl),`${ontime} tepat waktu dari ${sched+lateNow}`],
+["Solusi diberikan",solved.length,`rata-rata ${fmtDur(avgSolve)}`],["Ditutup (konfirmasi)",closed,`${n?pct(closed/n):"-"} dari tiket masuk`],
+["Masih terbuka",open,"belum RESOLVED/CLOSED"],["Dibuka ulang",reopened,"kendala berulang"]
+].map(([l,v,d])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+const count=(arr,f)=>{ const m=new Map(); arr.forEach(x=>{const k=f(x); m.set(k,(m.get(k)||0)+1);}); return [...m.entries()].sort((a,b)=>b[1]-a[1]); };
+bars($("#by-cat"),count(T,t=>t.category));
+bars($("#by-status"),STATUSES.map(s=>[s,T.filter(t=>t.status===s).length]).filter(p=>p[1]>0));
+bars($("#by-pic"),count(tickets.filter(t=>!DONE.has(t.status)),t=>t.pic||"(belum ada PIC)"));
+}
+$("#qr-url").value = lsGet("cro_portal") || PORTAL_URL;
+$("#qr-url").addEventListener("input",e=>{ lsSet("cro_portal",e.target.value.trim()); renderQr(); });
+function renderQr(){
+const url=$("#qr-url").value.trim(), box=$("#qr"); box.innerHTML="";
+if(!url){ box.innerHTML='<div style="width:200px;height:200px;display:grid;place-items:center;color:#6b7488;font-size:12px">Isi link dulu</div>'; return; }
+if(typeof QRCode==="undefined"){ box.textContent="Library QR gagal dimuat"; return; }
+new QRCode(box,{text:url,width:200,height:200,correctLevel:QRCode.CorrectLevel.M});
+}
+$("#i-cat").innerHTML=CATS.map(c=>`<option>${esc(c[0])}</option>`).join("");
+$("#i-dept").innerHTML=`<option value="">Otomatis sesuai kategori</option>`+DEPTS.map(d=>`<option>${esc(d)}</option>`).join("");
+$("#sf-dept").innerHTML=DEPTS.map(d=>`<option>${esc(d)}</option>`).join("");
+function parseMsg(txt){ const get=k=>{ const m=txt.match(new RegExp("^\\s*\\*?"+k+"\\*?\\s*:\\s*(.+)$","im")); return m?m[1].trim():""; };
+return {code:get("Kode").toUpperCase(),name:get("Nama"),phone:get("WA"),model:get("Kendaraan"),plate:get("Plat").replace(/^-$/,""),cat:get("Kategori"),desc:get("Kebutuhan"),when:get("Dihubungi")}; }
+$("#parse-btn").addEventListener("click",()=>{
+const p=parseMsg($("#paste").value), m=$("#parse-msg");
+if(!/^CASE-\d{4}-[A-Z0-9]{3,8}$/.test(p.code)){ setMsg(m,false,"Format pesan tidak dikenali. Pastikan pesan lengkap dari Connect QR."); return; }
+if(byId.has(p.code)){ setMsg(m,false,`Tiket ${p.code} sudah masuk otomatis. Membuka tiketnya…`); setTimeout(()=>{ location.hash="#tiket"; openDrawer(p.code); },600); return; }
+$("#i-code").value=p.code; $("#i-name").value=p.name; $("#i-phone").value=normPhone(p.phone); $("#i-model").value=p.model;
+$("#i-plate").value=p.plate; $("#i-desc").value=p.desc; $("#i-when").value=p.when||"Secepatnya"; $("#i-source").value="Connect QR";
+if(CATS.some(c=>c[0]===p.cat)) $("#i-cat").value=p.cat;
+setMsg(m,true,"Data terbaca. Cek ulang, lalu Simpan tiket.");
+});
+function resetInput(){ ["i-name","i-phone","i-model","i-plate","i-desc","i-pic","paste"].forEach(id=>$("#"+id).value=""); $("#i-when").value="Secepatnya"; $("#i-dept").value=""; $("#i-source").value="Walk-in"; $("#i-code").value=makeCode(); $("#parse-msg").textContent=""; }
+$("#reset-btn").addEventListener("click",()=>{ resetInput(); $("#save-msg").textContent=""; });
+resetInput();
+$("#save-btn").addEventListener("click", async ()=>{
+const m=$("#save-msg"), b=$("#save-btn");
+const d={id:$("#i-code").value.trim(),name:$("#i-name").value.trim(),phone:normPhone($("#i-phone").value),model:$("#i-model").value.trim(),plate:$("#i-plate").value.trim(),
+category:$("#i-cat").value,desc:$("#i-desc").value.trim(),contactPref:$("#i-when").value.trim(),source:$("#i-source").value,pic:$("#i-pic").value.trim(),picDept:$("#i-dept").value};
+if(d.name.length<2||!/^08\d{8,12}$/.test(d.phone)||d.desc.length<3){ setMsg(m,false,ERR.invalid); return; }
+b.disabled=true; setMsg(m,null,"Menyimpan…");
+const r=await api("create",d); b.disabled=false;
+if(!r.ok){ setMsg(m,false,errText(r)); return; }
+upsertLocal(r.ticket); setMsg(m,true,`Tiket ${r.ticket.id} tersimpan.`); resetInput();
+setTimeout(()=>{ location.hash="#tiket"; openDrawer(r.ticket.id); },400);
+});
+async function openDrawer(id){
+openId=id; openLog=null; renderDrawer();
+$("#drawer").classList.add("on"); $("#scrim").classList.add("on"); $("#drawer").setAttribute("aria-hidden","false");
+await loadLog(id);
+}
+async function loadLog(id){ const r=await api("get",{id}); if(openId!==id) return; if(r.ok){ upsertLocal(r.ticket); openLog=r.log; renderDrawer(); } }
+function closeDrawer(){ openId=null; $("#drawer").classList.remove("on"); $("#scrim").classList.remove("on"); $("#drawer").setAttribute("aria-hidden","true"); }
+$("#d-close").addEventListener("click",closeDrawer); $("#scrim").addEventListener("click",closeDrawer);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&openId) closeDrawer(); });
+function waTemplates(t){
+const first=(t.name||"").split(" ")[0]||"Bapak/Ibu", pic=t.pic||"tim kami", nu=t.nextUpdateAt?fmtDT(t.nextUpdateAt)+" WITA":"secepatnya";
+return [
+["Konfirmasi tiket diterima",`Halo Kak ${first}, terima kasih sudah menghubungi ${DEALER} 🙏\n\nPermintaan Kakak sudah kami terima dengan kode *${t.id}* (${t.category}).\nPIC yang menangani: *${pic}*${t.picDept?" ("+t.picDept+")":""}.\n\nKakak cukup menghubungi PIC ini saja, tidak perlu menjelaskan ulang ke bagian lain. Kabar berikutnya kami sampaikan paling lambat ${nu}.`],
+["Update progres",`Halo Kak ${first}, update untuk tiket *${t.id}*:\n\n[tulis progres di sini]\n\nKabar berikutnya akan saya sampaikan paling lambat ${nu}. Kalau ada yang ingin ditanyakan, langsung balas chat ini ya Kak.\n\n– ${pic}, ${DEALER}`],
+["Minta konfirmasi solusi",`Halo Kak ${first}, untuk tiket *${t.id}* solusinya sudah kami berikan:\n\n[ringkas solusi]\n\nBoleh dibantu konfirmasi, apakah kendalanya sudah beres dan jelas, Kak? Kalau masih ada yang kurang, balas saja, tiketnya tetap kami buka sampai tuntas 🙏\n\n– ${pic}, ${DEALER}`]
+];
+}
+function keepInputs(){ const ids=["d-pic","d-dept","d-note","d-next","d-status","d-confirm"]; const o={}; ids.forEach(i=>{ const el=$("#"+i); if(el) o[i]=el.type==="checkbox"?el.checked:el.value; }); return o; }
+function restoreInputs(o){ Object.entries(o).forEach(([i,v])=>{ const el=$("#"+i); if(!el) return; if(el.type==="checkbox") el.checked=v; else el.value=v; }); }
+let drawerFor=null;
+function renderDrawer(){
+const t=byId.get(openId);
+const keep = (drawerFor===openId) ? keepInputs() : null;
+drawerFor=openId;
+if(!t){ $("#d-body").innerHTML='<div class="empty">Tiket tidak ditemukan atau sudah dihapus.</div>'; return; }
+$("#d-code").textContent=t.id+" · "+(t.source||""); $("#d-name").textContent=t.name;
+const pill=$("#d-pill"); pill.className="pill "+sc(t.status); pill.textContent=t.status+" · "+(STATUS_ID[t.status]||"");
+const late=isOverdue(t);
+const hist = openLog==null ? '<li><div>Memuat riwayat…</div></li>' : (openLog.length ? openLog.map(h=>`<li><div>${esc(h.text)}${h.kind==="update"&&h.due?` <span style="color:${h.onTime?"var(--green)":"var(--red)"};font-size:11px;font-weight:700">${h.onTime?"TEPAT WAKTU":"TERLAMBAT"}</span>`:""}<div class="t">${fmtDT(h.t)} · ${esc(h.by)}</div></div></li>`).join("") : '<li><div>Belum ada riwayat.</div></li>');
+$("#d-body").innerHTML=`
+<div class="card"><dl class="kv">
+<dt>WhatsApp</dt><dd>${esc(t.phone)}</dd>
+<dt>Kendaraan</dt><dd>${esc(t.model||"-")}${t.plate?" · "+esc(t.plate):""}</dd>
+<dt>Kategori</dt><dd>${esc(t.category)} → ${esc(t.dept)}</dd>
+<dt>Dihubungi</dt><dd>${esc(t.contactPref||"-")}</dd>
+<dt>Masuk</dt><dd>${fmtDT(t.createdAt)} (${fmtDur(now()-t.createdAt)} lalu)</dd>
+<dt>Respons awal</dt><dd>${t.firstResponseAt?fmtDur(t.firstResponseAt-t.createdAt):'<b style="color:var(--red)">belum</b>'}</dd>
+<dt>Kronologi</dt><dd style="white-space:pre-wrap">${esc(t.desc)}</dd>
+</dl></div>
+<div class="card"><h3>1 · PIC penanggung jawab</h3>
+<div class="grid2">
+<div class="f"><label>Nama PIC</label><input class="in" id="d-pic" value="${esc(t.pic)}" maxlength="60"></div>
+<div class="f"><label>Departemen</label><select class="in" id="d-dept">${DEPTS.map(d=>`<option ${d===(t.picDept||t.dept)?"selected":""}>${esc(d)}</option>`).join("")}</select></div>
+</div>
+<button class="btn btn-d" id="d-pic-save">${t.pic?"Ganti PIC":"Tetapkan PIC"}</button><div class="msg" id="d-pic-msg"></div></div>
+<div class="card"><h3>2 · Update ke pelanggan & jadwal kabar berikutnya</h3>
+${late?`<p class="msg bad" style="margin:0 0 8px">Jadwal update ${fmtDT(t.nextUpdateAt)} sudah lewat ${fmtDur(now()-t.nextUpdateAt)}.</p>`:""}
+<div class="f"><label>Catatan update (apa yang sudah disampaikan ke pelanggan)</label><textarea class="in" id="d-note" maxlength="600"></textarea></div>
+<div class="f"><label>Kabar berikutnya dijanjikan paling lambat</label>
+<input class="in" type="datetime-local" id="d-next" value="${t.nextUpdateAt?toLocalInput(t.nextUpdateAt):""}">
+<div class="quick">${[["+2 jam",2*36e5],["+1 hari",864e5],["+3 hari",3*864e5],["+7 hari",7*864e5]].map(([l,v])=>`<button type="button" data-add="${v}">${l}</button>`).join("")}</div></div>
+<button class="btn btn-p" id="d-note-save">Catat update</button><div class="msg" id="d-note-msg"></div></div>
+<div class="card"><h3>3 · Status</h3>
+<div class="f"><select class="in" id="d-status">${STATUSES.map(s=>`<option ${s===t.status?"selected":""} value="${s}">${s} – ${STATUS_ID[s]}</option>`).join("")}</select></div>
+<label style="display:flex;gap:8px;align-items:center;font-weight:500;font-size:13px;margin:4px 0 10px"><input type="checkbox" id="d-confirm" ${t.customerConfirmed?"checked":""}> Pelanggan sudah mengonfirmasi solusi jelas</label>
+<button class="btn btn-d" id="d-status-save">Simpan status</button><div class="msg" id="d-status-msg"></div></div>
+<div class="card"><h3>Kirim WhatsApp ke pelanggan</h3>
+<p class="sub" style="margin-bottom:8px">Template terisi otomatis. Edit bagian [ ] di WhatsApp sebelum kirim.</p>
+<div class="btns" style="flex-direction:column">${waTemplates(t).map(([l,txt])=>`<a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/${waIntl(t.phone)}?text=${encodeURIComponent(txt)}">${esc(l)}</a>`).join("")}</div></div>
+<div class="card"><h3>Riwayat (audit log)</h3><ul class="tl">${hist}</ul></div>
+${me&&me.role==="admin"?`<div class="card"><button class="btn btn-r" id="d-del">Hapus tiket</button>
+<div class="confirm-box" id="d-del-box">Hapus tiket ${esc(t.id)}? Riwayatnya tetap tersimpan di audit log. Gunakan hanya untuk tiket duplikat atau salah input.
+<div class="btns" style="margin-top:8px"><button class="btn btn-r" id="d-del-yes">Ya, hapus</button><button class="btn btn-g" id="d-del-no">Batal</button></div></div></div>`:""}`;
+if(keep) restoreInputs(keep);
+$("#d-body").querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{ $("#d-next").value=toLocalInput(Date.now()+(+b.dataset.add)); }));
+$("#d-pic-save").addEventListener("click",()=>act(t,"assign",{pic:$("#d-pic").value.trim(),picDept:$("#d-dept").value},"#d-pic-msg","PIC tersimpan."));
+$("#d-note-save").addEventListener("click",()=>{ const nv=$("#d-next").value; act(t,"note",{note:$("#d-note").value.trim(),nextUpdateAt:nv?new Date(nv).getTime():null},"#d-note-msg","Update tercatat."); });
+$("#d-status-save").addEventListener("click",()=>act(t,"status",{status:$("#d-status").value,confirmed:$("#d-confirm").checked},"#d-status-msg","Status tersimpan."));
+if($("#d-del")){
+$("#d-del").addEventListener("click",()=>$("#d-del-box").classList.add("on"));
+$("#d-del-no").addEventListener("click",()=>$("#d-del-box").classList.remove("on"));
+$("#d-del-yes").addEventListener("click",async ()=>{ const r=await api("delete",{id:t.id}); if(r.ok){ tickets=tickets.filter(x=>x.id!==t.id); byId.delete(t.id); closeDrawer(); renderAll(); } else setMsg($("#d-status-msg"),false,errText(r)); });
+}
+}
+const busy=new Set();
+async function act(t, action, data, msgSel, okText){
+if(busy.has(t.id)) return; busy.add(t.id);
+const m=$(msgSel); setMsg(m,null,"Menyimpan…");
+const r=await api(action,{id:t.id,...data});
+busy.delete(t.id);
+if(!r.ok){ setMsg(m,false,errText(r)); return; }
+if(r.nochange){ setMsg(m,null,"Tidak ada perubahan."); return; }
+drawerFor=null;
+upsertLocal(r.ticket);
+const m2=$(msgSel); if(m2) setMsg(m2,true,okText);
+loadLog(t.id);
+}
+async function loadStaff(){
+const r=await api("staff_list");
+if(!r.ok){ $("#staff-list").innerHTML=`<p class="sub">${esc(errText(r))}</p>`; return; }
+renderStaff(r.staff);
+}
+let staffCache=[];
+function renderStaff(list){
+staffCache=list;
+$("#staff-list").innerHTML=list.map(s=>`<div class="staff-row"><div><b>${esc(s.nama)}</b> ${s.role==="admin"?'<span class="pill s-ASSIGNED">ADMIN</span>':""} ${s.aktif?"":'<span class="pill s-CLOSED">NONAKTIF</span>'}<br><small>${esc(s.dept)}</small></div><button class="btn btn-g" data-sid="${s.id}">Ubah</button></div>`).join("")||'<p class="sub">Belum ada anggota.</p>';
+}
+$("#staff-list").addEventListener("click",e=>{ const b=e.target.closest("[data-sid]"); if(!b) return; const s=staffCache.find(x=>x.id==b.dataset.sid); if(!s) return;
+$("#sf-id").value=s.id; $("#sf-nama").value=s.nama; $("#sf-dept").value=s.dept; $("#sf-role").value=s.role; $("#sf-aktif").checked=s.aktif; $("#sf-pin").value="";
+$("#sf-title").textContent="Ubah "+s.nama; $("#sf-pin-hint").textContent="(kosongkan jika tidak diganti)"; $("#sf-msg").textContent=""; });
+function newStaffForm(){ $("#sf-id").value=""; ["sf-nama","sf-pin"].forEach(i=>$("#"+i).value=""); $("#sf-role").value="staff"; $("#sf-aktif").checked=true; $("#sf-title").textContent="Tambah anggota"; $("#sf-pin-hint").textContent="(wajib)"; $("#sf-msg").textContent=""; }
+$("#sf-new").addEventListener("click",newStaffForm); newStaffForm();
+$("#sf-save").addEventListener("click",async ()=>{
+const m=$("#sf-msg"), pin=$("#sf-pin").value.trim();
+if(pin && !/^\d{6}$/.test(pin)){ setMsg(m,false,ERR.pin_format); return; }
+setMsg(m,null,"Menyimpan…");
+const r=await api("staff_save",{id:$("#sf-id").value,nama:$("#sf-nama").value.trim(),dept:$("#sf-dept").value,role:$("#sf-role").value,pin,aktif:$("#sf-aktif").checked});
+if(!r.ok){ setMsg(m,false,errText(r)); return; }
+renderStaff(r.staff); newStaffForm(); setMsg($("#sf-msg"),true,"Tersimpan. Berikan nama & PIN ke anggota tersebut.");
+});
+(async function boot(){
+if(!token){ $("#login-view").classList.remove("hide"); return; }
+$("#login-view").classList.add("hide");
+const r=await api("me");
+if(r.ok) startApp(r.me); else { $("#login-view").classList.remove("hide"); }
+})();
+})();
+</script>
 </body>
 </html>
