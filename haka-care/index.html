@@ -161,19 +161,39 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .ben.hl p{color:#c9cfdb}
 #hkcare .ben.hl .ic{background:rgba(46,196,214,.15)}
 #hkcare .ben.hl svg{stroke:#2ec4d6}
-#hkcare .sched{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:28px;font-size:14px}
-#hkcare .sched th{background:var(--ink);color:#fff;text-align:left;font-weight:700;padding:14px 16px;font-size:13px}
-#hkcare .sched td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
-#hkcare .sched td b{color:var(--ink);font-size:15px}
-#hkcare .sched .chk{display:flex;flex-wrap:wrap;gap:6px}
-#hkcare .sched .chk span{font-size:12px;font-weight:600;background:var(--accent-soft);color:var(--accent-2);padding:4px 9px;border-radius:999px}
-@media(max-width:640px){#hkcare .sched thead{display:none}#hkcare .sched tr{display:block;border-top:1px solid var(--line);padding:12px 14px}#hkcare .sched tr:first-child{border-top:0}#hkcare .sched td{display:block;border:0;padding:3px 0}#hkcare .sched td[data-l]::before{content:attr(data-l)" · ";color:var(--muted);font-size:12px}}
 #hkcare .parts{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
 @media(min-width:720px){#hkcare .parts{grid-template-columns:1fr 1fr}}
 #hkcare .part{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
 #hkcare .part .no{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
 #hkcare .part b{display:block;font-size:15px;margin-bottom:4px}
 #hkcare .part p{margin:0;font-size:14px;color:var(--ink2)}
+#hkcare .period{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:28px;text-align:center}
+#hkcare .period .ph{background:var(--ink);color:#fff;font-weight:700;padding:14px;font-size:15px}
+#hkcare .period .pb{padding:18px 14px;font-size:16px;color:var(--ink2)}
+#hkcare .zigzag{list-style:none;margin:36px 0 10px;padding:0;position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+#hkcare .zigzag::before{content:"";position:absolute;left:4%;right:4%;top:50%;height:2px;background:repeating-linear-gradient(90deg,#c9cfd9 0 8px,transparent 8px 14px)}
+#hkcare .zz{position:relative;display:flex;flex-direction:column;align-items:center;min-height:440px}
+#hkcare .zz.up{justify-content:flex-start}
+#hkcare .zz.down{justify-content:flex-end}
+#hkcare .zc{background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(13,19,33,.08);padding:18px 12px;text-align:center;width:100%;min-height:190px}
+#hkcare .zc b{display:block;font-size:17px;line-height:1.3;color:var(--ink);font-weight:800}
+#hkcare .zc p{margin:10px 0 0;font-size:13px;color:var(--muted)}
+#hkcare .zc .free{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--green);background:var(--green-soft);padding:3px 8px;border-radius:999px}
+#hkcare .zdot{position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#fff;border:4px solid #c8102e;z-index:1}
+#hkcare .zz.first .zdot{background:#c8102e}
+#hkcare .chkbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:18px}
+#hkcare .chkbox b{display:block;margin-bottom:10px;font-size:15px}
+#hkcare .chk{display:flex;flex-wrap:wrap;gap:6px}
+#hkcare .chk span{font-size:12px;font-weight:600;background:var(--accent-soft);color:var(--accent-2);padding:5px 10px;border-radius:999px}
+@media(max-width:900px){
+ #hkcare .zigzag{grid-template-columns:1fr;gap:14px;padding-left:44px}
+ #hkcare .zigzag::before{left:15px;right:auto;top:6px;bottom:6px;width:2px;height:auto;background:repeating-linear-gradient(180deg,#c9cfd9 0 8px,transparent 8px 14px)}
+ #hkcare .zz{min-height:0;display:block}
+ #hkcare .zc{min-height:0;text-align:left;padding:14px 16px}
+ #hkcare .zc b{font-size:16px}
+ #hkcare .zc p{margin-top:4px}
+ #hkcare .zdot{top:22px;left:-29px;margin:0;width:22px;height:22px;border-width:4px}
+}
 /* cta band */
 #hkcare .band{background:linear-gradient(120deg,#0a5f6b,#0d1321);color:#fff;border-radius:24px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 #hkcare .band h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;color:#fff}
@@ -292,17 +312,12 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 </div></section>
 
 <section class="blk alt" id="servis"><div class="wrap">
-  <div class="reveal"><div class="kicker">Jadwal servis berkala</div><div class="h2">Perjalanan servis BYD Anda</div><p class="lead">Servis tepat waktu di bengkel resmi menjaga garansi tetap aman. Geser untuk melihat jadwalnya.</p></div>
-    <table class="sched reveal">
-    <thead><tr><th>Jenis servis</th><th>Jarak tempuh</th><th>Atau waktu</th><th>Yang diperiksa</th></tr></thead>
-    <tbody>
-      <tr><td><b>Servis pertama</b><br><span style="font-size:12px;color:var(--muted)">model tertentu</span></td><td data-l="Jarak tempuh">5.000 km</td><td data-l="Waktu">3 bulan</td><td><div class="chk"><span>Pemeriksaan awal kendaraan</span><span>Update software</span></div></td></tr>
-      <tr><td><b>Servis berkala</b><br><span style="font-size:12px;color:var(--muted)">semua model</span></td><td data-l="Jarak tempuh">Setiap 20.000 km</td><td data-l="Waktu">Setiap 1 tahun</td><td><div class="chk"><span>Baterai</span><span>Sistem kelistrikan</span><span>Motor listrik</span><span>Rem</span><span>Airbag</span><span>Update software</span></div></td></tr>
-    </tbody>
-  </table>
-  <p class="fine" style="color:var(--muted);font-size:12px;margin-top:10px">Dihitung sejak tanggal serah terima kendaraan, mana yang tercapai lebih dulu. Rincian per model ada di Buku Panduan Pemilik Digital BYD.</p>
-  <div class="journey reveal" id="hkc-journey"></div>
-  <p class="fine" style="color:var(--muted);font-size:12px">Label "Gratis" untuk Atto 3, Seal, Dolphin sampai 4 tahun / 60.000 km. Jadwal detail mengikuti buku servis model Anda.</p>
+  <div class="center reveal"><div class="kicker">Jadwal servis berkala</div><div class="h2">Alur waktu perawatan berkala</div><p class="lead">Servis tepat waktu di bengkel resmi menjaga garansi tetap aman. Mana yang tercapai lebih dulu, waktu atau kilometer.</p></div>
+    <div class="period reveal"><div class="ph">Periode pemeriksaan rutin</div><div class="pb">Setiap <b>1 tahun atau 20.000 km</b> sejak tanggal serah terima kendaraan</div></div>
+  <ol class="zigzag reveal"><li class="zz up first"><div class="zc"><b>Tanggal Serah Terima</b><p>Saat Anda menerima kendaraan pertama kali</p></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>12 bulan / 20.000 km</b><p>Servis berkala tahun pertama atau 20.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>24 bulan / 40.000 km</b><p>Servis berkala tahun kedua atau 40.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>36 bulan / 60.000 km</b><p>Servis berkala tahun ketiga atau 60.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>48 bulan / 80.000 km</b><p>Servis berkala tahun keempat atau 80.000 km</p></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>60 bulan / 100.000 km</b><p>Servis berkala tahun kelima atau 100.000 km</p></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>Dan seterusnya</b><p>Servis berkala berikutnya sesuai Buku Panduan Pemilik Kendaraan</p></div><i class="zdot"></i></li></ol>
+  <p class="fine" style="color:var(--ink2);font-size:13px;margin-top:6px">* Servis pertama pada bulan ke-3 atau 5.000 km berlaku untuk model tertentu. Informasi lengkap ada di Buku Panduan Pemilik Digital kendaraan Anda.</p>
+  <div class="chkbox reveal"><b>Yang diperiksa saat servis berkala</b><div class="chk"><span>Baterai</span><span>Sistem kelistrikan</span><span>Motor listrik</span><span>Rem</span><span>Airbag</span><span>Update software</span></div></div>
+  <p class="fine" style="color:var(--muted);font-size:12px">Label "Gratis*" untuk Atto 3, Seal, dan Dolphin selama program gratis servis 4 tahun / 60.000 km.</p>
 </div></section>
 
 <section class="blk" id="cek-garansi"><div class="wrap">
@@ -393,11 +408,6 @@ $("#hkc-tl").innerHTML = COVER.map(function(c){
     '<div class="track"><div class="fill" data-w="'+(c.y/8*100)+'" style="background:'+c.c+'">'+c.y+' tahun</div></div></div>';
 }).join("");
 
-var STEPS = [["SERVIS KE-1","5.000 km","atau 3 bulan",true]];
-for(var i=1;i<=7;i++){ STEPS.push(["SERVIS KE-"+(i+1),fmtKm(i*20000)+" km","atau "+i+" tahun", i*20000<=60000 && i<=4]); }
-$("#hkc-journey").innerHTML = STEPS.map(function(s,ix){
-  return '<div class="step">'+(ix===0?'<span class="dot"></span>':'')+'<div class="no">'+s[0]+'</div><div class="km">'+s[1]+'</div><div class="t">'+s[2]+'</div>'+(s[3]?'<span class="free">Gratis*</span>':'')+'</div>';
-}).join("");
 
 var ICON = {
   wrench:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4Z"/>',
