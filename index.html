@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BYD Karebosi Connect – Bantuan Pelanggan BYD HAKA Karebosi Makassar</title>
+<meta name="description" content="Satu pintu bantuan pelanggan BYD HAKA Karebosi Makassar: booking servis, STNK/BPKB, BYD Apps, charger, keluhan, suku cadang. Satu PIC sampai tuntas.">
+<meta name="theme-color" content="#0d1321">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="BYD Karebosi Connect">
+<meta property="og:description" content="Butuh bantuan untuk BYD Anda? Satu pintu, satu PIC, sampai tuntas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bydkarebosiconnect.online/">
+<meta property="og:image" content="https://byd-makassar.id/wp-content/uploads/2026/10/byd-haka-karebosi-service-counter.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d1321; --ink2:#3a4357; --muted:#6b7488; --line:#e4e7ee; --bg:#f5f6f9; --card:#fff;
+  --accent:#0f7c8c; --accent-2:#0a5f6b; --accent-soft:#e3f3f5; --warn:#b45309;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:28px 0 76px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(15,124,140,.55),rgba(15,124,140,0) 70%)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.08em;font-size:12px;text-transform:uppercase;opacity:.85;position:relative;z-index:1}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:#2ec4d6}
+.hero h1{font-size:30px;line-height:1.15;margin:22px 0 10px;font-weight:800;letter-spacing:-.02em;position:relative;z-index:1}
+.hero p{margin:0;color:#c9cfdb;font-size:15px;max-width:520px;position:relative;z-index:1}
+.promise{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;position:relative;z-index:1}
+.promise span{font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.22);padding:6px 10px;border-radius:999px}
+
+/* card */
+.card{background:var(--card);border-radius:var(--r);box-shadow:0 1px 2px rgba(13,19,33,.04),0 8px 28px rgba(13,19,33,.06);padding:20px}
+.lift{margin-top:-52px;position:relative;z-index:2}
+h2{font-size:18px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:560px){.cats{grid-template-columns:repeat(4,1fr)}}
+.cat{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 10px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:8px;min-height:92px;transition:border-color .15s,background .15s}
+.cat svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cat b{font-size:13px;font-weight:600;line-height:1.25}
+.cat:hover{border-color:#b9c0cf}
+.cat[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+
+/* form */
+form{margin-top:18px;display:none}
+form.show{display:block}
+.chosen{display:flex;align-items:center;justify-content:space-between;background:var(--accent-soft);color:var(--accent-2);border-radius:10px;padding:10px 12px;font-size:13px;font-weight:600;margin-bottom:14px}
+.chosen small{font-weight:500;color:var(--ink2)}
+.row{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:560px){.row.two{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink2)}
+label .opt{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{min-height:96px;resize:vertical}
+.field{margin-bottom:12px}
+.err{color:#b42318;font-size:12px;margin-top:4px;display:none}
+.field.bad .err{display:block}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:#e5484d}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink2);margin:6px 0 16px}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+
+/* result */
+.result{display:none;text-align:center}
+.result.show{display:block}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:22px;font-weight:700;letter-spacing:.04em;background:var(--bg);border:1.5px dashed #c7cdd9;border-radius:12px;padding:12px;margin:12px 0}
+.steps-mini{text-align:left;font-size:14px;color:var(--ink2);margin:14px 0 18px;padding-left:18px}
+.steps-mini li{margin:4px 0}
+.stack{display:grid;gap:10px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* how it works */
+section{margin-top:18px}
+.flow{display:grid;gap:10px;counter-reset:s}
+.flow div{display:flex;gap:12px;align-items:flex-start}
+.flow div::before{counter-increment:s;content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+.flow b{display:block;font-size:14px}
+.flow span{font-size:13px;color:var(--muted)}
+
+.info{display:grid;gap:12px;font-size:14px}
+.info .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:26px 0 36px}
+
+/* site nav */
+.nav{background:#0a0f1a;color:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .in{max-width:960px;margin:0 auto;padding:0 18px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav .logo{font-weight:800;letter-spacing:.04em;font-size:15px;text-decoration:none;color:#fff;white-space:nowrap}
+.nav .logo span{color:#2ec4d6}
+.nav .links{display:flex;gap:4px;align-items:center;overflow-x:auto}
+.nav .links a{color:#c9cfdb;text-decoration:none;font-size:13px;font-weight:600;padding:8px 10px;border-radius:8px;white-space:nowrap}
+.nav .links a:hover,.nav .links a.on{color:#fff;background:rgba(255,255,255,.08)}
+.nav .links a.wa{background:#1fa855;color:#fff}
+@media(max-width:520px){.nav .links a.hide-sm{display:none}.nav .byd,.nav .full{display:none}.nav .logo{font-size:14px}.nav .links a{padding:8px 8px;font-size:13px}}
+.nav .byd{font-weight:800}
+/* status */
+.status-row{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.status-row{grid-template-columns:1fr 1fr auto;align-items:end}}
+.st-res{display:none;margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:14px}
+.st-res.show{display:block}
+.st-pill{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-2)}
+.st-steps{display:flex;gap:4px;margin:12px 0 8px}
+.st-steps i{flex:1;height:6px;border-radius:4px;background:#e4e7ee}
+.st-steps i.on{background:var(--accent)}
+.st-err{color:#b42318;font-size:13px;margin-top:8px;min-height:18px}
+.teaser{display:grid;grid-template-columns:1fr;gap:0;overflow:hidden;padding:0}
+@media(min-width:560px){.teaser{grid-template-columns:1fr 1.2fr}}
+.teaser img{width:100%;height:100%;min-height:180px;object-fit:cover;display:block}
+.teaser .tx{padding:20px}
+.foot-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.foot-links a{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="in">
+  <a class="logo" href="/"><b class="byd">BYD </b>KAREBOSI <span>CONNECT</span></a>
+  <div class="links">
+    <a href="/" class="on hide-sm">Bantuan</a>
+    <a href="#status"><span class="full">Cek </span>Status</a>
+    <a href="/haka-care/">HAKA Care</a>
+    <a class="wa" href="https://wa.me/6282259452349" target="_blank" rel="noopener">WA<span class="full">hatsApp</span></a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>BYD HAKA Karebosi · Makassar</div>
+    <h1>Butuh bantuan? Satu pintu, satu PIC, sampai tuntas.</h1>
+    <p>Pilih kebutuhan Anda, isi form singkat, dan satu orang penanggung jawab akan menghubungi Anda. Anda tidak perlu menjelaskan ulang ke bagian lain.</p>
+    <div class="promise"><span>01 · Satu PIC</span><span>02 · Satu pintu</span><span>03 · Sampai tuntas</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card lift" id="main-card">
+    <div id="pick">
+      <h2>Apa yang bisa kami bantu?</h2>
+      <p class="sub">Pilih salah satu kategori.</p>
+      <div class="cats" id="cats"></div>
+
+      <form id="form" novalidate>
+        <div class="chosen"><span id="chosen-label"></span><small id="chosen-dept"></small></div>
+
+        <div class="row two">
+          <div class="field" data-f="name">
+            <label for="name">Nama lengkap</label>
+            <input id="name" autocomplete="name" maxlength="80">
+            <div class="err">Mohon isi nama Anda.</div>
+          </div>
+          <div class="field" data-f="phone">
+            <label for="phone">Nomor WhatsApp</label>
+            <input id="phone" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" maxlength="16">
+            <div class="err">Nomor WhatsApp belum valid.</div>
+          </div>
+        </div>
+
+        <div class="row two">
+          <div class="field">
+            <label for="model">Kendaraan</label>
+            <select id="model">
+              <option>Belum punya / calon pembeli</option>
+              <option>BYD Atto 1</option>
+              <option>BYD Atto 3</option>
+              <option>BYD Dolphin</option>
+              <option>BYD Seal</option>
+              <option>BYD Sealion 7</option>
+              <option>BYD M6</option>
+              <option>Denza D9</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="plate">Plat nomor <span class="opt">(opsional)</span></label>
+            <input id="plate" placeholder="DD 1234 XX" maxlength="15" style="text-transform:uppercase">
+          </div>
+        </div>
+
+        <div class="field" data-f="desc">
+          <label for="desc">Ceritakan singkat kebutuhan atau kendala Anda</label>
+          <textarea id="desc" maxlength="800" placeholder="Contoh: ingin booking servis 6 bulan, minggu depan hari Sabtu pagi."></textarea>
+          <div class="err">Mohon jelaskan singkat kebutuhan Anda.</div>
+        </div>
+
+        <div class="field">
+          <label for="when">Waktu nyaman untuk dihubungi</label>
+          <select id="when">
+            <option>Secepatnya</option>
+            <option>Pagi (08.00–12.00)</option>
+            <option>Siang (12.00–15.00)</option>
+            <option>Sore (15.00–17.00)</option>
+          </select>
+        </div>
+
+        <div class="field" data-f="consent">
+          <label class="consent"><input type="checkbox" id="consent"> Saya setuju data ini dipakai BYD HAKA Karebosi untuk menindaklanjuti permintaan saya, sesuai UU No. 27/2022 tentang Pelindungan Data Pribadi.</label>
+          <div class="err" style="margin-top:-10px">Mohon centang persetujuan.</div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Lanjut kirim via WhatsApp</button>
+      </form>
+    </div>
+
+    <div class="result" id="result">
+      <h2>Tiket Anda sudah dibuat</h2>
+      <p class="sub" style="margin:0">Simpan kode ini. Progres bisa dicek kapan saja di bagian <b>Cek status tiket</b>.</p>
+      <div class="code" id="code"></div>
+      <ol class="steps-mini">
+        <li>Tekan <b>Kirim ke WhatsApp</b>, lalu tekan kirim di WhatsApp. Pesannya sudah terisi otomatis.</li>
+        <li>Tim kami mencatat tiket dan menetapkan <b>1 PIC</b> untuk Anda.</li>
+        <li>PIC menghubungi Anda dan memberi kabar sesuai jadwal yang disepakati.</li>
+      </ol>
+      <div class="stack">
+        <a class="btn btn-primary" id="wa-link" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+          Kirim ke WhatsApp
+        </a>
+        <button class="btn btn-ghost" id="copy-btn" type="button">Salin pesan</button>
+        <button class="btn btn-ghost" id="again" type="button">Buat permintaan lain</button>
+      </div>
+      <p class="note">WhatsApp tidak terbuka? Kirim pesan yang sudah disalin ke <b id="wa-num-text"></b>.</p>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2>Apa yang terjadi setelah Anda mengirim?</h2>
+    <p class="sub">Alur JANGKAR: Jangan Biarkan Pelanggan Berputar.</p>
+    <div class="flow">
+      <div><p style="margin:0"><b>Terima</b><span>Permintaan Anda tercatat dengan kode tiket.</span></p></div>
+      <div><p style="margin:0"><b>Tetapkan PIC</b><span>Satu nama penanggung jawab dari bagian yang tepat.</span></p></div>
+      <div><p style="margin:0"><b>Update</b><span>PIC memberi kabar sesuai waktu yang disepakati, walau solusi masih diproses.</span></p></div>
+      <div><p style="margin:0"><b>Konfirmasi</b><span>Tiket baru ditutup setelah Anda menyatakan solusinya jelas.</span></p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="info">
+      <div><div class="k">Showroom & Servis</div>Jl. Ahmad Yani No. 15, Makassar 90174</div>
+      <div><div class="k">Jam operasional</div>Senin–Sabtu 08.00–17.00 · Minggu 09.00–17.00 WITA</div>
+      <div><div class="k">WhatsApp dealer</div><span id="wa-num-info"></span></div>
+    </div>
+  </section>
+  <section class="card" id="status">
+    <h2>Cek status tiket</h2>
+    <p class="sub">Masukkan kode tiket dan nomor WhatsApp yang dipakai saat membuat tiket.</p>
+    <div class="status-row">
+      <div class="field" style="margin:0"><label for="st-id">Kode tiket</label><input id="st-id" placeholder="CASE-2026-XXXX" maxlength="20" style="text-transform:uppercase"></div>
+      <div class="field" style="margin:0"><label for="st-phone">Nomor WhatsApp</label><input id="st-phone" inputmode="tel" placeholder="08xxxxxxxxxx" maxlength="16"></div>
+      <button class="btn btn-primary" id="st-go" type="button" style="width:auto;padding:11px 18px">Cek</button>
+    </div>
+    <div class="st-err" id="st-err"></div>
+    <div class="st-res" id="st-res"></div>
+  </section>
+
+  <section class="card teaser">
+    <img src="https://byd-makassar.id/wp-content/uploads/2026/10/byd-haka-karebosi-workshop.webp" alt="Workshop bengkel resmi BYD HAKA Karebosi Makassar" loading="lazy">
+    <div class="tx">
+      <h2>HAKA Care</h2>
+      <p class="sub" style="margin-bottom:12px">Cek sisa garansi baterai 8 tahun, garansi kendaraan, dan jadwal servis berikutnya mobil BYD Anda.</p>
+      <a class="btn btn-ghost" href="/haka-care/" style="width:auto;display:inline-flex">Buka HAKA Care</a>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 BYD HAKA Karebosi · Jl. Ahmad Yani No. 15, Makassar
+  <div class="foot-links"><a href="/haka-care/">HAKA Care</a><a href="https://byd-makassar.id/" target="_blank" rel="noopener">byd-makassar.id</a><a href="/cro/">Login tim</a></div>
+</footer>
+
+<script>
+// ====== Ubah nomor WhatsApp penerima tiket di sini ======
+const WA_NUMBER = "6282259452349";
+// ========================================================
+
+const ICONS = {
+  cart:'<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/>',
+  phone:'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/>',
+  plug:'<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0Z"/><path d="M12 17v5"/>',
+  wrench:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4Z"/>',
+  alert:'<path d="M12 3 2 20h20Z"/><path d="M12 10v4M12 17.5v.01"/>',
+  box:'<path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+  doc:'<path d="M14 3H6v18h12V7Z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+  battery:'<rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 10.5v3M6 10v4M10 10v4"/>'
+};
+const CATS = [
+  {id:"pembelian", label:"Informasi pembelian", dept:"Sales Consultant", icon:"cart"},
+  {id:"apps", label:"BYD Apps & Digital Key", dept:"BYD Apps & IT Support", icon:"phone"},
+  {id:"charger", label:"Charger & instalasi", dept:"Sales Consultant", icon:"plug"},
+  {id:"servis", label:"Booking servis", dept:"Service Advisor", icon:"wrench"},
+  {id:"keluhan", label:"Keluhan", dept:"CRO", icon:"alert"},
+  {id:"part", label:"Suku cadang", dept:"Service Advisor", icon:"box"},
+  {id:"dokumen", label:"STNK / TNKB / BPKB", dept:"Document Admin", icon:"doc"},
+  {id:"garansi", label:"Garansi Blade Battery", dept:"Service Advisor", icon:"battery"}
+];
+
+const $ = s => document.querySelector(s);
+let chosen = null, message = "";
+
+function prettyWa(n){ return "0" + n.slice(2).replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3"); }
+$("#wa-num-text").textContent = prettyWa(WA_NUMBER);
+$("#wa-num-info").textContent = prettyWa(WA_NUMBER);
+
+const catsEl = $("#cats");
+CATS.forEach(c=>{
+  const b = document.createElement("button");
+  b.type="button"; b.className="cat"; b.setAttribute("aria-pressed","false");
+  b.innerHTML = `<svg viewBox="0 0 24 24">${ICONS[c.icon]}</svg><b></b>`;
+  b.querySelector("b").textContent = c.label;
+  b.addEventListener("click",()=>{
+    chosen = c;
+    catsEl.querySelectorAll(".cat").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false"));
+    $("#chosen-label").textContent = c.label;
+    $("#chosen-dept").textContent = "Diteruskan ke: " + c.dept;
+    $("#form").classList.add("show");
+    setTimeout(()=>$("#form").scrollIntoView({behavior:"smooth",block:"start"}),50);
+  });
+  catsEl.appendChild(b);
+});
+
+function normPhone(v){
+  let d = (v||"").replace(/\D/g,"");
+  if(d.startsWith("62")) d = "0"+d.slice(2);
+  if(d.startsWith("8")) d = "0"+d;
+  return d;
+}
+function makeCode(){
+  const a = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let s=""; const r = new Uint32Array(4); crypto.getRandomValues(r);
+  r.forEach(x=> s += a[x % a.length]);
+  return "CASE-" + new Date().getFullYear() + "-" + s;
+}
+
+const TICKET_API = "https://n8n.srv1955808.hstgr.cloud/webhook/cro-api";
+async function sendTicket(payload){
+  try{
+    const ctl = ("AbortController" in window) ? new AbortController() : null;
+    const timer = setTimeout(()=>ctl && ctl.abort(), 6000);
+    const r = await fetch(TICKET_API, {method:"POST", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(payload), signal: ctl ? ctl.signal : undefined});
+    clearTimeout(timer);
+    return await r.json();
+  }catch(_){ return null; }
+}
+let sending = false;
+$("#form").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const name = $("#name").value.trim();
+  const phone = normPhone($("#phone").value);
+  const desc = $("#desc").value.trim();
+  const consent = $("#consent").checked;
+  const checks = {name: name.length>=2, phone: /^08\d{8,12}$/.test(phone), desc: desc.length>=5, consent};
+  let firstBad = null;
+  Object.entries(checks).forEach(([k,ok])=>{
+    const f = document.querySelector(`[data-f="${k}"]`);
+    f.classList.toggle("bad", !ok);
+    if(!ok && !firstBad) firstBad = f;
+  });
+  if(firstBad){ firstBad.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+
+  if(sending) return;
+  sending = true;
+  const btn = $("#form").querySelector('button[type="submit"]');
+  btn.disabled = true; btn.textContent = "Membuat tiket…";
+  let code = makeCode();
+  const plate = $("#plate").value.trim().toUpperCase();
+  const res = await sendTicket({action:"public_create", id:code, name, phone, model:$("#model").value, plate,
+    category:chosen.label, desc, contactPref:$("#when").value, consent:true});
+  if(res && res.ok && res.id) code = res.id;
+  sending = false; btn.disabled = false; btn.textContent = "Lanjut kirim via WhatsApp";
+  message = [
+    "*TIKET BYD KAREBOSI CONNECT*",
+    "Kode: " + code,
+    "Nama: " + name,
+    "WA: " + phone,
+    "Kendaraan: " + $("#model").value,
+    "Plat: " + (plate || "-"),
+    "Kategori: " + chosen.label,
+    "Kebutuhan: " + desc.replace(/\s*\n\s*/g," "),
+    "Dihubungi: " + $("#when").value,
+    "Persetujuan data: Ya"
+  ].join("\n");
+
+  $("#code").textContent = code;
+  $("#wa-link").href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message);
+  $("#pick").style.display = "none";
+  $("#result").classList.add("show");
+  $("#main-card").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+$("#copy-btn").addEventListener("click", async ()=>{
+  const btn = $("#copy-btn");
+  try{ await navigator.clipboard.writeText(message); btn.textContent="Pesan tersalin ✓"; }
+  catch(_){ btn.textContent="Tidak bisa menyalin otomatis"; }
+  setTimeout(()=>btn.textContent="Salin pesan",2200);
+});
+
+$("#again").addEventListener("click", ()=>{
+  $("#form").reset(); $("#form").classList.remove("show");
+  document.querySelectorAll(".field.bad").forEach(f=>f.classList.remove("bad"));
+  catsEl.querySelectorAll(".cat").forEach(x=>x.setAttribute("aria-pressed","false"));
+  chosen=null; message="";
+  $("#result").classList.remove("show"); $("#pick").style.display="";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+// ===== cek status =====
+const ST_LABEL = {"NEW":["Diterima","Tiket sudah masuk, sedang menunggu penetapan PIC."],"ASSIGNED":["PIC ditetapkan","PIC sudah ditunjuk dan akan menghubungi Anda."],"IN PROGRESS":["Sedang diproses","PIC sedang menangani kebutuhan Anda."],"WAIT CUSTOMER":["Menunggu Anda","PIC menunggu konfirmasi, kelengkapan, atau kedatangan Anda."],"WAIT INTERNAL":["Menunggu proses internal","Menunggu persetujuan, suku cadang, atau pihak terkait."],"RESOLVED":["Solusi diberikan","Mohon konfirmasi ke PIC apakah solusinya sudah jelas."],"CLOSED":["Selesai","Tiket sudah ditutup. Terima kasih."],"REOPENED":["Dibuka kembali","Tiket dibuka kembali dan akan ditangani lagi."]};
+const ST_ORDER = ["NEW","ASSIGNED","IN PROGRESS","RESOLVED","CLOSED"];
+function stIndex(s){ if(s==="WAIT CUSTOMER"||s==="WAIT INTERNAL") return 2; if(s==="REOPENED") return 1; return Math.max(0, ST_ORDER.indexOf(s)); }
+function fmtDT(ms){ return new Date(ms).toLocaleString("id-ID",{timeZone:"Asia/Makassar",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})+" WITA"; }
+async function checkStatus(){
+  const err=$("#st-err"), out=$("#st-res"), btn=$("#st-go");
+  err.textContent=""; out.classList.remove("show");
+  const id=$("#st-id").value.trim().toUpperCase(), phone=normPhone($("#st-phone").value);
+  if(!/^CASE-\d{4}-[A-Z0-9]{3,8}$/.test(id)){ err.textContent="Format kode tiket: CASE-2026-XXXX."; return; }
+  if(!/^08\d{8,12}$/.test(phone)){ err.textContent="Nomor WhatsApp belum valid."; return; }
+  btn.disabled=true; btn.textContent="…";
+  const r = await sendTicket({action:"public_status", id, phone});
+  btn.disabled=false; btn.textContent="Cek";
+  if(!r){ err.textContent="Koneksi gagal. Coba lagi sebentar."; return; }
+  if(!r.ok){ err.textContent = r.error==="not_found" ? "Tiket tidak ditemukan. Cek lagi kode dan nomor WhatsApp-nya." : "Data belum valid."; return; }
+  const t=r.ticket, lab=ST_LABEL[t.status]||[t.status,""], idx=stIndex(t.status);
+  out.innerHTML = '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><b></b><span class="st-pill"></span></div>'+
+    '<div class="st-steps">'+ST_ORDER.map((_,i)=>'<i class="'+(i<=idx?'on':'')+'"></i>').join("")+'</div>'+
+    '<p class="sub" style="margin:0 0 8px"></p><div class="sub" style="margin:0;font-size:13px" id="st-meta"></div>';
+  out.querySelector("b").textContent = t.id+" · "+t.category;
+  out.querySelector(".st-pill").textContent = lab[0];
+  out.querySelector("p").textContent = lab[1];
+  const meta=[];
+  if(t.pic) meta.push("PIC: "+t.pic+(t.picDept?" ("+t.picDept+")":""));
+  if(t.nextUpdateAt && t.status!=="CLOSED") meta.push("Kabar berikutnya paling lambat "+fmtDT(t.nextUpdateAt));
+  meta.push("Terakhir diperbarui "+fmtDT(t.updatedAt));
+  $("#st-meta").textContent = meta.join(" · ");
+  out.classList.add("show");
+}
+$("#st-go").addEventListener("click", checkStatus);
+$("#st-phone").addEventListener("keydown", e=>{ if(e.key==="Enter") checkStatus(); });
+if(location.hash==="#status"){ setTimeout(()=>$("#st-id").focus(),300); }
+</script>
+</body>
+</html>

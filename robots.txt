@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /cro/
+Sitemap: https://bydkarebosiconnect.online/sitemap.xml
