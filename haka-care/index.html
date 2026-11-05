@@ -194,6 +194,27 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
  #hkcare .zc p{margin-top:4px}
  #hkcare .zdot{top:22px;left:-29px;margin:0;width:22px;height:22px;border-width:4px}
 }
+#hkcare .period{display:grid;grid-template-columns:1fr 1fr}
+#hkcare .period .pcol+.pcol{border-left:1px solid var(--line)}
+@media(max-width:640px){#hkcare .period{grid-template-columns:1fr}#hkcare .period .pcol+.pcol{border-left:0;border-top:1px solid var(--line)}}
+#hkcare .sos{display:grid;gap:16px;grid-template-columns:1fr;margin-top:32px}
+@media(min-width:820px){#hkcare .sos{grid-template-columns:1fr 1.2fr}}
+#hkcare .soscard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px}
+#hkcare .soscard>b{font-size:19px;font-weight:800}
+#hkcare .soscard>p{margin:0;color:var(--ink2);font-size:14px}
+#hkcare .soscard .ic{width:46px;height:46px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center}
+#hkcare .soscard svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#hkcare .soscard.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+#hkcare .soscard.dark>p{color:#c9cfdb}
+#hkcare .soscard.dark .ic{background:rgba(46,196,214,.15)}#hkcare .soscard.dark svg{stroke:#2ec4d6}
+#hkcare .hot{margin-top:auto;padding-top:14px}
+#hkcare .hot a{display:block;font-size:32px;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
+#hkcare .hot span{font-size:12px;color:#9aa3b5}
+#hkcare .soscard .mail{color:#2ec4d6;font-weight:600;font-size:14px}
+#hkcare .soscard details{padding:12px 0}
+#hkcare .soscard details p{margin-top:6px}
+@media(min-width:900px){#hkcare .parts.steps3{grid-template-columns:repeat(3,1fr)}}
+#hkcare .btns2{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 /* cta band */
 #hkcare .band{background:linear-gradient(120deg,#0a5f6b,#0d1321);color:#fff;border-radius:24px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 #hkcare .band h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;color:#fff}
@@ -236,7 +257,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 </header>
 
 <nav class="subnav"><div class="wrap">
-  <a href="#program">Program</a><a href="#garansi">Garansi</a><a href="#perawatan">Perawatan</a><a href="#servis">Jadwal Servis</a><a href="#cek-garansi">Cek Garansi</a><a href="#suku-cadang">Suku Cadang</a><a href="#layanan">Layanan</a><a href="#faq">FAQ</a>
+  <a href="#program">Program</a><a href="#garansi">Garansi</a><a href="#perawatan">Perawatan</a><a href="#servis">Jadwal Servis</a><a href="#cek-garansi">Cek Garansi</a><a href="#suku-cadang">Suku Cadang</a><a href="#byd-apps">BYD Apps</a><a href="#darurat">Darurat 24/7</a><a href="#layanan">Layanan</a><a href="#faq">FAQ</a>
 </div></nav>
 
 <section class="blk" id="program"><div class="wrap">
@@ -271,7 +292,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
       <h3>Gratis jasa & suku cadang servis berkala</h3>
       <div class="big">4 tahun <small>/ 60.000 km</small></div>
       <p style="margin-top:10px">Biaya perawatan rutin ditanggung selama masa program, cukup datang sesuai jadwal.</p>
-      <div class="elig"><b>Berlaku untuk:</b> BYD Atto 3, Seal, dan Dolphin. Untuk M6 servis berkala berbayar. Model lain, tanyakan ke Service Advisor kami.</div>
+      <div class="elig"><b>Berlaku untuk:</b> BYD Atto 3, Seal, Dolphin, dan Sealion 7. Untuk M6 servis berkala berbayar. Model lain, tanyakan ke Service Advisor kami.</div>
     </div>
   </div>
 
@@ -280,9 +301,9 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
     <div>
       <span class="ptag">Darurat</span>
       <h3>Roadside Assistance 24 jam</h3>
-      <div class="big">24 jam <small>/ derek s.d. 50 km</small></div>
-      <p style="margin-top:10px">Mogok di jalan? Bantuan darurat siap 24 jam, termasuk derek gratis ke diler terdekat.</p>
-      <div class="elig"><b>Berlaku untuk:</b> sesuai ketentuan BYD Indonesia untuk model Anda. Setelah itu, tiket Connect memastikan ada satu PIC.</div>
+      <div class="big">24/7 <small>/ radius 50 km dari dealer</small></div>
+      <p style="margin-top:10px">Mogok di jalan? Hubungi <a href="tel:08001686868" style="color:var(--accent);font-weight:700">0800 168 6868</a> (bebas pulsa) atau lewat BYD Apps. Kendaraan diderek ke dealer BYD terdekat.</p>
+      <div class="elig"><b>Berlaku untuk:</b> kendaraan BYD selama masa garansi kendaraan, dalam radius 50 km dari dealer BYD terdekat. Setelah tiba di bengkel, tiket Connect memastikan ada satu PIC.</div>
     </div>
   </div>
 
@@ -313,11 +334,11 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 
 <section class="blk alt" id="servis"><div class="wrap">
   <div class="center reveal"><div class="kicker">Jadwal servis berkala</div><div class="h2">Alur waktu perawatan berkala</div><p class="lead">Servis tepat waktu di bengkel resmi menjaga garansi tetap aman. Mana yang tercapai lebih dulu, waktu atau kilometer.</p></div>
-    <div class="period reveal"><div class="ph">Periode pemeriksaan rutin</div><div class="pb">Setiap <b>1 tahun atau 20.000 km</b> sejak tanggal serah terima kendaraan</div></div>
+    <div class="period reveal"><div class="pcol"><div class="ph">Pemeriksaan rutin pertama*</div><div class="pb"><b>3 bulan atau 5.000 km</b> sejak tanggal serah terima kendaraan</div></div><div class="pcol"><div class="ph">Setelah pemeriksaan pertama</div><div class="pb">Setiap <b>1 tahun atau 20.000 km</b> sejak tanggal serah terima kendaraan</div></div></div>
   <ol class="zigzag reveal"><li class="zz up first"><div class="zc"><b>Tanggal Serah Terima</b><p>Saat Anda menerima kendaraan pertama kali</p></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>12 bulan / 20.000 km</b><p>Servis berkala tahun pertama atau 20.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>24 bulan / 40.000 km</b><p>Servis berkala tahun kedua atau 40.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>36 bulan / 60.000 km</b><p>Servis berkala tahun ketiga atau 60.000 km</p><span class="free">Gratis*</span></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>48 bulan / 80.000 km</b><p>Servis berkala tahun keempat atau 80.000 km</p></div><i class="zdot"></i></li><li class="zz down"><div class="zc"><b>60 bulan / 100.000 km</b><p>Servis berkala tahun kelima atau 100.000 km</p></div><i class="zdot"></i></li><li class="zz up"><div class="zc"><b>Dan seterusnya</b><p>Servis berkala berikutnya sesuai Buku Panduan Pemilik Kendaraan</p></div><i class="zdot"></i></li></ol>
-  <p class="fine" style="color:var(--ink2);font-size:13px;margin-top:6px">* Servis pertama pada bulan ke-3 atau 5.000 km berlaku untuk model tertentu. Informasi lengkap ada di Buku Panduan Pemilik Digital kendaraan Anda.</p>
+  <p class="fine" style="color:var(--ink2);font-size:13px;margin-top:6px">* Pemeriksaan pertama pada bulan ke-3 atau 5.000 km berlaku untuk model tertentu. Informasi lengkap ada di Buku Panduan Pemilik Digital kendaraan Anda.</p>
   <div class="chkbox reveal"><b>Yang diperiksa saat servis berkala</b><div class="chk"><span>Baterai</span><span>Sistem kelistrikan</span><span>Motor listrik</span><span>Rem</span><span>Airbag</span><span>Update software</span></div></div>
-  <p class="fine" style="color:var(--muted);font-size:12px">Label "Gratis*" untuk Atto 3, Seal, dan Dolphin selama program gratis servis 4 tahun / 60.000 km.</p>
+  <p class="fine" style="color:var(--muted);font-size:12px">Label "Gratis*" untuk Atto 3, Seal, Dolphin, dan Sealion 7 selama program gratis servis 4 tahun / 60.000 km.</p>
 </div></section>
 
 <section class="blk" id="cek-garansi"><div class="wrap">
@@ -354,6 +375,31 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
   <div class="parts reveal"><div class="part"><div class="no">1</div><div><b>Dijamin 100% original</b><p>Suku cadang resmi BYD dibuat sesuai standar pabrik global, terjamin keasliannya.</p></div></div><div class="part"><div class="no">2</div><div><b>Jaringan dealer luas</b><p>Lebih dari 50 dealer resmi BYD di Indonesia dengan distribusi nasional, termasuk bengkel resmi BYD HAKA Karebosi di Makassar.</p></div></div><div class="part"><div class="no">3</div><div><b>Harga kompetitif & transparan</b><p>Harga suku cadang asli bersaing di kelasnya. Minta estimasi biaya ke Service Advisor sebelum pengerjaan.</p></div></div><div class="part"><div class="no">4</div><div><b>Bergaransi resmi pabrik</b><p>Setiap suku cadang asli dilindungi garansi resmi dari pabrik.</p></div></div></div>
 </div></section>
 
+<section class="blk" id="byd-apps"><div class="wrap">
+  <div class="center reveal"><div class="kicker">BYD Apps</div><div class="h2">Kendalikan mobil dari genggaman</div><p class="lead">Aplikasi resmi BYD untuk memantau dan mengontrol fungsi dasar mobil Anda dari jarak jauh.</p></div>
+  <div class="bens reveal"><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 10.5v3M6 10v4M10 10v4"/></svg></div><b>Baterai & estimasi jarak</b><p>Pantau sisa baterai dan jarak tempuh kapan saja.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 16h14l-1.5-6a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5Z"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg></div><b>Status kendaraan</b><p>Cek tekanan ban, pintu, jendela, dan kunci dari HP.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><b>Posisi kendaraan</b><p>Lacak lokasi mobil secara real-time dan temukan bengkel resmi.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/></svg></div><b>Kontrol AC & kursi</b><p>Nyalakan AC, ventilasi atau pemanas kursi dengan satu sentuhan.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M14 9l2 2"/></svg></div><b>Digital Key</b><p>Kunci, buka, dan nyalakan mobil dengan smartphone atau smartwatch.*</p></div><div class="ben" style="justify-content:center;background:var(--accent-soft);border-color:transparent"><b>Kendala BYD Apps?</b><p style="margin-bottom:6px">Buat tiket kategori "BYD Apps & Digital Key", satu PIC bantu sampai beres.</p><a class="btn btn-p" href="/" style="align-self:flex-start">Minta Bantuan</a></div></div>
+  <p class="fine center" style="color:var(--muted);font-size:12px;margin-top:12px">* Ketersediaan fitur tergantung model, perlengkapan kendaraan, perangkat, dan pengaturan aplikasi.</p>
+  <h3 class="reveal" style="font-size:20px;font-weight:800;margin:36px 0 0">Cara menghubungkan mobil ke BYD APP</h3>
+  <div class="parts steps3 reveal" style="margin-top:16px"><div class="part"><div class="no">1</div><div><b>Datang ke dealer resmi</b><p>Bawa data: nama sesuai faktur kendaraan, email, nomor HP, nomor VIN, dan tanggal serah terima.</p></div></div><div class="part"><div class="no">2</div><div><b>Tunggu konfirmasi</b><p>Dealer mendaftarkan akun Anda. Prosesnya maksimal 5 hari kerja.</p></div></div><div class="part"><div class="no">3</div><div><b>Unduh & masuk</b><p>Unduh BYD APP gratis di App Store atau Google Play, daftar dengan email, lalu masukkan kode verifikasi.</p></div></div></div>
+  <div class="faq reveal" style="margin-top:24px;max-width:none"><details><summary>Apakah BYD APP berbayar?</summary><p>Tidak, aplikasinya gratis dipakai.</p></details><details><summary>Bisa untuk lebih dari satu mobil?</summary><p>Bisa, sampai 10 kendaraan dalam satu akun. Tapi satu akun tidak bisa login di dua HP bersamaan.</p></details><details><summary>Apakah ada batas jarak?</summary><p>Tidak. Selama mobil berada di Indonesia dan sinyalnya cukup, semua fitur bisa dipakai.</p></details><details><summary>Mobil dijual, bagaimana akunnya?</summary><p>Pemilik baru datang ke dealer resmi BYD untuk memperbarui data, lalu kendaraan dihubungkan ke akun miliknya.</p></details><details><summary>Bisa cari SPKLU di aplikasi?</summary><p>Belum, fitur ini belum tersedia di BYD APP.</p></details><details><summary>Aplikasi bermasalah?</summary><p>Datang ke dealer resmi terdekat, hubungi 0800 168 6868, atau buat tiket di Connect.</p></details></div>
+</div></section>
+
+<section class="blk alt" id="darurat"><div class="wrap">
+  <div class="center reveal"><div class="kicker">Bantuan darurat & customer service</div><div class="h2">Kami siap 24/7</div><p class="lead">Dari panduan perawatan, kendala di jalan, sampai pertanyaan seputar kendaraan.</p></div>
+  <div class="sos reveal">
+    <div class="soscard dark"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg></div><b>BYD Customer Service Center</b><p>Pertanyaan, masukan, dan kendala seputar kendaraan dan layanan BYD, termasuk panduan perawatan dan pemecahan masalah.</p>
+      <div class="hot"><a href="tel:08001686868">0800 168 6868</a><span>Bebas pulsa · 24/7</span></div>
+      <a class="mail" href="mailto:customer.care1@byd.com">customer.care1@byd.com</a></div>
+    <div class="soscard"><div class="ic"><svg viewBox="0 0 24 24"><path d="M2 6h11v9H2zM13 9h4l4 4v2h-8"/><circle cx="6" cy="17" r="1.8"/><circle cx="17" cy="17" r="1.8"/></svg></div><b>BYD Roadside Assistance</b>
+      <details open><summary>Layanan yang ditawarkan</summary><p>Bantuan darurat 24/7, termasuk derek kendaraan ke dealer BYD terdekat.</p></details>
+      <details><summary>Wilayah cakupan</summary><p>Sampai radius 50 km dari dealer BYD terdekat. Di Makassar: BYD HAKA Karebosi, Jl. Ahmad Yani No. 15.</p></details>
+      <details><summary>Ketentuan layanan</summary><p>Berlaku selama masa garansi kendaraan.</p></details>
+      <details><summary>Cara mengakses</summary><p>Telepon 0800 168 6868 (bebas pulsa) atau lewat aplikasi BYD Apps.</p></details>
+      <div class="btns2"><a class="btn btn-p" href="tel:08001686868">Telepon Roadside</a><a class="btn btn-wa" href="https://wa.me/6282259452349" target="_blank" rel="noopener">WA Dealer Makassar</a></div>
+    </div>
+  </div>
+</div></section>
+
 <section class="blk" id="layanan"><div class="wrap">
   <div class="center reveal"><div class="kicker">Layanan aftersales</div><div class="h2">Butuh bantuan apa hari ini?</div><p class="lead">Semua lewat satu pintu. Tiket Anda langsung punya satu PIC.</p></div>
   <div class="cards reveal" id="hkc-cards"></div>
@@ -371,10 +417,10 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
   <div class="faq">
     <details><summary>Apa saja garansi mobil listrik BYD?</summary><p>Garansi kendaraan 6 tahun atau 150.000 km, garansi baterai traksi (Blade Battery) 8 tahun atau 160.000 km dengan State of Health minimal 70%, dan garansi unit penggerak 8 tahun. Mana yang tercapai lebih dulu.</p></details>
     <details><summary>Kapan jadwal servis berkalanya?</summary><p>Servis pertama di 5.000 km atau 3 bulan. Setelah itu setiap kelipatan 20.000 km atau 1 tahun, mana yang lebih dulu. Detail per model mengikuti buku servis Anda.</p></details>
-    <details><summary>Apakah servisnya gratis?</summary><p>Untuk Atto 3, Seal, dan Dolphin tersedia gratis jasa dan suku cadang servis berkala sampai 60.000 km atau 4 tahun. Untuk M6, servis berkala berbayar. Untuk model lain, tanyakan ke Service Advisor kami.</p></details>
+    <details><summary>Apakah servisnya gratis?</summary><p>Untuk Atto 3, Seal, Dolphin, dan Sealion 7 tersedia gratis jasa dan suku cadang servis berkala sampai 60.000 km atau 4 tahun. Untuk M6, servis berkala berbayar. Untuk model lain, tanyakan ke Service Advisor kami.</p></details>
     <details><summary>Apa saja yang diperiksa saat servis berkala?</summary><p>Baterai, sistem kelistrikan, dan motor listrik, ditambah sistem keselamatan seperti rem dan airbag. Perangkat lunak mobil juga diperbarui ke versi terbaru. Rincian per model mengikuti Buku Panduan Pemilik Digital BYD.</p></details>
     <details><summary>Apakah servis di luar bengkel resmi memengaruhi garansi?</summary><p>Garansi tetap berlaku penuh selama perawatan mengikuti panduan BYD. Servis di bengkel resmi dengan suku cadang asli adalah cara paling aman menjaga garansi baterai, motor listrik, dan sistem penggerak.</p></details>
-    <details><summary>Kalau mogok di jalan bagaimana?</summary><p>Tersedia Roadside Assistance 24 jam, termasuk derek gratis hingga 50 km ke diler terdekat sesuai ketentuan. Setelah itu buat tiket di Connect supaya penanganannya punya satu PIC.</p></details>
+    <details><summary>Kalau mogok di jalan bagaimana?</summary><p>Hubungi BYD Roadside Assistance 24/7 di 0800 168 6868 (bebas pulsa) atau lewat BYD Apps. Kendaraan diderek ke dealer BYD terdekat, dalam radius 50 km dari dealer dan selama masa garansi kendaraan. Setelah itu buat tiket di Connect supaya penanganannya punya satu PIC.</p></details>
     <details><summary>Software mobil perlu di-update di bengkel?</summary><p>Sebagian besar pembaruan dikirim lewat OTA (over-the-air) langsung ke mobil. Kalau ada kendala update atau BYD Apps, pilih kategori "BYD Apps & Digital Key" di Connect.</p></details>
     <details><summary>Bagaimana mengecek kondisi baterai?</summary><p>Booking servis dan minta pengecekan kondisi baterai ke Service Advisor. Garansi baterai berlaku selama SoH di atas 70% dalam masa 8 tahun / 160.000 km.</p></details>
   </div>
@@ -388,13 +434,13 @@ document.getElementById("hkcare").classList.add("anim");
 var WA = "6282259452349";
 var MODELS = {
   atto1:{n:"BYD Atto 1",free:null}, atto3:{n:"BYD Atto 3",free:{y:4,km:60000}}, dolphin:{n:"BYD Dolphin",free:{y:4,km:60000}},
-  seal:{n:"BYD Seal",free:{y:4,km:60000}}, sealion7:{n:"BYD Sealion 7",free:null}, m6:{n:"BYD M6",free:false}, denza:{n:"Denza D9",free:null}
+  seal:{n:"BYD Seal",free:{y:4,km:60000}}, sealion7:{n:"BYD Sealion 7",free:{y:4,km:60000}}, m6:{n:"BYD M6",free:false}, denza:{n:"Denza D9",free:null}
 };
 var COVER = [
   {k:"Garansi kendaraan",y:6,km:150000,c:"#0f7c8c"},
   {k:"Garansi baterai (Blade)",y:8,km:160000,c:"#18794e",note:"syarat SoH ≥ 70%"},
   {k:"Garansi unit penggerak",y:8,km:150000,c:"#2554c7"},
-  {k:"Roadside assistance",y:6,km:150000,c:"#a15c07",note:"sesuai ketentuan"}
+  {k:"Roadside assistance",y:6,km:150000,c:"#a15c07",note:"ikut masa garansi kendaraan"}
 ];
 var root = document.getElementById("hkcare");
 var $ = function(s){ return root.querySelector(s); };
