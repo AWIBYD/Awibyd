@@ -148,6 +148,32 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .ncard.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,19,33,.85),rgba(13,19,33,.1))}
 #hkcare .ncard.photo div{position:relative;z-index:1;margin-top:auto;padding:18px}
 #hkcare .ncard.photo span{color:#d6dbe5}
+/* perawatan */
+#hkcare .bens{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
+@media(min-width:640px){#hkcare .bens{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){#hkcare .bens{grid-template-columns:repeat(3,1fr)}}
+#hkcare .ben{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px}
+#hkcare .ben .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center}
+#hkcare .ben svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#hkcare .ben b{font-size:16px;line-height:1.3}
+#hkcare .ben p{margin:0;font-size:14px;color:var(--ink2)}
+#hkcare .ben.hl{background:var(--ink);color:#fff;border-color:var(--ink)}
+#hkcare .ben.hl p{color:#c9cfdb}
+#hkcare .ben.hl .ic{background:rgba(46,196,214,.15)}
+#hkcare .ben.hl svg{stroke:#2ec4d6}
+#hkcare .sched{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:28px;font-size:14px}
+#hkcare .sched th{background:var(--ink);color:#fff;text-align:left;font-weight:700;padding:14px 16px;font-size:13px}
+#hkcare .sched td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+#hkcare .sched td b{color:var(--ink);font-size:15px}
+#hkcare .sched .chk{display:flex;flex-wrap:wrap;gap:6px}
+#hkcare .sched .chk span{font-size:12px;font-weight:600;background:var(--accent-soft);color:var(--accent-2);padding:4px 9px;border-radius:999px}
+@media(max-width:640px){#hkcare .sched thead{display:none}#hkcare .sched tr{display:block;border-top:1px solid var(--line);padding:12px 14px}#hkcare .sched tr:first-child{border-top:0}#hkcare .sched td{display:block;border:0;padding:3px 0}#hkcare .sched td[data-l]::before{content:attr(data-l)" · ";color:var(--muted);font-size:12px}}
+#hkcare .parts{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
+@media(min-width:720px){#hkcare .parts{grid-template-columns:1fr 1fr}}
+#hkcare .part{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+#hkcare .part .no{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+#hkcare .part b{display:block;font-size:15px;margin-bottom:4px}
+#hkcare .part p{margin:0;font-size:14px;color:var(--ink2)}
 /* cta band */
 #hkcare .band{background:linear-gradient(120deg,#0a5f6b,#0d1321);color:#fff;border-radius:24px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 #hkcare .band h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;color:#fff}
@@ -190,7 +216,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 </header>
 
 <nav class="subnav"><div class="wrap">
-  <a href="#program">Program</a><a href="#garansi">Garansi</a><a href="#servis">Jadwal Servis</a><a href="#cek-garansi">Cek Garansi</a><a href="#layanan">Layanan</a><a href="#faq">FAQ</a>
+  <a href="#program">Program</a><a href="#garansi">Garansi</a><a href="#perawatan">Perawatan</a><a href="#servis">Jadwal Servis</a><a href="#cek-garansi">Cek Garansi</a><a href="#suku-cadang">Suku Cadang</a><a href="#layanan">Layanan</a><a href="#faq">FAQ</a>
 </div></nav>
 
 <section class="blk" id="program"><div class="wrap">
@@ -260,13 +286,26 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
   </div>
 </div></section>
 
-<section class="blk" id="servis"><div class="wrap">
+<section class="blk" id="perawatan"><div class="wrap">
+  <div class="center reveal"><div class="kicker">Keuntungan perawatan berkala</div><div class="h2">Kenapa servis rutin di bengkel resmi?</div><p class="lead">Mobil listrik memang minim perawatan, tapi bukan tanpa perawatan. Ini yang Anda dapat dari servis berkala.</p></div>
+  <div class="bens reveal"><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg></div><b>Mobil tetap prima</b><p>Baterai, sistem kelistrikan, dan motor listrik diperiksa teknisi resmi supaya performa dan jarak tempuh tetap optimal.</p></div><div class="ben hl"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></div><b>Garansi tetap terlindungi</b><p>Servis sesuai panduan BYD menjaga garansi tetap berlaku penuh, termasuk baterai, motor listrik, dan sistem penggerak.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8Z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></div><b>Nilai jual kembali terjaga</b><p>Riwayat servis resmi yang rapi membuat mobil lebih dipercaya pembeli berikutnya dan harganya lebih terjaga.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div><b>Keselamatan terjamin</b><p>Sistem keselamatan seperti rem dan airbag ikut dicek agar selalu bekerja dengan baik saat dibutuhkan.</p></div><div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16"/><path d="M20 20v-4h-4"/></svg></div><b>Software selalu terbaru</b><p>Setiap kunjungan ke bengkel resmi, perangkat lunak mobil diperbarui ke versi terbaru beserta fitur-fiturnya.</p></div><div class="ben" style="justify-content:center;background:var(--accent-soft);border-color:transparent"><b>Jadwal servis sudah dekat?</b><p style="margin-bottom:6px">Booking sekarang lewat Connect, satu PIC yang mengatur sampai mobil selesai.</p><a class="btn btn-p" href="/" style="align-self:flex-start">Booking Servis</a></div></div>
+</div></section>
+
+<section class="blk alt" id="servis"><div class="wrap">
   <div class="reveal"><div class="kicker">Jadwal servis berkala</div><div class="h2">Perjalanan servis BYD Anda</div><p class="lead">Servis tepat waktu di bengkel resmi menjaga garansi tetap aman. Geser untuk melihat jadwalnya.</p></div>
+    <table class="sched reveal">
+    <thead><tr><th>Jenis servis</th><th>Jarak tempuh</th><th>Atau waktu</th><th>Yang diperiksa</th></tr></thead>
+    <tbody>
+      <tr><td><b>Servis pertama</b><br><span style="font-size:12px;color:var(--muted)">model tertentu</span></td><td data-l="Jarak tempuh">5.000 km</td><td data-l="Waktu">3 bulan</td><td><div class="chk"><span>Pemeriksaan awal kendaraan</span><span>Update software</span></div></td></tr>
+      <tr><td><b>Servis berkala</b><br><span style="font-size:12px;color:var(--muted)">semua model</span></td><td data-l="Jarak tempuh">Setiap 20.000 km</td><td data-l="Waktu">Setiap 1 tahun</td><td><div class="chk"><span>Baterai</span><span>Sistem kelistrikan</span><span>Motor listrik</span><span>Rem</span><span>Airbag</span><span>Update software</span></div></td></tr>
+    </tbody>
+  </table>
+  <p class="fine" style="color:var(--muted);font-size:12px;margin-top:10px">Dihitung sejak tanggal serah terima kendaraan, mana yang tercapai lebih dulu. Rincian per model ada di Buku Panduan Pemilik Digital BYD.</p>
   <div class="journey reveal" id="hkc-journey"></div>
   <p class="fine" style="color:var(--muted);font-size:12px">Label "Gratis" untuk Atto 3, Seal, Dolphin sampai 4 tahun / 60.000 km. Jadwal detail mengikuti buku servis model Anda.</p>
 </div></section>
 
-<section class="blk alt" id="cek-garansi"><div class="wrap">
+<section class="blk" id="cek-garansi"><div class="wrap">
   <div class="calc reveal">
     <div class="kicker" style="color:#2ec4d6">Cek garansi saya</div>
     <div class="h2" style="color:#fff">Lihat sisa garansi & servis berikutnya</div>
@@ -295,6 +334,11 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
   </div>
 </div></section>
 
+<section class="blk alt" id="suku-cadang"><div class="wrap">
+  <div class="center reveal"><div class="kicker">Suku cadang asli</div><div class="h2">Kualitas asli untuk kenyamanan berkendara</div><p class="lead">Bengkel resmi BYD memakai suku cadang asli dengan garansi pabrik.</p></div>
+  <div class="parts reveal"><div class="part"><div class="no">1</div><div><b>Dijamin 100% original</b><p>Suku cadang resmi BYD dibuat sesuai standar pabrik global, terjamin keasliannya.</p></div></div><div class="part"><div class="no">2</div><div><b>Jaringan dealer luas</b><p>Lebih dari 50 dealer resmi BYD di Indonesia dengan distribusi nasional, termasuk bengkel resmi BYD HAKA Karebosi di Makassar.</p></div></div><div class="part"><div class="no">3</div><div><b>Harga kompetitif & transparan</b><p>Harga suku cadang asli bersaing di kelasnya. Minta estimasi biaya ke Service Advisor sebelum pengerjaan.</p></div></div><div class="part"><div class="no">4</div><div><b>Bergaransi resmi pabrik</b><p>Setiap suku cadang asli dilindungi garansi resmi dari pabrik.</p></div></div></div>
+</div></section>
+
 <section class="blk" id="layanan"><div class="wrap">
   <div class="center reveal"><div class="kicker">Layanan aftersales</div><div class="h2">Butuh bantuan apa hari ini?</div><p class="lead">Semua lewat satu pintu. Tiket Anda langsung punya satu PIC.</p></div>
   <div class="cards reveal" id="hkc-cards"></div>
@@ -302,7 +346,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 
 <section style="padding:0 0 64px"><div class="wrap">
   <div class="band reveal">
-    <div><h3>Jadwal servis sudah dekat?</h3><p>Booking sekarang, pilih waktu yang nyaman, tim kami yang atur sisanya.</p></div>
+    <div><h3>Siap jadwalkan servis Anda?</h3><p>Booking kapan saja lewat Connect, tanpa antre lama. Satu PIC yang atur sisanya.</p></div>
     <div class="heroBtns"><a class="btn btn-w" href="/">Booking Servis</a><a class="btn btn-o" href="#cek-garansi">Cek Garansi</a></div>
   </div>
 </div></section>
@@ -313,6 +357,8 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
     <details><summary>Apa saja garansi mobil listrik BYD?</summary><p>Garansi kendaraan 6 tahun atau 150.000 km, garansi baterai traksi (Blade Battery) 8 tahun atau 160.000 km dengan State of Health minimal 70%, dan garansi unit penggerak 8 tahun. Mana yang tercapai lebih dulu.</p></details>
     <details><summary>Kapan jadwal servis berkalanya?</summary><p>Servis pertama di 5.000 km atau 3 bulan. Setelah itu setiap kelipatan 20.000 km atau 1 tahun, mana yang lebih dulu. Detail per model mengikuti buku servis Anda.</p></details>
     <details><summary>Apakah servisnya gratis?</summary><p>Untuk Atto 3, Seal, dan Dolphin tersedia gratis jasa dan suku cadang servis berkala sampai 60.000 km atau 4 tahun. Untuk M6, servis berkala berbayar. Untuk model lain, tanyakan ke Service Advisor kami.</p></details>
+    <details><summary>Apa saja yang diperiksa saat servis berkala?</summary><p>Baterai, sistem kelistrikan, dan motor listrik, ditambah sistem keselamatan seperti rem dan airbag. Perangkat lunak mobil juga diperbarui ke versi terbaru. Rincian per model mengikuti Buku Panduan Pemilik Digital BYD.</p></details>
+    <details><summary>Apakah servis di luar bengkel resmi memengaruhi garansi?</summary><p>Garansi tetap berlaku penuh selama perawatan mengikuti panduan BYD. Servis di bengkel resmi dengan suku cadang asli adalah cara paling aman menjaga garansi baterai, motor listrik, dan sistem penggerak.</p></details>
     <details><summary>Kalau mogok di jalan bagaimana?</summary><p>Tersedia Roadside Assistance 24 jam, termasuk derek gratis hingga 50 km ke diler terdekat sesuai ketentuan. Setelah itu buat tiket di Connect supaya penanganannya punya satu PIC.</p></details>
     <details><summary>Software mobil perlu di-update di bengkel?</summary><p>Sebagian besar pembaruan dikirim lewat OTA (over-the-air) langsung ke mobil. Kalau ada kendala update atau BYD Apps, pilih kategori "BYD Apps & Digital Key" di Connect.</p></details>
     <details><summary>Bagaimana mengecek kondisi baterai?</summary><p>Booking servis dan minta pengecekan kondisi baterai ke Service Advisor. Garansi baterai berlaku selama SoH di atas 70% dalam masa 8 tahun / 160.000 km.</p></details>
