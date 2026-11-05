@@ -3,9 +3,9 @@ const { chromium } = require('playwright');
   const b = await chromium.launch();
   for (const [name,w,h] of [['m',412,900],['d',1366,900]]) {
     const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: name=='m'?2:1, isMobile: name=='m' });
-    await p.goto('https://byd-makassar.id/model/byd-denza-z9-gt/?nc=' + Date.now(), { waitUntil: 'networkidle', timeout: 90000 });
+    await p.goto('https://byd-makassar.id/model/byd-denza-z9-gt/?nc=' + Date.now(), { waitUntil: 'load', timeout: 90000 });
     const el = await p.$('video');
-    if (el) { await el.evaluate(e => e.closest('div[style*="radial-gradient"]').scrollIntoView({block:'start'})); await p.evaluate(()=>window.scrollBy(0,-130)); await p.waitForTimeout(1500);
+    if (el) { await el.evaluate(e => e.closest('div[style*="radial-gradient"]').scrollIntoView({block:'start'})); await p.evaluate(()=>window.scrollBy(0,-130)); await p.waitForTimeout(3000);
       await p.screenshot({ path: `tmp-upload/shot/${name}1.jpg`, type:'jpeg', quality:70 });
       if (name=='m') { await p.evaluate(()=>window.scrollBy(0,750)); await p.waitForTimeout(800); await p.screenshot({ path: `tmp-upload/shot/${name}2.jpg`, type:'jpeg', quality:70 }); }
       require('fs').writeFileSync(`tmp-upload/shot/${name}.txt`, 'video ok');
