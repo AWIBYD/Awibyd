@@ -7,6 +7,12 @@
 <meta name="description" content="Portal layanan pelanggan BYD HAKA Karebosi Makassar: booking servis, status dokumen STNK/BPKB, keluhan, garansi, darurat, suku cadang, charging, dan kontak dealer. We're Here to Help!">
 <meta name="theme-color" content="#0F2F27">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BYD Connect">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="canonical" href="https://bydkarebosiconnect.online/">
 <meta property="og:title" content="BYD Karebosi Connect">
 <meta property="og:description" content="Punya pertanyaan atau butuh bantuan? Pilih kebutuhan Anda, isi form singkat, dan tim kami akan segera membantu.">
@@ -204,6 +210,14 @@ footer .links a{color:var(--muted);font-weight:500}
 .qrbox{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border-radius:14px;padding:10px 12px;margin:0 0 12px}
 .qrbox svg{width:96px;height:96px;flex:none;background:#fff;border-radius:8px}
 .qrbox p{margin:0;font-size:13px;color:var(--ink2)}
+.inst{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;background:var(--navy);color:#fff;border-radius:18px;padding:12px;display:none;align-items:center;gap:12px;box-shadow:0 12px 32px rgba(10,33,27,.35);animation:up .25s ease;max-width:520px;margin:0 auto}
+.inst.on{display:flex}
+.inst img{width:46px;height:46px;border-radius:12px;flex:none}
+.inst .t{flex:1;min-width:0}.inst .t b{display:block;font-size:15px}.inst .t span{font-size:12.5px;color:#CFE9DD}
+.inst .go{border:0;border-radius:12px;background:var(--red);color:#fff;font:700 14px/1 inherit;font-family:inherit;padding:0 16px;min-height:42px;cursor:pointer;flex:none}
+.inst .no{border:0;background:transparent;color:#9DBDB0;font-size:20px;width:30px;height:30px;cursor:pointer;flex:none;padding:0}
+.ihelp{margin:0;padding-left:20px;font-size:14px;color:var(--ink2);display:grid;gap:8px}
+.ihelp b{color:var(--navy)}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:90;display:none}
 .toast.on{display:block;animation:fade .2s}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
@@ -310,6 +324,7 @@ footer .links a{color:var(--muted);font-weight:500}
   <div class="scan-bot"><p id="scan-h"></p><div class="scan-msg" id="scan-msg" role="status"></div>
     <div class="scan-act"><label class="btn">Pakai foto<input type="file" accept="image/*" id="scan-file" hidden></label><button class="btn" data-scan-close>Ketik manual</button></div></div>
 </div>
+<div class="inst" id="inst" role="dialog" aria-label="Pasang aplikasi"><img src="/icons/icon-192.png" alt=""><div class="t"><b>Pasang aplikasi BYD Connect</b><span id="inst-s">Sekali ketuk, langsung ada di layar utama HP.</span></div><button class="go" id="inst-go">Pasang</button><button class="no" id="inst-no" aria-label="Nanti saja">×</button></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -633,6 +648,43 @@ document.addEventListener("click",function(e){
     if(inp.id==="st-id"){var ph=$("#st-phone");if(ph.value.trim())checkStatus();else ph.focus();}});
 });
 (function(){var q=location.search.match(/[?&]t=([A-Za-z0-9-]+)/);if(q){var c=cleanTicket(decodeURIComponent(q[1]));if(c){$("#st-id").value=c;setTimeout(function(){var s=document.getElementById("tracking");if(s)s.scrollIntoView({behavior:"smooth"});$("#st-phone").focus({preventScroll:true});},400);}}})();
+
+/* ===== Aplikasi (PWA): pasang ke layar utama ===== */
+(function(){
+  if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}
+  var standalone=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+  if(standalone)return;
+  var ua=navigator.userAgent||"",ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),android=/Android/i.test(ua);
+  var inapp=/FBAN|FBAV|Instagram|Line\/|WhatsApp|; wv\)|GSA\//i.test(ua),iosSafari=ios&&!/CriOS|FxiOS|EdgiOS/i.test(ua)&&!inapp;
+  if(!ios&&!android)return;
+  var KEY="bkc_inst_skip",bar=$("#inst"),go=$("#inst-go"),dp=null,shown=false;
+  function skipped(){try{var t=+localStorage.getItem(KEY)||0;return Date.now()-t<3*864e5;}catch(e){return false;}}
+  function show(sub,label){if(shown||skipped()||sheet.classList.contains("on"))return;shown=true;if(sub)$("#inst-s").textContent=sub;if(label)go.textContent=label;bar.classList.add("on");}
+  function hide(){bar.classList.remove("on");}
+  $("#inst-no").addEventListener("click",function(){hide();try{localStorage.setItem(KEY,Date.now());}catch(e){}});
+  window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;shown=false;bar.classList.remove("on");setTimeout(function(){show("Sekali ketuk, langsung ada di layar utama HP.","Pasang");},1200);});
+  window.addEventListener("appinstalled",function(){hide();dp=null;toast("Aplikasi BYD Connect terpasang di layar utama.");});
+  function guide(){
+    var steps;
+    if(iosSafari)steps='<li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas) di bawah layar Safari.</li><li>Gulir lalu pilih <b>Tambah ke Layar Utama</b>.</li><li>Ketuk <b>Tambah</b>. Ikon <b>BYD Connect</b> muncul di layar utama.</li>';
+    else if(ios)steps='<li>Buka halaman ini di <b>Safari</b> (salin link: bydkarebosiconnect.online).</li><li>Ketuk <b>Bagikan</b> lalu <b>Tambah ke Layar Utama</b>.</li>';
+    else if(inapp)steps='<li>Ketuk menu <b>⋮</b> di pojok kanan atas.</li><li>Pilih <b>Buka di Chrome</b> / <b>Buka di browser</b>.</li><li>Di Chrome, ketuk <b>Pasang</b> pada banner, atau menu <b>⋮</b> → <b>Instal aplikasi</b>.</li>';
+    else steps='<li>Ketuk menu <b>⋮</b> di pojok kanan atas Chrome.</li><li>Pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</li><li>Ketuk <b>Instal</b>. Ikon <b>BYD Connect</b> muncul di layar utama.</li>';
+    $("#sh-ic").innerHTML='<img src="/icons/icon-192.png" alt="" style="width:42px;height:42px;border-radius:12px">';$("#sh-title").textContent="Pasang aplikasi BYD Connect";$("#sh-sub").textContent="Tanpa Play Store, ukurannya kecil.";
+    $("#sh-body").innerHTML='<ol class="ihelp">'+steps+'</ol><p style="font-size:13px;color:var(--muted);margin:14px 0 0">Setelah terpasang, buka ikon <b>BYD Connect</b> untuk booking servis, cek garansi, dan cek status tiket kapan saja.</p><div class="stack" style="margin-top:14px"><button class="btn btn-line" data-close>Mengerti</button></div>';
+    lastFocus=document.activeElement;sheet.classList.add("on");document.body.style.overflow="hidden";
+  }
+  go.addEventListener("click",function(){
+    if(dp){var p=dp;dp=null;hide();p.prompt();p.userChoice.then(function(c){if(c&&c.outcome!=="accepted"){try{localStorage.setItem(KEY,Date.now());}catch(e){}}}).catch(function(){});return;}
+    hide();guide();
+  });
+  // Tanpa prompt otomatis (iPhone, browser dalam aplikasi, atau Chrome belum siap): tampilkan panduan
+  setTimeout(function(){if(dp||shown)return;
+    if(iosSafari||ios)show("Tambahkan ke layar utama iPhone Anda.","Caranya");
+    else if(inapp)show("Buka di Chrome agar bisa dipasang.","Caranya");
+    else show("Pasang ke layar utama HP Anda.","Caranya");
+  },3500);
+})();
 
 var tt;function toast(s){var t=$("#toast");t.textContent=s;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on");},2600);}
 var rev=$$(".reveal");

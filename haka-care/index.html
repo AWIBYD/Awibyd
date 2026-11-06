@@ -7,6 +7,8 @@
 <meta name="description" content="Cek sisa garansi baterai 8 tahun, garansi kendaraan, dan jadwal servis berikutnya mobil BYD Anda. Booking servis di BYD HAKA Karebosi Makassar.">
 <meta name="theme-color" content="#0C231D">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta property="og:title" content="HAKA Care – Garansi & Servis BYD">
 <meta property="og:description" content="Cek sisa garansi & jadwal servis mobil BYD Anda.">
 <meta property="og:url" content="https://bydkarebosiconnect.online/haka-care/">
@@ -532,5 +534,6 @@ $("#hkc-go").addEventListener("click", function(){
 })();</script>
 </div>
 
+<script>if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});</script>
 </body>
 </html>

@@ -1,0 +1,24 @@
+{
+  "id": "/",
+  "name": "BYD Karebosi Connect",
+  "short_name": "BYD Connect",
+  "description": "Layanan pelanggan BYD HAKA Karebosi Makassar: booking servis, garansi, dokumen, keluhan, darurat, dan cek status tiket.",
+  "lang": "id",
+  "start_url": "/?src=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F6F4",
+  "theme_color": "#0F2F27",
+  "categories": ["auto", "business", "utilities"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Booking Service", "url": "/?src=app#/booking", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Cek Status Tiket", "url": "/?src=app#tracking", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "HAKA Care", "url": "/haka-care/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
