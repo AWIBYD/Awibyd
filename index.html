@@ -270,8 +270,8 @@ footer .links a{color:var(--muted);font-weight:500}
 
 <footer><div class="wrap">
   <div class="fgrid">
-    <div><div class="k">BYD HAKA Karebosi</div>Dealer resmi BYD · Jl. Ahmad Yani No. 15, Makassar 90174<br><a href="https://www.google.com/maps?q=-5.132350168007932,119.40909589937174" target="_blank" rel="noopener">Buka di Google Maps</a></div>
-    <div><div class="k">Kontak resmi</div>WhatsApp dealer: <a href="https://wa.me/6282259452349" target="_blank" rel="noopener">0822-5945-2349</a><br>BYD Customer Service: <a href="tel:08001686868">0800 168 6868</a> <span style="color:var(--muted)">(bebas pulsa, layanan BYD Indonesia)</span></div>
+    <div><div class="k">BYD HAKA Karebosi</div>Dealer resmi BYD · Jl. Ahmad Yani No. 15, Makassar 90174<br><a href="https://maps.app.goo.gl/rRj1EWkpfXHf9UJf7" target="_blank" rel="noopener">Buka di Google Maps</a></div>
+    <div><div class="k">Kontak resmi</div>WhatsApp dealer: <a href="https://wa.me/6281188844234" target="_blank" rel="noopener">0811-8884-4234</a><br>Email: <a href="mailto:bydhaka.karebosi@gmail.com">bydhaka.karebosi@gmail.com</a><br>BYD Customer Service: <a href="tel:08001686868">0800 168 6868</a> <span style="color:var(--muted)">(bebas pulsa, layanan BYD Indonesia)</span></div>
     <div><div class="k">Jam layanan dealer</div>Senin–Sabtu 08.00–17.00 WITA<br>Minggu 09.00–17.00 WITA</div>
   </div>
   <div class="links"><span>© 2026 BYD HAKA Karebosi</span><a href="/kebijakan-privasi/">Kebijakan privasi</a><a href="/ketentuan/">Ketentuan penggunaan</a><a href="/haka-care/">HAKA Care</a><a href="https://byd-makassar.id/" target="_blank" rel="noopener">byd-makassar.id</a><a href="/cro/">Login tim</a></div>
@@ -289,7 +289,7 @@ footer .links a{color:var(--muted);font-weight:500}
 <script>
 (function(){
 "use strict";
-var WA="6282259452349";
+var WA="6281188844234";
 var API="https://n8n.srv1955808.hstgr.cloud/webhook/cro-api";
 var HOURS="Senin–Sabtu 08.00–17.00, Minggu 09.00–17.00 WITA";
 var MODELS=["BYD Atto 1","BYD Atto 3","BYD Dolphin","BYD Seal","BYD Sealion 7","BYD M6","Denza D9","Lainnya"];
@@ -341,7 +341,7 @@ var MOD=[
   fields:["vehicle","ccat","note"],needNote:true,
   compose:function(v){return "Kategori keluhan: "+v.ccat+". Kronologi: "+v.note;}},
  {id:"sos",t:"Emergency Assistance",d:"Mogok, ban, baterai rendah, atau kelistrikan.",i:"sos",cat:"Bantuan darurat",tag:"Emergency",
-  intro:'<div class="note warn"><b>Kondisi darurat di jalan?</b> Pastikan Anda dan penumpang aman, lalu nyalakan lampu hazard.</div><div class="infos"><div class="info"><b>BYD Roadside Assistance (layanan BYD Indonesia)</b><p>Telepon 0800 168 6868 (bebas pulsa) atau lewat aplikasi BYD Apps. Derek ke dealer BYD terdekat dalam radius 50 km dari dealer, selama masa garansi kendaraan.</p><div class="stack" style="grid-template-columns:1fr 1fr"><a class="btn btn-red" href="tel:08001686868">Telepon 0800 168 6868</a><a class="btn btn-wa" href="https://wa.me/6282259452349" target="_blank" rel="noopener">WA dealer</a></div></div><div class="info"><b>Dealer BYD HAKA Karebosi</b><p>WhatsApp dealer dilayani pada jam operasional: '+HOURS+'. Isi form di bawah agar kondisi dan lokasi Anda langsung tercatat untuk tim servis kami.</p></div></div>',
+  intro:'<div class="note warn"><b>Kondisi darurat di jalan?</b> Pastikan Anda dan penumpang aman, lalu nyalakan lampu hazard.</div><div class="infos"><div class="info"><b>BYD Roadside Assistance (layanan BYD Indonesia)</b><p>Telepon 0800 168 6868 (bebas pulsa) atau lewat aplikasi BYD Apps. Derek ke dealer BYD terdekat dalam radius 50 km dari dealer, selama masa garansi kendaraan.</p><div class="stack" style="grid-template-columns:1fr 1fr"><a class="btn btn-red" href="tel:08001686868">Telepon 0800 168 6868</a><a class="btn btn-wa" href="https://wa.me/6281188844234" target="_blank" rel="noopener">WA dealer</a></div></div><div class="info"><b>Dealer BYD HAKA Karebosi</b><p>WhatsApp dealer dilayani pada jam operasional: '+HOURS+'. Isi form di bawah agar kondisi dan lokasi Anda langsung tercatat untuk tim servis kami.</p></div></div>',
   fields:["vehicle","sos","loc","note"],
   compose:function(v){return "DARURAT: "+v.sos+". Lokasi: "+(v.loc||"belum dibagikan")+". Keterangan: "+(v.note||"-");}},
  {id:"part",t:"Spare Part Request",d:"Minta penawaran suku cadang asli.",i:"part",cat:"Suku cadang",tag:"Spare part",
@@ -357,7 +357,7 @@ var MOD=[
   fields:["ticket","rsvc","rcro","nps","note"],
   compose:function(v){var neg=(v.rsvc<=2||v.rcro<=2||v.nps<=6);return (neg?"[PERLU TINDAK LANJUT] ":"")+"Rating layanan: "+v.rsvc+"/5. Rating petugas: "+v.rcro+"/5. NPS: "+v.nps+"/10. Tiket terkait: "+(v.ticket||"-")+". Komentar: "+(v.note||"-");}},
  {id:"cro",t:"Contact Dealer",d:"Konsultasi dan bantuan langsung dari dealer.",i:"head",cat:"Konsultasi dealer",tag:"Contact Dealer",noVehicleRequired:true,needNote:true,
-  intro:'<div class="infos"><div class="info"><b>WhatsApp dealer</b><p>'+HOURS+'. Nama petugas yang menangani dikirim saat tiket dibuat.</p><div class="stack"><a class="btn btn-wa" href="https://wa.me/6282259452349?text='+encodeURIComponent("Halo BYD HAKA Karebosi, saya ingin konsultasi.")+'" target="_blank" rel="noopener">Chat WhatsApp</a></div></div></div><p style="font-size:14px;color:var(--ink2);margin:0 0 14px">Atau tinggalkan permintaan konsultasi agar langsung tercatat dan ditangani tim kami:</p>',
+  intro:'<div class="infos"><div class="info"><b>WhatsApp dealer</b><p>'+HOURS+'. Nama petugas yang menangani dikirim saat tiket dibuat.</p><div class="stack"><a class="btn btn-wa" href="https://wa.me/6281188844234?text='+encodeURIComponent("Halo BYD HAKA Karebosi, saya ingin konsultasi.")+'" target="_blank" rel="noopener">Chat WhatsApp</a></div></div></div><p style="font-size:14px;color:var(--ink2);margin:0 0 14px">Atau tinggalkan permintaan konsultasi agar langsung tercatat dan ditangani tim kami:</p>',
   fields:["help","esc","ticket","note"],
   compose:function(v){return (v.esc?"[ESKALASI] ":"")+"Kategori bantuan: "+v.help+". Tiket terkait: "+(v.ticket||"-")+". Pesan: "+v.note;}}
 ];
