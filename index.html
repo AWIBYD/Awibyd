@@ -272,7 +272,7 @@ footer .links a{color:var(--muted);font-weight:500}
   <div class="fgrid">
     <div><div class="k">BYD HAKA Karebosi</div>Dealer resmi BYD · Jl. Ahmad Yani No. 15, Makassar 90174<br><a href="https://maps.app.goo.gl/rRj1EWkpfXHf9UJf7" target="_blank" rel="noopener">Buka di Google Maps</a></div>
     <div><div class="k">Kontak resmi</div>WhatsApp dealer: <a href="https://wa.me/6281188844234" target="_blank" rel="noopener">0811-8884-4234</a><br>Email: <a href="mailto:bydhaka.karebosi@gmail.com">bydhaka.karebosi@gmail.com</a><br>BYD Customer Service: <a href="tel:08001686868">0800 168 6868</a> <span style="color:var(--muted)">(bebas pulsa, layanan BYD Indonesia)</span></div>
-    <div><div class="k">Jam layanan dealer</div>Senin–Sabtu 08.00–17.00 WITA<br>Minggu 09.00–17.00 WITA</div>
+    <div><div class="k">Jam layanan dealer</div>Senin–Jumat 08.00–16.30 WITA<br>Sabtu 08.00–12.00 WITA</div>
   </div>
   <div class="links"><span>© 2026 BYD HAKA Karebosi</span><a href="/kebijakan-privasi/">Kebijakan privasi</a><a href="/ketentuan/">Ketentuan penggunaan</a><a href="/haka-care/">HAKA Care</a><a href="https://byd-makassar.id/" target="_blank" rel="noopener">byd-makassar.id</a><a href="/cro/">Login tim</a></div>
 </div></footer>
@@ -291,7 +291,7 @@ footer .links a{color:var(--muted);font-weight:500}
 "use strict";
 var WA="6281188844234";
 var API="https://n8n.srv1955808.hstgr.cloud/webhook/cro-api";
-var HOURS="Senin–Sabtu 08.00–17.00, Minggu 09.00–17.00 WITA";
+var HOURS="Senin–Jumat 08.00–16.30, Sabtu 08.00–12.00 WITA";
 var MODELS=["BYD Atto 1","BYD Atto 3","BYD Dolphin","BYD Seal","BYD Sealion 7","BYD M6","Denza D9","Lainnya"];
 var $=function(s,r){return (r||document).querySelector(s);};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
@@ -375,7 +375,7 @@ var F={
  handover:function(){return '<div class="f"><label>Tanggal serah terima <span class="opt">(opsional)</span></label><input class="in" type="date" name="handover"></div>';},
  svc:function(){return '<div class="f fld" data-k="svc"><label>Jenis servis</label>'+chips("svc",["Servis berkala","Perbaikan / kendala","Cek kondisi baterai","Lainnya"])+'</div>';},
  date:function(){return '<div class="row2"><div class="f fld" data-k="date"><label>Tanggal yang diinginkan</label><input class="in" type="date" name="date" min="'+tomorrow()+'"></div>';},
- slot:function(){return '<div class="f"><label>Waktu</label><select class="in" name="slot">'+opt(["Pagi (08.00–12.00)","Siang (12.00–15.00)","Sore (15.00–17.00)"])+'</select></div></div>';},
+ slot:function(){return '<div class="f"><label>Waktu</label><select class="in" name="slot">'+opt(["Pagi (08.00–12.00)","Siang (12.00–15.00)","Sore (15.00–16.30)"])+'</select><small style="display:block;color:var(--muted);margin-top:4px">Sabtu hanya slot pagi, Minggu tutup.</small></div></div>';},
  km:function(){return '<div class="f"><label>Kilometer saat ini <span class="opt">(opsional)</span></label><input class="in" name="km" inputmode="numeric" maxlength="7" placeholder="contoh 18500"></div>';},
  note:function(m){return '<div class="f fld" data-k="note"><label>'+(m.needNote?"Ceritakan singkat":'Catatan <span class="opt">(opsional)</span>')+'</label><textarea class="in" name="note" maxlength="600"></textarea></div>';},
  docs:function(){return '<div class="f fld" data-k="docs"><label>Dokumen yang dicek</label>'+chips("docs",["STNK","TNKB / plat nomor","BPKB"],true)+'</div>';},
@@ -479,7 +479,7 @@ function submit(m,f){
   if(f.elements.model&&!v.model)bad.push("model");
   m.fields.forEach(function(k){
     if(CH.indexOf(k)>=0&&!v[k])bad.push(k);
-    if(k==="date"&&!v.date)bad.push("date");
+    if(k==="date"){var dw=v.date?new Date(v.date+"T00:00:00").getDay():-1;if(!v.date||dw===0)bad.push("date");if(dw===6&&v.slot&&v.slot.indexOf("Pagi")!==0)bad.push("date");}
     if(k==="pname"&&v.pname.length<2)bad.push("pname");
     if(k==="rsvc"&&!v.rsvc)bad.push("rsvc");
     if(k==="rcro"&&!v.rcro)bad.push("rcro");
@@ -488,7 +488,7 @@ function submit(m,f){
   if(m.needNote&&v.note.length<5)bad.push("note");
   $$(".fld",f).forEach(function(x){x.classList.toggle("bad",bad.indexOf(x.dataset.k)>=0);});
   var err=$("#mf-err");
-  if(bad.length){err.textContent="Lengkapi bagian yang ditandai.";var first=$(".fld.bad",f);if(first)first.scrollIntoView({behavior:"smooth",block:"center"});return;}
+  if(bad.length){err.textContent=(bad.indexOf("date")>=0&&v.date)?"Jadwal belum sesuai: Minggu tutup, Sabtu hanya slot pagi (08.00–12.00).":"Lengkapi bagian yang ditandai.";var first=$(".fld.bad",f);if(first)first.scrollIntoView({behavior:"smooth",block:"center"});return;}
   err.textContent="";
   var desc="["+m.tag+"] "+m.compose(v);
   var payload={action:"public_create",id:makeCode(),name:v.name,phone:v.phone,model:v.model||"-",plate:v.plate,
