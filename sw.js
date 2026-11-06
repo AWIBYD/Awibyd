@@ -1,6 +1,6 @@
 /* BYD Karebosi Connect – service worker (aplikasi terpasang + cadangan offline) */
 var V = "bkc-v1";
-var SHELL = ["/", "/haka-care/", "/manifest.webmanifest", "/favicon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
+var SHELL = ["/", "/haka-care/", "/manifest.json", "/favicon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(V).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
