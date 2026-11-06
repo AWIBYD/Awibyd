@@ -198,7 +198,7 @@ var DEALER="BYD HAKA Karebosi";
 var STATUSES=["NEW","ASSIGNED","IN PROGRESS","WAIT CUSTOMER","WAIT INTERNAL","RESOLVED","CLOSED","REOPENED"];
 var ST_LBL={"NEW":"Open","ASSIGNED":"Assigned","IN PROGRESS":"In Progress","WAIT CUSTOMER":"Waiting for Customer","WAIT INTERNAL":"Waiting for Parts / Internal","RESOLVED":"Resolved","CLOSED":"Closed","REOPENED":"Reopened"};
 var DONE={"RESOLVED":1,"CLOSED":1};
-var CATS=[["Informasi pembelian","Sales Consultant"],["BYD Apps & Digital Key","BYD Apps & IT Support"],["Charger & instalasi","Sales Consultant"],["Booking servis","Service Advisor"],["Keluhan","CRO"],["Suku cadang","Service Advisor"],["STNK / TNKB / BPKB","Document Admin"],["Garansi Blade Battery","Service Advisor"],["Bantuan darurat","Service Advisor"],["Masukan pelanggan","CRO"],["Konsultasi CRO","CRO"]];
+var CATS=[["Informasi pembelian","Sales Consultant"],["BYD Apps & Digital Key","BYD Apps & IT Support"],["Charger & instalasi","Sales Consultant"],["Booking servis","Service Advisor"],["Keluhan","CRO"],["Suku cadang","Service Advisor"],["STNK / TNKB / BPKB","Document Admin"],["Garansi Blade Battery","Service Advisor"],["Bantuan darurat","Service Advisor"],["Masukan pelanggan","CRO"],["Konsultasi dealer","CRO"],["Konsultasi CRO","CRO"]];
 var DEPTS=["CRO","Sales Consultant","Service Advisor","Document Admin","BYD Apps & IT Support","Manajemen"];
 var ERR={login:"Nama atau PIN salah.",locked:"Terlalu banyak percobaan. Coba lagi 15 menit lagi.",unauthorized:"Sesi berakhir, silakan masuk lagi.",invalid:"Lengkapi nama, nomor WA yang valid, dan kronologi.",invalid_category:"Kategori tidak dikenal.",duplicate:"Kode tiket sudah dipakai.",need_pic:"Tetapkan PIC dulu (One Customer, One PIC).",need_pic_name:"Isi nama PIC.",need_note:"Tulis apa yang disampaikan ke pelanggan.",need_next:"Tentukan kapan kabar berikutnya (standar JANGKAR).",next_past:"Jadwal kabar berikutnya harus di masa depan.",need_resolved:"Tiket harus RESOLVED dulu sebelum CLOSED.",need_confirm:"Tiket tidak boleh ditutup sebelum pelanggan mengonfirmasi solusi.",forbidden:"Hanya admin yang boleh melakukan ini.",not_found:"Tiket tidak ditemukan.",pin_format:"PIN harus 6 angka.",name_taken:"Nama sudah dipakai anggota lain.",need_name:"Isi nama.",self_lock:"Anda tidak bisa menonaktifkan / menurunkan peran akun sendiri.",network:"Koneksi gagal. Cek internet lalu coba lagi."};
 var $=function(s,r){return (r||document).querySelector(s);};
@@ -303,7 +303,7 @@ setInterval(function(){var c=$("#clock");if(c)c.textContent=new Date().toLocaleS
 function isOver(t){return !DONE[t.status]&&t.status!=="NEW"&&t.nextUpdateAt&&t.nextUpdateAt<now();}
 function noSched(t){return !DONE[t.status]&&t.status!=="NEW"&&!t.nextUpdateAt;}
 function isNeg(t){return t.category==="Masukan pelanggan"&&/PERLU TINDAK LANJUT/.test(t.desc||"");}
-function fb(t){var d=t.desc||"",g=function(re){var m=d.match(re);return m?+m[1]:null;};return {svc:g(/Rating layanan:\s*(\d)/),cro:g(/Rating CRO:\s*(\d)/),nps:g(/NPS:\s*(\d+)/)};}
+function fb(t){var d=t.desc||"",g=function(re){var m=d.match(re);return m?+m[1]:null;};return {svc:g(/Rating layanan:\s*(\d)/),cro:g(/Rating (?:CRO|petugas):\s*(\d)/),nps:g(/NPS:\s*(\d+)/)};}
 function attention(){
   var open=tickets.filter(function(t){return !DONE[t.status];});
   return [
