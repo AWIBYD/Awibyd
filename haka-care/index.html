@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HAKA Care – Cek Garansi Baterai & Jadwal Servis BYD | BYD Karebosi Connect</title>
 <meta name="description" content="Cek sisa garansi baterai 8 tahun, garansi kendaraan, dan jadwal servis berikutnya mobil BYD Anda. Booking servis di BYD HAKA Karebosi Makassar.">
-<meta name="theme-color" content="#0d1321">
+<meta name="theme-color" content="#0C231D">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="HAKA Care – Garansi & Servis BYD">
 <meta property="og:description" content="Cek sisa garansi & jadwal servis mobil BYD Anda.">
@@ -16,7 +16,7 @@ html,body{margin:0;background:#fff}
 .nav{background:#0a0f1a;color:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.08);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .nav .in{max-width:1080px;margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-sizing:border-box}
 .nav .logo{font-weight:800;letter-spacing:.04em;font-size:15px;text-decoration:none;color:#fff;white-space:nowrap}
-.nav .logo span{color:#2ec4d6}
+.nav .logo span{color:#5AD6A4}
 .nav .links{display:flex;gap:4px;align-items:center;overflow-x:auto}
 .nav .links a{color:#c9cfdb;text-decoration:none;font-size:13px;font-weight:600;padding:8px 10px;border-radius:8px;white-space:nowrap}
 .nav .links a:hover,.nav .links a.on{color:#fff;background:rgba(255,255,255,.08)}
@@ -38,7 +38,7 @@ html{scroll-padding-top:120px}
 </div></nav>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-#hkcare{--ink:#0d1321;--ink2:#3a4357;--muted:#6b7488;--line:#e6e8ee;--soft:#f5f6f9;--accent:#0f7c8c;--accent-2:#0a5f6b;--accent-soft:#e3f3f5;--green:#18794e;--green-soft:#e6f4ec;--amber:#a15c07;--amber-soft:#fdf3e1;--red:#c2341b;--red-soft:#fdecea;
+#hkcare{--ink:#0C231D;--ink2:#3a4357;--muted:#6b7488;--line:#e6e8ee;--soft:#f5f6f9;--accent:#0E8A5F;--accent-2:#0A6B49;--accent-soft:#E3F4EC;--green:#18794e;--green-soft:#e6f4ec;--amber:#a15c07;--amber-soft:#fdf3e1;--red:#c2341b;--red-soft:#fdecea;
 font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 #hkcare,#hkcare *{box-sizing:border-box}
 #hkcare a{color:inherit}
@@ -58,12 +58,12 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .center{text-align:center}
 #hkcare .center .lead{margin:0 auto}
 /* hero */
-#hkcare .hero{position:relative;min-height:520px;display:flex;align-items:flex-end;color:#fff;background:#0d1321}
+#hkcare .hero{position:relative;min-height:520px;display:flex;align-items:flex-end;color:#fff;background:#0C231D}
 #hkcare .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#hkcare .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,19,33,.92) 0%,rgba(13,19,33,.65) 45%,rgba(13,19,33,.15) 100%),linear-gradient(0deg,rgba(13,19,33,.6),rgba(13,19,33,0) 50%)}
+#hkcare .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,35,29,.92) 0%,rgba(12,35,29,.65) 45%,rgba(12,35,29,.15) 100%),linear-gradient(0deg,rgba(12,35,29,.6),rgba(12,35,29,0) 50%)}
 #hkcare .hero .wrap{position:relative;z-index:1;padding-top:80px;padding-bottom:56px;width:100%}
 #hkcare .hero .logo{font-size:14px;font-weight:800;letter-spacing:.2em;opacity:.9}
-#hkcare .hero .logo span{color:#2ec4d6}
+#hkcare .hero .logo span{color:#5AD6A4}
 #hkcare .hero h2{font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-.03em;margin:14px 0 12px;color:#fff;max-width:620px}
 #hkcare .hero p{font-size:17px;color:#d6dbe5;max-width:520px;margin:0 0 24px}
 #hkcare .heroBtns{display:flex;gap:10px;flex-wrap:wrap}
@@ -101,8 +101,8 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .step .km{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
 #hkcare .step .t{font-size:13px;color:var(--ink2)}
 #hkcare .step .free{margin-top:12px;font-size:11px;font-weight:700;color:var(--green);background:var(--green-soft);display:inline-block;padding:3px 8px;border-radius:999px}
-#hkcare .step .dot{position:absolute;top:18px;right:18px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(15,124,140,.5);animation:hkpulse 2s infinite}
-@keyframes hkpulse{0%{box-shadow:0 0 0 0 rgba(15,124,140,.45)}70%{box-shadow:0 0 0 10px rgba(15,124,140,0)}100%{box-shadow:0 0 0 0 rgba(15,124,140,0)}}
+#hkcare .step .dot{position:absolute;top:18px;right:18px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(14,138,95,.5);animation:hkpulse 2s infinite}
+@keyframes hkpulse{0%{box-shadow:0 0 0 0 rgba(14,138,95,.45)}70%{box-shadow:0 0 0 10px rgba(14,138,95,0)}100%{box-shadow:0 0 0 0 rgba(14,138,95,0)}}
 /* calc */
 #hkcare .calc{background:var(--ink);color:#fff;border-radius:24px;padding:32px;margin-top:8px}
 #hkcare .calc .lead{color:#c9cfdb}
@@ -110,7 +110,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 @media(min-width:720px){#hkcare .grid3{grid-template-columns:1.2fr 1fr 1fr auto;align-items:end}}
 #hkcare label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#c9cfdb}
 #hkcare input,#hkcare select{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid #2a3245;border-radius:12px;background:#151c2c;color:#fff;height:48px}
-#hkcare input:focus,#hkcare select:focus{outline:none;border-color:#2ec4d6}
+#hkcare input:focus,#hkcare select:focus{outline:none;border-color:#5AD6A4}
 #hkcare .err{color:#ff9b8a;font-size:13px;margin-top:10px;min-height:18px}
 #hkcare .res{display:none;background:#fff;color:var(--ink);border-radius:18px;padding:20px;margin-top:16px}
 #hkcare .res.show{display:block}
@@ -138,14 +138,14 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
 @media(min-width:820px){#hkcare .cards{grid-template-columns:repeat(4,1fr)}}
 #hkcare .ncard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:8px;min-height:150px;transition:transform .15s,box-shadow .15s}
-#hkcare .ncard:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(13,19,33,.08)}
+#hkcare .ncard:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(12,35,29,.08)}
 #hkcare .ncard .ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center}
 #hkcare .ncard svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #hkcare .ncard b{font-size:15px}
 #hkcare .ncard span{font-size:13px;color:var(--muted)}
 #hkcare .ncard.photo{padding:0;overflow:hidden;color:#fff;position:relative;min-height:150px;grid-column:span 2}
 #hkcare .ncard.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#hkcare .ncard.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,19,33,.85),rgba(13,19,33,.1))}
+#hkcare .ncard.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,35,29,.85),rgba(12,35,29,.1))}
 #hkcare .ncard.photo div{position:relative;z-index:1;margin-top:auto;padding:18px}
 #hkcare .ncard.photo span{color:#d6dbe5}
 /* perawatan */
@@ -159,8 +159,8 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .ben p{margin:0;font-size:14px;color:var(--ink2)}
 #hkcare .ben.hl{background:var(--ink);color:#fff;border-color:var(--ink)}
 #hkcare .ben.hl p{color:#c9cfdb}
-#hkcare .ben.hl .ic{background:rgba(46,196,214,.15)}
-#hkcare .ben.hl svg{stroke:#2ec4d6}
+#hkcare .ben.hl .ic{background:rgba(90,214,164,.15)}
+#hkcare .ben.hl svg{stroke:#5AD6A4}
 #hkcare .parts{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
 @media(min-width:720px){#hkcare .parts{grid-template-columns:1fr 1fr}}
 #hkcare .part{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
@@ -175,12 +175,12 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .zz{position:relative;display:flex;flex-direction:column;align-items:center;min-height:440px}
 #hkcare .zz.up{justify-content:flex-start}
 #hkcare .zz.down{justify-content:flex-end}
-#hkcare .zc{background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(13,19,33,.08);padding:18px 12px;text-align:center;width:100%;min-height:190px}
+#hkcare .zc{background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(12,35,29,.08);padding:18px 12px;text-align:center;width:100%;min-height:190px}
 #hkcare .zc b{display:block;font-size:17px;line-height:1.3;color:var(--ink);font-weight:800}
 #hkcare .zc p{margin:10px 0 0;font-size:13px;color:var(--muted)}
 #hkcare .zc .free{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--green);background:var(--green-soft);padding:3px 8px;border-radius:999px}
-#hkcare .zdot{position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#fff;border:4px solid #c8102e;z-index:1}
-#hkcare .zz.first .zdot{background:#c8102e}
+#hkcare .zdot{position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#fff;border:4px solid #0E8A5F;z-index:1}
+#hkcare .zz.first .zdot{background:#0E8A5F}
 #hkcare .chkbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:18px}
 #hkcare .chkbox b{display:block;margin-bottom:10px;font-size:15px}
 #hkcare .chk{display:flex;flex-wrap:wrap;gap:6px}
@@ -206,11 +206,11 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .soscard svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #hkcare .soscard.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
 #hkcare .soscard.dark>p{color:#c9cfdb}
-#hkcare .soscard.dark .ic{background:rgba(46,196,214,.15)}#hkcare .soscard.dark svg{stroke:#2ec4d6}
+#hkcare .soscard.dark .ic{background:rgba(90,214,164,.15)}#hkcare .soscard.dark svg{stroke:#5AD6A4}
 #hkcare .hot{margin-top:auto;padding-top:14px}
 #hkcare .hot a{display:block;font-size:32px;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
 #hkcare .hot span{font-size:12px;color:#9aa3b5}
-#hkcare .soscard .mail{color:#2ec4d6;font-weight:600;font-size:14px}
+#hkcare .soscard .mail{color:#5AD6A4;font-weight:600;font-size:14px}
 #hkcare .soscard details{padding:12px 0}
 #hkcare .soscard details p{margin-top:6px}
 @media(min-width:900px){#hkcare .parts.steps3{grid-template-columns:repeat(3,1fr)}}
@@ -219,7 +219,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 #hkcare .note b{color:#5c3a06}
 #hkcare .zc .free{color:var(--accent-2)!important;background:var(--accent-soft)!important}
 /* cta band */
-#hkcare .band{background:linear-gradient(120deg,#0a5f6b,#0d1321);color:#fff;border-radius:24px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+#hkcare .band{background:linear-gradient(120deg,#0A6B49,#0C231D);color:#fff;border-radius:24px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 #hkcare .band h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;color:#fff}
 #hkcare .band p{margin:0;color:#c9cfdb}
 /* faq */
@@ -337,7 +337,7 @@ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var
 
 <section class="blk" id="cek-garansi"><div class="wrap">
   <div class="calc reveal">
-    <div class="kicker" style="color:#2ec4d6">Cek garansi saya</div>
+    <div class="kicker" style="color:#5AD6A4">Cek garansi saya</div>
     <div class="h2" style="color:#fff">Lihat sisa garansi & servis berikutnya</div>
     <p class="lead">Isi 3 data. Tidak ada data yang dikirim, semua dihitung di HP Anda.</p>
     <div class="grid3">
@@ -431,7 +431,7 @@ var MODELS = {
   seal:{n:"BYD Seal",free:{y:4,km:60000}}, sealion7:{n:"BYD Sealion 7",free:{y:4,km:60000}}, m6:{n:"BYD M6",free:false}, denza:{n:"Denza D9",free:null}
 };
 var COVER = [
-  {k:"Garansi kendaraan",y:6,km:150000,c:"#0f7c8c"},
+  {k:"Garansi kendaraan",y:6,km:150000,c:"#0E8A5F"},
   {k:"Garansi baterai (Blade)",y:8,km:160000,c:"#18794e",note:"syarat SoH ≥ 70%"},
   {k:"Garansi unit penggerak",y:8,km:150000,c:"#2554c7"},
   {k:"Roadside assistance",y:6,km:150000,c:"#a15c07",note:"ikut masa garansi kendaraan"}
