@@ -184,6 +184,26 @@ footer .links a{color:var(--muted);font-weight:500}
 .ok-box .tick svg{width:32px;height:32px;stroke-width:2.4}
 .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:22px;font-weight:700;letter-spacing:.04em;background:var(--bg);border:1.5px dashed #CBD5E1;border-radius:14px;padding:12px;margin:12px 0}
 .stack{display:grid;gap:10px;margin-top:14px}
+.scanin{display:flex;gap:8px}.scanin .in{flex:1;min-width:0}
+.scanbtn{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:0 14px;border-radius:12px;border:1px solid #C6DBD1;background:var(--red-soft);color:var(--red);font:600 14px/1 inherit;font-family:inherit;cursor:pointer;min-height:46px}
+.scanbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.scan{position:fixed;inset:0;z-index:95;background:#06140F;color:#fff;display:none;flex-direction:column}
+.scan.on{display:flex}
+.scan-top{display:flex;align-items:center;gap:10px;padding:14px 16px calc(14px);padding-top:calc(14px + env(safe-area-inset-top))}
+.scan-top b{font-size:17px}.scan-top .x{margin-left:auto;width:40px;height:40px;border-radius:12px;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:22px;cursor:pointer}
+.scan-view{position:relative;flex:1;min-height:0;overflow:hidden;background:#000}
+.scan-view video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scan-frame{position:absolute;left:8%;right:8%;top:50%;height:34%;transform:translateY(-50%);border-radius:18px;box-shadow:0 0 0 9999px rgba(6,20,15,.55);border:2px solid rgba(127,224,182,.9)}
+.scan-frame::after{content:"";position:absolute;left:6%;right:6%;top:50%;height:2px;background:#7FE0B6;box-shadow:0 0 12px #7FE0B6;animation:scanl 1.8s ease-in-out infinite}
+@keyframes scanl{0%,100%{transform:translateY(-40px)}50%{transform:translateY(40px)}}
+.scan-bot{padding:14px 16px calc(16px + env(safe-area-inset-bottom));display:grid;gap:10px}
+.scan-bot p{margin:0;font-size:14px;color:#CFE9DD;text-align:center}
+.scan-msg{min-height:20px;font-size:13px;text-align:center;color:#FCD34D}
+.scan-act{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scan-act .btn{background:rgba(255,255,255,.12);color:#fff;border:0;justify-content:center}
+.qrbox{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border-radius:14px;padding:10px 12px;margin:0 0 12px}
+.qrbox svg{width:96px;height:96px;flex:none;background:#fff;border-radius:8px}
+.qrbox p{margin:0;font-size:13px;color:var(--ink2)}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:90;display:none}
 .toast.on{display:block;animation:fade .2s}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
@@ -256,7 +276,7 @@ footer .links a{color:var(--muted);font-weight:500}
     <div class="track-grid">
       <div>
         <p class="lead" style="margin-top:-6px">Masukkan kode tiket dan nomor WhatsApp yang dipakai saat membuat pengajuan. Detail penanganan hanya tampil jika keduanya cocok.</p>
-        <div class="f"><label for="st-id">Kode tiket</label><input class="in" id="st-id" placeholder="CASE-2026-XXXX" maxlength="20" autocomplete="off" style="text-transform:uppercase"></div>
+        <div class="f"><label for="st-id">Kode tiket</label><div class="scanin"><input class="in" id="st-id" placeholder="CASE-2026-XXXX" maxlength="20" autocomplete="off" style="text-transform:uppercase"><button type="button" class="scanbtn" data-scan="ticket" aria-label="Scan QR tiket"><svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M17 8v8"/></svg>Scan</button></div></div>
         <div class="f"><label for="st-phone">Nomor WhatsApp</label><input class="in" id="st-phone" inputmode="tel" placeholder="08xxxxxxxxxx" maxlength="16"></div>
         <button class="btn btn-navy btn-block" id="st-go">Cek status</button>
         <div class="err" id="st-err" role="alert"></div>
@@ -283,6 +303,12 @@ footer .links a{color:var(--muted);font-weight:500}
     <div class="bh"><span class="ic" id="sh-ic"></span><div><b id="sh-title"></b><small id="sh-sub"></small></div><button class="x" data-close aria-label="Tutup">×</button></div>
     <div class="bb" id="sh-body"></div>
   </div>
+</div>
+<div class="scan" id="scan" role="dialog" aria-modal="true" aria-labelledby="scan-t">
+  <div class="scan-top"><b id="scan-t">Scan barcode</b><button class="x" data-scan-close aria-label="Tutup">×</button></div>
+  <div class="scan-view"><video id="scan-v" playsinline muted autoplay></video><div class="scan-frame"></div></div>
+  <div class="scan-bot"><p id="scan-h"></p><div class="scan-msg" id="scan-msg" role="status"></div>
+    <div class="scan-act"><label class="btn">Pakai foto<input type="file" accept="image/*" id="scan-file" hidden></label><button class="btn" data-scan-close>Ketik manual</button></div></div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -317,16 +343,16 @@ function ic(k){return '<svg class="i" viewBox="0 0 24 24">'+P[k]+'</svg>';}
 var MOD=[
  {id:"garage",t:"My BYD Garage",d:"Profil kendaraan, garansi, dan odometer Anda.",i:"car",badge:"Segera",cat:"Konsultasi dealer",tag:"Pendaftaran My BYD Garage",
   intro:'<div class="note warn"><b>Akun pelanggan sedang disiapkan.</b> Garasi digital akan menampilkan model, nomor polisi, VIN, tanggal pembelian & handover, odometer, dan status garansi untuk semua kendaraan Anda dalam satu akun. Data diambil dari faktur dealer, bukan diisi bebas.</div><p style="font-size:14px;color:var(--ink2);margin:0 0 14px">Daftarkan minat Anda sekarang. Tim kami memverifikasi kendaraan Anda dan menghubungi saat akun aktif.</p>',
-  fields:["vehicle","handover"],
+  fields:["vehicle","vin","handover"],
   compose:function(v){return "Mohon daftarkan kendaraan saya di My BYD Garage. Tanggal serah terima: "+(v.handover||"tidak ingat")+".";}},
  {id:"booking",t:"Booking Service",d:"Ajukan jadwal servis berkala atau perbaikan.",i:"cal",cat:"Booking servis",tag:"Booking servis",
   intro:'<div class="note"><b>Permintaan booking.</b> Jadwal yang Anda pilih belum final. Tim servis kami mengonfirmasi slot sesuai kapasitas bengkel lewat WhatsApp. Foto/video kendala bisa dikirim lewat WhatsApp setelah tiket dibuat.</div>',
-  fields:["vehicle","svc","date","slot","km","note"],
+  fields:["vehicle","vin","svc","date","slot","km","note"],
   compose:function(v){return "Jenis: "+v.svc+". Tanggal diminta: "+v.date+" ("+v.slot+"). KM: "+(v.km||"-")+". Catatan: "+(v.note||"-");},
   pref:function(v){return "Booking "+v.date+" "+v.slot;}},
  {id:"history",t:"Service History",d:"Riwayat servis, KM, dan pekerjaan yang dilakukan.",i:"hist",badge:"Segera",cat:"Konsultasi dealer",tag:"Permintaan riwayat servis",
   intro:'<div class="note warn"><b>Riwayat servis online butuh akun pelanggan</b> dan sedang disiapkan. Sementara itu, tim kami dapat mengirim ringkasan riwayat servis kendaraan Anda lewat WhatsApp setelah verifikasi pemilik.</div>',
-  fields:["vehicle","note"],
+  fields:["vehicle","vin","note"],
   compose:function(v){return "Mohon kirim riwayat servis kendaraan saya. Catatan: "+(v.note||"-");}},
  {id:"doc",t:"Document Tracking",d:"Status STNK, TNKB/plat, dan BPKB kendaraan.",i:"doc",cat:"STNK / TNKB / BPKB",tag:"Document tracking",
   intro:'<div class="note">Sudah punya kode tiket dokumen? <a href="#tracking" data-close style="font-weight:700;color:var(--navy)">Cek status di sini</a>. Belum? Ajukan pengecekan, tim kami memberi kabar progresnya. Estimasi selesai hanya disampaikan jika sudah dipastikan petugas.</div>',
@@ -334,7 +360,7 @@ var MOD=[
   compose:function(v){return "Cek status dokumen: "+v.docs+". Catatan: "+(v.note||"-");}},
  {id:"warranty",t:"Warranty Center",d:"Garansi kendaraan, Blade Battery, dan drive motor.",i:"shield",cat:"Garansi Blade Battery",tag:"Warranty center",
   intro:'<div class="infos"><div class="info"><b>Ketentuan garansi BYD Indonesia</b><ul><li>Kendaraan: 6 tahun / 150.000 km</li><li>Baterai traksi (Blade Battery): 8 tahun / 160.000 km, State of Health ≥ 70%</li><li>Unit penggerak (drive motor): 8 tahun / 150.000 km</li></ul><p style="margin-top:8px">Mana yang tercapai lebih dulu. Ketentuan resmi mengikuti buku garansi sesuai model dan periode pembelian. <a href="/haka-care/#cek-garansi" style="font-weight:700;color:var(--navy)">Hitung sisa garansi →</a></p></div></div><p style="font-size:14px;color:var(--ink2);margin:0 0 14px">Ada kendala yang ingin dicek kelayakan klaimnya? Tim servis kami memeriksa sesuai ketentuan resmi.</p>',
-  fields:["vehicle","wtype","km","note"],needNote:true,
+  fields:["vehicle","vin","wtype","km","note"],needNote:true,
   compose:function(v){return "Pengecekan klaim garansi ("+v.wtype+"). KM: "+(v.km||"-")+". Kendala: "+v.note;}},
  {id:"complaint",t:"Complaint Center",d:"Sampaikan keluhan, kami tangani sampai tuntas.",i:"chat",cat:"Keluhan",tag:"Keluhan",
   intro:'<div class="note">Alur status: <b>Open → Assigned → In Progress → Waiting (Customer / Parts) → Resolved → Closed</b>. Tiket baru ditutup setelah Anda menyatakan solusinya jelas. Foto/video bisa dikirim lewat WhatsApp setelah tiket dibuat.</div>',
@@ -370,7 +396,10 @@ function opt(a){return a.map(function(x){return '<option>'+esc(x)+'</option>';})
 function chips(name,a,multi){return '<div class="chips" data-chips="'+name+'"'+(multi?' data-multi="1"':'')+'>'+a.map(function(x){return '<button type="button" class="chip" aria-pressed="false" data-v="'+esc(x)+'">'+esc(x)+'</button>';}).join("")+'</div>';}
 function tomorrow(){var d=new Date(Date.now()+864e5);return d.toISOString().slice(0,10);}
 function starsF(k,l){return '<div class="f fld" data-k="'+k+'"><label>'+l+'</label><div class="stars" data-stars="'+k+'">'+[1,2,3,4,5].map(function(n){return '<button type="button" data-n="'+n+'" aria-label="'+n+' bintang">★</button>';}).join("")+'</div></div>';}
+var SCANSVG='<svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M17 8v8"/></svg>';
+function sbtn(k,l){return '<button type="button" class="scanbtn" data-scan="'+k+'" aria-label="'+l+'">'+SCANSVG+'Scan</button>';}
 var F={
+ vin:function(){return '<div class="f fld" data-k="vin"><label>Nomor rangka / VIN <span class="opt">(opsional, bisa scan)</span></label><div class="scanin"><input class="in" name="vin" maxlength="17" autocomplete="off" placeholder="17 karakter" style="text-transform:uppercase">'+sbtn("vin","Scan barcode VIN")+'</div></div>';},
  vehicle:function(){return '<div class="row2"><div class="f fld" data-k="model"><label>Kendaraan</label><select class="in" name="model">'+opt(["Pilih model"].concat(MODELS))+'</select></div><div class="f"><label>Nomor polisi <span class="opt">(opsional)</span></label><input class="in" name="plate" maxlength="15" placeholder="DD 1234 XX" style="text-transform:uppercase"></div></div>';},
  handover:function(){return '<div class="f"><label>Tanggal serah terima <span class="opt">(opsional)</span></label><input class="in" type="date" name="handover"></div>';},
  svc:function(){return '<div class="f fld" data-k="svc"><label>Jenis servis</label>'+chips("svc",["Servis berkala","Perbaikan / kendala","Cek kondisi baterai","Lainnya"])+'</div>';},
@@ -384,10 +413,10 @@ var F={
  sos:function(){return '<div class="f fld" data-k="sos"><label>Kondisi</label>'+chips("sos",["Kendaraan mogok","Ban bermasalah","Baterai rendah","Gangguan kelistrikan","Lainnya"])+'</div>';},
  loc:function(){return '<div class="f"><label>Lokasi kendaraan</label><div style="display:flex;gap:8px"><input class="in" name="loc" placeholder="Alamat / patokan" maxlength="200"><button type="button" class="btn btn-soft" data-geo style="white-space:nowrap">Pakai GPS</button></div></div>';},
  pname:function(){return '<div class="f fld" data-k="pname"><label>Nama suku cadang</label><input class="in" name="pname" maxlength="80" placeholder="contoh: wiper depan"></div>';},
- pno:function(){return '<div class="f"><label>Nomor part <span class="opt">(jika tahu)</span></label><input class="in" name="pno" maxlength="40"></div>';},
+ pno:function(){return '<div class="f"><label>Nomor part <span class="opt">(jika tahu, bisa scan)</span></label><div class="scanin"><input class="in" name="pno" maxlength="40">'+sbtn("part","Scan barcode part")+'</div></div>';},
  quote:function(){return '<label class="consent" style="margin-bottom:12px"><input type="checkbox" name="quote" checked> Saya minta penawaran harga (quotation)</label>';},
  chg:function(){return '<div class="f fld" data-k="chg"><label>Kebutuhan</label>'+chips("chg",["Pasang wallbox di rumah","Gagal mengisi daya","Panduan charger / SPKLU","Panduan V2L"])+'</div>';},
- ticket:function(){return '<div class="f"><label>Kode tiket terkait <span class="opt">(opsional)</span></label><input class="in" name="ticket" maxlength="20" placeholder="CASE-2026-XXXX" style="text-transform:uppercase"></div>';},
+ ticket:function(){return '<div class="f"><label>Kode tiket terkait <span class="opt">(opsional, bisa scan QR)</span></label><div class="scanin"><input class="in" name="ticket" maxlength="20" placeholder="CASE-2026-XXXX" style="text-transform:uppercase">'+sbtn("ticket","Scan QR tiket")+'</div></div>';},
  rsvc:function(){return starsF("rsvc","Rating layanan");},
  rcro:function(){return starsF("rcro","Rating petugas yang melayani");},
  nps:function(){var b="";for(var n=0;n<=10;n++)b+='<button type="button" data-n="'+n+'">'+n+'</button>';return '<div class="f fld" data-k="nps"><label>Seberapa mungkin Anda merekomendasikan BYD HAKA Karebosi?</label><div class="nps" data-nps>'+b+'</div><div class="nps-l"><span>Tidak mungkin</span><span>Sangat mungkin</span></div></div>';},
@@ -468,8 +497,8 @@ function submit(m,f){
   v.model=f.elements.model?f.elements.model.value:"";if(v.model==="Pilih model")v.model="";
   v.plate=f.elements.plate?f.elements.plate.value.trim().toUpperCase():"";
   CH.forEach(function(k){v[k]=chipVal(f,k);});
-  ["handover","date","slot","km","note","loc","pname","pno","ticket"].forEach(function(k){v[k]=f.elements[k]?f.elements[k].value.trim():"";});
-  v.ticket=v.ticket.toUpperCase();
+  ["handover","date","slot","km","note","loc","pname","pno","ticket","vin"].forEach(function(k){v[k]=f.elements[k]?f.elements[k].value.trim():"";});
+  v.ticket=v.ticket.toUpperCase();v.vin=v.vin.toUpperCase().replace(/[^A-Z0-9]/g,"");
   v.quote=f.elements.quote?f.elements.quote.checked:false;v.esc=f.elements.esc?f.elements.esc.checked:false;
   var s1=$('[data-stars="rsvc"]',f),s2=$('[data-stars="rcro"]',f),np=$("[data-nps]",f);
   v.rsvc=s1?+(s1.dataset.v||0):0;v.rcro=s2?+(s2.dataset.v||0):0;v.nps=(np&&np.dataset.v!=null)?+np.dataset.v:-1;
@@ -481,6 +510,7 @@ function submit(m,f){
     if(CH.indexOf(k)>=0&&!v[k])bad.push(k);
     if(k==="date"){var dw=v.date?new Date(v.date+"T00:00:00").getDay():-1;if(!v.date||dw===0)bad.push("date");if(dw===6&&v.slot&&v.slot.indexOf("Pagi")!==0)bad.push("date");}
     if(k==="pname"&&v.pname.length<2)bad.push("pname");
+    if(k==="vin"&&v.vin&&!/^[A-HJ-NPR-Z0-9]{17}$/.test(v.vin))bad.push("vin");
     if(k==="rsvc"&&!v.rsvc)bad.push("rsvc");
     if(k==="rcro"&&!v.rcro)bad.push("rcro");
     if(k==="nps"&&v.nps<0)bad.push("nps");
@@ -488,9 +518,9 @@ function submit(m,f){
   if(m.needNote&&v.note.length<5)bad.push("note");
   $$(".fld",f).forEach(function(x){x.classList.toggle("bad",bad.indexOf(x.dataset.k)>=0);});
   var err=$("#mf-err");
-  if(bad.length){err.textContent=(bad.indexOf("date")>=0&&v.date)?"Jadwal belum sesuai: Minggu tutup, Sabtu hanya slot pagi (08.00–12.00).":"Lengkapi bagian yang ditandai.";var first=$(".fld.bad",f);if(first)first.scrollIntoView({behavior:"smooth",block:"center"});return;}
+  if(bad.length){err.textContent=bad.indexOf("vin")>=0?"VIN harus 17 karakter huruf/angka (tanpa I, O, Q). Kosongkan bila belum tahu.":(bad.indexOf("date")>=0&&v.date)?"Jadwal belum sesuai: Minggu tutup, Sabtu hanya slot pagi (08.00–12.00).":"Lengkapi bagian yang ditandai.";var first=$(".fld.bad",f);if(first)first.scrollIntoView({behavior:"smooth",block:"center"});return;}
   err.textContent="";
-  var desc="["+m.tag+"] "+m.compose(v);
+  var desc="["+m.tag+"] "+m.compose(v)+(v.vin?" VIN: "+v.vin+".":"");
   var payload={action:"public_create",id:makeCode(),name:v.name,phone:v.phone,model:v.model||"-",plate:v.plate,
     category:m.cat,desc:desc.slice(0,790),contactPref:m.pref?m.pref(v):"Secepatnya",consent:true};
   var btn=f.querySelector('button[type="submit"]');sending=true;btn.disabled=true;btn.textContent="Membuat tiket…";
@@ -498,12 +528,13 @@ function submit(m,f){
     sending=false;btn.disabled=false;btn.innerHTML="Kirim &amp; buat tiket";
     if(r&&!r.ok){err.textContent=r.error==="rate_limited"?"Terlalu banyak pengajuan dalam waktu singkat. Coba lagi beberapa menit lagi.":"Data belum valid. Periksa kembali isian Anda.";return;}
     var saved=!!(r&&r.ok&&r.id),code=saved?r.id:payload.id;
-    var msg=["*TIKET BYD KAREBOSI CONNECT*","Kode: "+code,"Nama: "+v.name,"WA: "+v.phone,"Kendaraan: "+(v.model||"-"),"Plat: "+(v.plate||"-"),"Kategori: "+m.cat,"Kebutuhan: "+desc,"Dihubungi: "+payload.contactPref,"Persetujuan data: Ya"].join("\n");
+    var msg=["*TIKET BYD KAREBOSI CONNECT*","Kode: "+code,"Nama: "+v.name,"WA: "+v.phone,"Kendaraan: "+(v.model||"-"),"Plat: "+(v.plate||"-"),"Kategori: "+m.cat,"Kebutuhan: "+desc,"Dihubungi: "+payload.contactPref,"Persetujuan data: Ya","Cek status: "+statusUrl(code)].join("\n");
     var wa="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
     body.innerHTML='<div class="ok-box">'+(saved?'<div class="tick">'+ic("check")+'</div><h3 style="margin:0;color:var(--navy)">Tiket berhasil dibuat</h3><p style="margin:6px 0 0;color:var(--ink2);font-size:14px">Simpan kode ini untuk cek status kapan saja.</p>':'<div class="tick" style="background:var(--amber-soft);color:var(--amber)">!</div><h3 style="margin:0;color:var(--navy)">Koneksi ke sistem gagal</h3><p style="margin:6px 0 0;color:var(--ink2);font-size:14px">Tiket belum tercatat otomatis. Kirim pesan WhatsApp di bawah agar tim kami mencatatnya.</p>')+
-      '<div class="code">'+esc(code)+'</div>'+
+      '<div class="code">'+esc(code)+'</div>'+(saved?'<div class="qrbox"><span id="okqr"></span><p><b>QR tiket Anda.</b> Screenshot QR ini. Scan dengan kamera HP untuk membuka status tiket kapan saja.</p></div>':'')+
       '<ol style="text-align:left;font-size:14px;color:var(--ink2);padding-left:20px;margin:0 0 6px"><li>Tekan <b>Kirim ke WhatsApp</b>, lalu kirim. Lampirkan foto/video bila ada.</li><li>Tim kami menetapkan petugas yang menangani permintaan Anda.</li><li>Kami memberi kabar sesuai jadwal yang dijanjikan.</li></ol>'+
       '<div class="stack"><a class="btn btn-wa" href="'+wa+'" target="_blank" rel="noopener">Kirim ke WhatsApp</a>'+(saved?'<a class="btn btn-navy" href="#tracking" data-close data-track="'+esc(code)+'" data-phone="'+esc(v.phone)+'">Lihat status tiket</a>':'')+'<button class="btn btn-line" data-close>Selesai</button></div></div>';
+    if(saved)renderQR($("#okqr"),statusUrl(code));
   });
 }
 sheet.addEventListener("click",function(e){var t=e.target.closest("[data-track]");if(!t)return;$("#st-id").value=t.dataset.track;$("#st-phone").value=t.dataset.phone;setTimeout(checkStatus,300);});
@@ -537,6 +568,71 @@ function checkStatus(){
 }
 $("#st-go").addEventListener("click",checkStatus);
 $("#st-phone").addEventListener("keydown",function(e){if(e.key==="Enter")checkStatus();});
+
+/* ===== Scan barcode (kamera HP) ===== */
+function statusUrl(c){return "https://bydkarebosiconnect.online/?t="+encodeURIComponent(c)+"#tracking";}
+var zxP=null;
+function loadZX(){if(window.ZXing)return Promise.resolve(window.ZXing);if(zxP)return zxP;zxP=new Promise(function(res,rej){var sc=document.createElement("script");sc.src="/vendor/zxing.min.js";sc.async=true;sc.onload=function(){window.ZXing?res(window.ZXing):rej(new Error("zx"));};sc.onerror=function(){zxP=null;rej(new Error("zx"));};document.head.appendChild(sc);});return zxP;}
+function renderQR(el,txt){if(!el)return;loadZX().then(function(Z){try{var w=new Z.BrowserQRCodeSvgWriter(),svg=w.write(txt,192,192);svg.setAttribute("viewBox","0 0 192 192");svg.removeAttribute("width");svg.removeAttribute("height");el.replaceWith(svg);}catch(e){el.parentNode&&el.parentNode.remove();}}).catch(function(){var b=el.closest(".qrbox");if(b)b.remove();});}
+function cleanVin(x){x=String(x).toUpperCase().replace(/[^A-Z0-9]/g,"");if(x.length===18&&x.charAt(0)==="I")x=x.slice(1);var mm=x.match(/[A-HJ-NPR-Z0-9]{17}/);return mm?mm[0]:null;}
+function cleanTicket(x){x=String(x);var mm=x.match(/[?&]t=([A-Za-z0-9-]+)/);if(mm)x=decodeURIComponent(mm[1]);mm=x.toUpperCase().match(/CASE-\d{4}-[A-Z0-9]{3,8}/);return mm?mm[0]:null;}
+var SMODE={
+ vin:{t:"Scan VIN",h:"Arahkan ke label barcode nomor rangka (VIN). Biasanya ada di pilar pintu pengemudi.",fmt:["code_39","code_128","data_matrix","qr_code"],zx:["CODE_39","CODE_128","DATA_MATRIX","QR_CODE"],clean:cleanVin,no:"Barcode terbaca, tapi bukan VIN 17 karakter. Coba label lain."},
+ part:{t:"Scan nomor part",h:"Arahkan ke barcode pada kemasan atau label suku cadang.",fmt:["code_128","code_39","ean_13","ean_8","upc_a","qr_code","data_matrix"],zx:["CODE_128","CODE_39","EAN_13","EAN_8","UPC_A","QR_CODE","DATA_MATRIX"],clean:function(x){x=String(x).trim();return x?x.slice(0,40):null;},no:""},
+ ticket:{t:"Scan QR tiket",h:"Arahkan ke QR tiket dari halaman sukses atau screenshot Anda.",fmt:["qr_code"],zx:["QR_CODE"],clean:cleanTicket,no:"QR terbaca, tapi bukan QR tiket BYD Karebosi Connect."}
+};
+var SC={on:false,stream:null,timer:0,mode:null,cb:null,bd:null,busy:false,cv:document.createElement("canvas")};
+function scMsg(t){$("#scan-msg").textContent=t||"";}
+function getDecoder(mode){
+  var md=SMODE[mode];
+  if("BarcodeDetector" in window){
+    return BarcodeDetector.getSupportedFormats().then(function(sup){var f=md.fmt.filter(function(x){return sup.indexOf(x)>=0;});if(!f.length)throw 0;var d=new BarcodeDetector({formats:f});return function(src){return d.detect(src).then(function(r){return r.length?r[0].rawValue:null;});};}).catch(function(){return zxDecoder(md);});
+  }
+  return zxDecoder(md);
+}
+function zxDecoder(md){return loadZX().then(function(Z){
+  var hints=new Map();hints.set(Z.DecodeHintType.POSSIBLE_FORMATS,md.zx.map(function(k){return Z.BarcodeFormat[k];}));hints.set(Z.DecodeHintType.TRY_HARDER,true);
+  var rd=new Z.MultiFormatReader();rd.setHints(hints);
+  return function(src){var c=SC.cv,w=src.videoWidth||src.naturalWidth||src.width,h=src.videoHeight||src.naturalHeight||src.height;if(!w||!h)return Promise.resolve(null);var k=Math.min(1,1280/Math.max(w,h));c.width=Math.round(w*k);c.height=Math.round(h*k);var g=c.getContext("2d",{willReadFrequently:true});g.drawImage(src,0,0,c.width,c.height);
+    try{var bm=new Z.BinaryBitmap(new Z.HybridBinarizer(new Z.HTMLCanvasElementLuminanceSource(c)));return Promise.resolve(rd.decodeWithState(bm).getText());}catch(e){return Promise.resolve(null);}finally{rd.reset();}};
+});}
+function scHit(raw){
+  var md=SMODE[SC.mode],val=md.clean(raw);
+  if(!val){scMsg(md.no||"Barcode tidak dikenali.");return false;}
+  if(navigator.vibrate)navigator.vibrate(60);
+  var cb=SC.cb;closeScan();cb(val);return true;
+}
+function openScan(mode,cb){
+  var md=SMODE[mode];SC.mode=mode;SC.cb=cb;SC.on=true;
+  $("#scan-t").textContent=md.t;$("#scan-h").textContent=md.h;scMsg("Menyiapkan kamera…");
+  $("#scan").classList.add("on");document.body.style.overflow="hidden";
+  var v=$("#scan-v");
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){scMsg("Kamera tidak tersedia di browser ini. Pakai foto atau ketik manual.");return;}
+  Promise.all([navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:"environment"},width:{ideal:1920},height:{ideal:1080}}}),getDecoder(mode)]).then(function(r){
+    if(!SC.on){r[0].getTracks().forEach(function(t){t.stop();});return;}
+    SC.stream=r[0];var dec=r[1];v.srcObject=SC.stream;var pl=v.play();if(pl&&pl.catch)pl.catch(function(){});
+    scMsg("");
+    (function loop(){if(!SC.on)return;
+      if(!SC.busy&&v.readyState>=2){SC.busy=true;dec(v).then(function(t){SC.busy=false;if(t&&SC.on)scHit(t);}).catch(function(){SC.busy=false;});}
+      SC.timer=setTimeout(loop,220);})();
+  }).catch(function(e){var n=e&&e.name;scMsg(n==="NotAllowedError"?"Izin kamera ditolak. Izinkan kamera di pengaturan browser, atau pakai foto.":n==="NotFoundError"?"Kamera tidak ditemukan. Pakai foto atau ketik manual.":"Kamera tidak bisa dibuka. Pakai foto atau ketik manual.");});
+}
+function closeScan(){SC.on=false;clearTimeout(SC.timer);if(SC.stream){SC.stream.getTracks().forEach(function(t){t.stop();});SC.stream=null;}var v=$("#scan-v");v.srcObject=null;$("#scan").classList.remove("on");if(!sheet.classList.contains("on"))document.body.style.overflow="";}
+$("#scan").addEventListener("click",function(e){if(e.target.closest("[data-scan-close]"))closeScan();});
+$("#scan-file").addEventListener("change",function(){
+  var f=this.files&&this.files[0];this.value="";if(!f)return;scMsg("Membaca foto…");
+  var img=new Image(),u=URL.createObjectURL(f);
+  img.onload=function(){getDecoder(SC.mode).then(function(dec){return dec(img);}).then(function(t){URL.revokeObjectURL(u);if(!t){scMsg("Barcode tidak terbaca di foto. Foto lebih dekat, terang, dan tidak miring.");return;}scHit(t);}).catch(function(){URL.revokeObjectURL(u);scMsg("Foto tidak bisa dibaca. Coba lagi atau ketik manual.");});};
+  img.onerror=function(){URL.revokeObjectURL(u);scMsg("File bukan gambar.");};img.src=u;
+});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&SC.on){e.stopPropagation();closeScan();}},true);
+document.addEventListener("click",function(e){
+  var b=e.target.closest("[data-scan]");if(!b)return;e.preventDefault();
+  var inp=b.parentNode.querySelector("input"),mode=b.dataset.scan;
+  openScan(mode,function(val){inp.value=val;inp.dispatchEvent(new Event("input",{bubbles:true}));toast(mode==="vin"?"VIN terisi: "+val:mode==="ticket"?"Kode tiket terisi":"Nomor part terisi");
+    if(inp.id==="st-id"){var ph=$("#st-phone");if(ph.value.trim())checkStatus();else ph.focus();}});
+});
+(function(){var q=location.search.match(/[?&]t=([A-Za-z0-9-]+)/);if(q){var c=cleanTicket(decodeURIComponent(q[1]));if(c){$("#st-id").value=c;setTimeout(function(){var s=document.getElementById("tracking");if(s)s.scrollIntoView({behavior:"smooth"});$("#st-phone").focus({preventScroll:true});},400);}}})();
 
 var tt;function toast(s){var t=$("#toast");t.textContent=s;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on");},2600);}
 var rev=$$(".reveal");
