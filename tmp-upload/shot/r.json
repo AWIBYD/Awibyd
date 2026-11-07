@@ -1,0 +1,38 @@
+{
+ "home": {
+  "video": 1,
+  "src": "denza-z9-gt-review-makassar.mp4",
+  "poster": "denza-z9-gt-video-poster-576x1024.webp",
+  "vfile": "200 5158786",
+  "yt": 0,
+  "h1": "Dealer Resmi BYD & Denza Makassar",
+  "phpErr": false,
+  "badge": true,
+  "jam": true,
+  "status": 200
+ },
+ "z9": {
+  "video": 1,
+  "src": "denza-z9-gt-review-makassar.mp4",
+  "poster": "denza-z9-gt-video-poster-576x1024.webp",
+  "vfile": "200 5158786",
+  "yt": 0,
+  "h1": "BYD Denza Z9 GT Makassar - Harga OTR Resmi",
+  "phpErr": false,
+  "badge": true,
+  "jam": true,
+  "status": 200
+ },
+ "d9": {
+  "video": 1,
+  "src": "denza-d9-video-makassar.mp4",
+  "poster": "denza-d9-video-poster-1024x576.webp",
+  "vfile": "200 2994599",
+  "yt": 0,
+  "h1": "BYD Denza D9 Makassar - Harga OTR Resmi",
+  "phpErr": false,
+  "badge": true,
+  "jam": true,
+  "status": 200
+ }
+}
