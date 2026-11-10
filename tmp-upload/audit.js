@@ -1,9 +1,16 @@
-const fs=require('fs');
-const get=async u=>{try{return await (await fetch(u,{headers:{'user-agent':'AWI-audit'}})).text()}catch(e){return ''}};
-(async()=>{const out=[];
- const si=await get('https://byd-makassar.id/sitemap_index.xml');let urls=['https://byd-makassar.id/llms.txt'];
- for(const m of [...si.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1])){const x=await get(m);urls.push(...[...x.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]).filter(u=>!/\.(webp|jpe?g|png)$/i.test(u)));}
- for(const u of [...new Set(urls)]){const h=await get(u);const t=h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
-  for(const m of t.matchAll(/atto[\s-]?2\b/gi)){out.push({u:u.replace('https://byd-makassar.id',''),c:t.slice(Math.max(0,m.index-140),m.index+220)});}
-  await new Promise(r=>setTimeout(r,400));}
- fs.writeFileSync('tmp-upload/shot/a2grep.json',JSON.stringify(out));})();
+const { chromium } = require('playwright'); const fs=require('fs');
+(async () => {
+  const b = await chromium.launch(); const out={};
+  const p = await b.newPage({ viewport: { width: 412, height: 900 }, deviceScaleFactor: 2, isMobile: true });
+  await p.goto('https://byd-makassar.id/model/byd-atto-2/?nc='+Date.now(), { waitUntil: 'load', timeout: 90000 }); await p.waitForTimeout(3000);
+  out.a2 = await p.evaluate(()=>{const t=document.body.innerText;return {title:document.title, desc:(document.querySelector('meta[name=description]')||{}).content, old:['4.310','45,12','290 Nm','8,3 detik','R16','65 kW','1.675','Roda depan'].filter(x=>t.includes(x)), has:['510 km','57,9 kWh','4.330','Cosmos Black','Harbour Grey','9,6 detik','215/60 R17','20.000 km'].filter(x=>t.includes(x)), faqLd:[...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>s.textContent).filter(s=>/FAQPage/.test(s)).map(s=>/510 km/.test(s)?'faq-new':(/380 km/.test(s)?'faq-OLD':'faq-?'))}});
+  const shot=async(sel,name,dy=-120)=>{const e=await p.$(sel); if(!e) return; await e.evaluate(x=>x.scrollIntoView({block:'start'})); await p.evaluate(d=>window.scrollBy(0,d),dy); await p.waitForTimeout(900); await p.screenshot({path:`tmp-upload/shot/${name}.jpg`,type:'jpeg',quality:60});};
+  const byText=async(t)=>{const h=await p.$(`xpath=//h2[contains(., "${t}")]`); return h;};
+  for (const [t,n] of [['Hingga 510 km','a1'],['Dynamic atau Premium','a2'],['3 Pilihan Warna','a3'],['Spesifikasi Lengkap','a4']]) { const h=await byText(t); if(h){ await h.evaluate(x=>x.scrollIntoView({block:'start'})); await p.evaluate(()=>window.scrollBy(0,-120)); await p.waitForTimeout(900); await p.screenshot({path:`tmp-upload/shot/${n}.jpg`,type:'jpeg',quality:60}); } }
+  const h=await p.$('xpath=//h2[contains(., "Spesifikasi Lengkap")]'); if(h){await h.evaluate(x=>x.scrollIntoView({block:'start'})); await p.evaluate(()=>window.scrollBy(0,700)); await p.waitForTimeout(600); await p.screenshot({path:'tmp-upload/shot/a5.jpg',type:'jpeg',quality:60});}
+  const q = await b.newPage({ viewport: { width: 412, height: 900 }, deviceScaleFactor: 2, isMobile: true });
+  await q.goto('https://byd-makassar.id/?nc='+Date.now(), { waitUntil: 'load', timeout: 90000 }); await q.waitForTimeout(3000);
+  out.home = await q.evaluate(()=>{const t=document.body.innerText;return {old:t.includes('4.310'), new:['Jarak tempuh hingga 510 km','57,9 kWh','SUV listrik 510 km'].filter(x=>t.includes(x))}});
+  const li=await q.$('xpath=//li[contains(., "Jarak tempuh hingga 510 km")]'); if(li){await li.evaluate(x=>x.scrollIntoView({block:'center'})); await q.waitForTimeout(900); await q.screenshot({path:'tmp-upload/shot/h1.jpg',type:'jpeg',quality:60});}
+  fs.writeFileSync('tmp-upload/shot/r.json', JSON.stringify(out,null,1)); await b.close();
+})();
