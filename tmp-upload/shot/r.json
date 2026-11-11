@@ -1,0 +1,29 @@
+{
+ "sim": {
+  "tdp": "Rp67.900.000",
+  "min": "Rp3.967.000",
+  "logos": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "jel": {
+  "tdp": "Rp67.900.000",
+  "c": "Rp3.967.000",
+  "logos": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "errs": []
+}
