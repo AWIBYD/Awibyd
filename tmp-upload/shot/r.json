@@ -1,0 +1,69 @@
+{
+ "jelajah": {
+  "hemat": 15,
+  "kredit": 18,
+  "year": "Rp20.491.956",
+  "status": 200,
+  "errs": []
+ },
+ "hemat": {
+  "models": [
+   "BYD Atto 1 Standard",
+   "BYD Atto 1 Dynamic",
+   "BYD Atto 1 Premium",
+   "BYD Atto 2 Dynamic (inden)",
+   "BYD Atto 2 Premium (inden)",
+   "BYD Atto 3 Advanced Plus",
+   "BYD M6 Standard (NIK 2026)",
+   "BYD M6 Superior (NIK 2026)",
+   "BYD M6 Superior Captain Seat (NIK 2026)",
+   "BYD M6 Superior (NIK 2025)",
+   "BYD M6 Superior Captain Seat (NIK 2025)",
+   "BYD Seal Premium Ext 2026",
+   "BYD Sealion 7 Premium Ext 2026",
+   "Denza D9",
+   "Denza Z9 GT"
+  ],
+  "year": "Rp 20.491.956",
+  "status": 200,
+  "errs": []
+ },
+ "charging": {
+  "models": [
+   "Atto 1",
+   "Atto 2 (inden)",
+   "Atto 3",
+   "M6",
+   "M6 DM (PHEV)",
+   "Seal",
+   "Sealion 7",
+   "Denza D9",
+   "Denza Z9 GT"
+  ],
+  "chip": "Baterai: 30.08 kWhJarak: ±300 kmMaks DC: 30 kW",
+  "status": 200,
+  "errs": []
+ },
+ "kredit": {
+  "models": [
+   "BYD Atto 1",
+   "BYD M6 DM",
+   "BYD M6",
+   "BYD Atto 3",
+   "BYD Seal",
+   "BYD Sealion 7",
+   "Denza D9",
+   "Denza Z9 GT"
+  ],
+  "m6dm": [
+   "Classic Standard",
+   "Classic Dynamic",
+   "Cross Advanced",
+   "Cross Superior 7 Seater",
+   "Superior Captain Seat"
+  ],
+  "tdp": "Rp49.210.000",
+  "status": 200,
+  "errs": []
+ }
+}
