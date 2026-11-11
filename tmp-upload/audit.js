@@ -1,0 +1,11 @@
+const { chromium } = require('playwright'); const fs=require('fs');
+const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
+(async()=>{await fetch('https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x='+Date.now());await new Promise(r=>setTimeout(r,2500));const b=await chromium.launch();
+const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const p=await c.newPage();
+const errs=[],bad=[];p.on('pageerror',e=>errs.push(String(e).slice(0,160)));p.on('response',r=>{if(r.status()>=400)bad.push(r.status()+' '+r.url().slice(0,100))});
+const r=await p.goto('https://byd-makassar.id/jelajah/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(2000);
+const o={status:r.status()};
+await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('.fx').forEach(e=>e.classList.add('in'));});await p.waitForTimeout(800);
+o.h=await p.evaluate(()=>({year:document.getElementById('hYear')&&document.getElementById('hYear').textContent,meta:document.getElementById('hMeta')&&document.getElementById('hMeta').textContent,slides:document.querySelectorAll('.sl:not([data-c])').length,ov:document.documentElement.scrollWidth-innerWidth}));
+const el=await p.$('#hemat');if(el)await el.screenshot({path:'tmp-upload/shot/h.jpg',type:'jpeg',quality:60});
+o.errs=errs;o.bad=bad.slice(0,8);fs.writeFileSync('tmp-upload/shot/r.json',JSON.stringify(o,null,1));await b.close();})();
