@@ -4,9 +4,9 @@ const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, l
 const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const out={};const errs=[];
 let p=await c.newPage();p.on('pageerror',e=>errs.push(String(e).slice(0,160)));
 await p.goto('https://byd-makassar.id/simulasi-kredit/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(2000);
-await p.evaluate(()=>{document.querySelectorAll('.awid-leas img').forEach(i=>i.loading='eager');document.getElementById('dp-rendah').scrollIntoView()});await p.waitForTimeout(2500);
+await p.evaluate(()=>{document.getElementById('dp-rendah').scrollIntoView()});await p.waitForTimeout(2500);
 await p.click('#awid-dp [data-d="m"]');await p.waitForTimeout(400);
-out.sim={tdp:await p.textContent('#awid-tdp'),min:await p.textContent('#awid-min'),logos:await p.$$eval('.awid-leas img',a=>a.map(i=>i.complete&&i.naturalWidth>0))};
+out.sim={tdp:await p.textContent('#awid-tdp'),min:await p.textContent('#awid-min'),logos:await p.$$eval('.awid-leas img',a=>a.map(i=>(i.currentSrc||i.src).slice(-30)+' '+i.naturalWidth))};
 const el=await p.$('#dp-rendah');await el.screenshot({path:'tmp-upload/shot/s.jpg',type:'jpeg',quality:60});await p.close();
 p=await c.newPage();p.on('pageerror',e=>errs.push(String(e).slice(0,160)));
 await p.goto('https://byd-makassar.id/jelajah/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(1500);
