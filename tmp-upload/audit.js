@@ -1,0 +1,20 @@
+const { chromium } = require('playwright'); const fs=require('fs');
+const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
+(async () => {
+  const b = await chromium.launch(); const out={};
+  const c = await b.newContext({ viewport:{width:390,height:844}, deviceScaleFactor:2, isMobile:true, userAgent:UA });
+  const p = await c.newPage(); const errs=[]; p.on('pageerror',e=>errs.push(String(e).slice(0,150)));
+  await p.goto('https://byd-makassar.id/?nc='+Date.now(), { waitUntil: 'domcontentloaded', timeout: 90000 });
+  await p.waitForTimeout(1500); out.at15=await p.evaluate(()=>!!document.getElementById('awi-wel'));
+  await p.waitForTimeout(2800); out.at43=await p.evaluate(()=>{const w=document.getElementById('awi-wel');const i=w&&w.querySelector('.w-awi');return {shown:!!w,img:i?i.complete&&i.naturalWidth:0}});
+  await p.screenshot({path:'tmp-upload/shot/w1.jpg',type:'jpeg',quality:60});
+  out.mp3=await p.evaluate(async()=>{const r=await fetch('https://byd-makassar.id/wp-content/uploads/2026/11/awi-byd-haka-auto-karebosi-jingle.mp3',{method:'HEAD'});return r.status+' '+r.headers.get('content-type')});
+  await p.waitForTimeout(5500); out.closed=await p.evaluate(()=>!document.getElementById('awi-wel')&&document.documentElement.style.overflow==='');
+  await p.screenshot({path:'tmp-upload/shot/w2.jpg',type:'jpeg',quality:60});
+  await p.goto('https://byd-makassar.id/?nc='+Date.now(), { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(1500); out.again=await p.evaluate(()=>!!document.getElementById('awi-wel'));
+  const c2 = await b.newContext({ viewport:{width:390,height:844}, isMobile:true, userAgent:UA });
+  const q=await c2.newPage(); await q.goto('https://byd-makassar.id/simulasi-kredit/?nc='+Date.now(),{waitUntil:'domcontentloaded'}); await q.waitForTimeout(1500); out.otherPage=await q.evaluate(()=>!!document.getElementById('awi-wel')||!!document.getElementById('awi-wel-tpl'));
+  const c3 = await b.newContext({ userAgent:'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' });
+  const g=await c3.newPage(); await g.goto('https://byd-makassar.id/?nc='+Date.now(),{waitUntil:'domcontentloaded'}); await g.waitForTimeout(1500); out.googlebot=await g.evaluate(()=>!!document.getElementById('awi-wel'));
+  out.errs=errs; fs.writeFileSync('tmp-upload/shot/r.json', JSON.stringify(out,null,1)); await b.close();
+})();
