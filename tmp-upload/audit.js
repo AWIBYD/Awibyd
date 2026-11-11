@@ -1,6 +1,13 @@
-const fs=require('fs');
-(async()=>{const h=await (await fetch('https://byd-makassar.id/?nc='+Date.now(),{headers:{'user-agent':'Mozilla/5.0 (Linux; Android 13) Chrome/120 Mobile'}})).text();
-const head=h.slice(0,h.indexOf('</head>'));
-const out=[];const re=/<script[^>]*>[\s\S]*?<\/script>/g;let m;while((m=re.exec(head))){if(/gtag|googletagmanager|AW-|G-|conversion|wa\.me/i.test(m[0]))out.push(m[0].slice(0,3000));}
-const ico=[...head.matchAll(/<link[^>]+rel="(?:icon|apple-touch-icon)"[^>]*>/g)].map(x=>x[0]);
-fs.writeFileSync('tmp-upload/shot/r.json',JSON.stringify({scripts:out,ico},null,1));})();
+const { chromium } = require('playwright'); const fs=require('fs');
+const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
+(async()=>{const b=await chromium.launch();const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const p=await c.newPage();
+const errs=[],bad=[];p.on('pageerror',e=>errs.push(String(e).slice(0,160)));p.on('response',r=>{if(r.status()>=400)bad.push(r.status()+' '+r.url().slice(0,100))});
+const r=await p.goto('https://byd-makassar.id/jelajah/?nc='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(2500);
+const out={status:r.status(),title:await p.title()};
+out.info=await p.evaluate(()=>({cards:document.querySelectorAll('.card').length,heroImgs:[...document.querySelectorAll('#heroBg img')].map(i=>i.complete&&i.naturalWidth>0),gtag:typeof gtag,themeHeader:!!document.querySelector('.dealer_top'),ov:document.documentElement.scrollWidth-innerWidth}));
+await p.screenshot({path:'tmp-upload/shot/j1.jpg',type:'jpeg',quality:60});
+await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';document.getElementById('pilih').scrollIntoView()});await p.waitForTimeout(1200);await p.screenshot({path:'tmp-upload/shot/j2.jpg',type:'jpeg',quality:60});
+const d=await p.evaluate(()=>{const e=document.getElementById('denza');return e.offsetTop+(e.offsetHeight-innerHeight)*0.9});await p.evaluate(y=>scrollTo(0,y),d);await p.waitForTimeout(1500);await p.screenshot({path:'tmp-upload/shot/j3.jpg',type:'jpeg',quality:60});
+await p.evaluate(()=>document.getElementById('awi').scrollIntoView());await p.waitForTimeout(1500);await p.screenshot({path:'tmp-upload/shot/j4.jpg',type:'jpeg',quality:60});
+out.cardImgs=await p.evaluate(async()=>{const l=document.getElementById('lineup');for(let i=0;i<10;i++){l.scrollLeft=i*300;await new Promise(r=>setTimeout(r,250));}return [...document.querySelectorAll('.card img')].map(i=>i.complete&&i.naturalWidth>0)});
+out.errs=errs;out.bad=bad.slice(0,8);fs.writeFileSync('tmp-upload/shot/r.json',JSON.stringify(out,null,1));await b.close();})();
