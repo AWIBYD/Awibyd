@@ -1,0 +1,17 @@
+{
+ "r": {
+  "has": true,
+  "raw": false,
+  "tdp": "Rp34.450.000",
+  "min": "Rp5.022.000",
+  "old": true,
+  "desc": "Simulasi kredit BYD Makassar: paket DP rendah mulai 15%, cicilan Atto 1 mulai Rp5 jutaan per bulan. Hitung DP, tenor 1–5 tahun & angsuran, lalu chat AWI.",
+  "faq": true,
+  "bank": false
+ },
+ "errs": [],
+ "m6": [
+  "Rp87.050.000",
+  "Rp8.314.000"
+ ]
+}
