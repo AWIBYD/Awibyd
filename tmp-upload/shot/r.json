@@ -1,15 +1,31 @@
 {
- "scripts": [
-  "<script id=\"google_gtagjs-js\" src=\"https://www.googletagmanager.com/gtag/js?id=GT-KVMWNCLM?async=true\" async></script>",
-  "<script id=\"google_gtagjs-js-after\">\nwindow.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}\ngtag(\"set\",\"linker\",{\"domains\":[\"byd-makassar.id\"]});\ngtag(\"js\", new Date());\ngtag(\"set\", \"developer_id.dZTNiMT\", true);\ngtag(\"config\", \"GT-KVMWNCLM\", {\"googlesitekit_post_type\":\"page\"});\ngtag(\"config\", \"AW-17750605097\");\n window._googlesitekit = window._googlesitekit || {}; window._googlesitekit.throttledEvents = []; window._googlesitekit.gtagEvent = (name, data) => { var key = JSON.stringify( { name, data } ); if ( !! window._googlesitekit.throttledEvents[ key ] ) { return; } window._googlesitekit.throttledEvents[ key ] = true; setTimeout( () => { delete window._googlesitekit.throttledEvents[ key ]; }, 5 ); gtag( \"event\", name, { ...data, event_source: \"site-kit\", ...( data && data.user_data ? {\"developer_id.dZjRkOT\":true} : {} ) } ); }; \n//# sourceURL=google_gtagjs-js-after\n</script>",
-  "<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-18459895779\"></script>",
-  "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n  gtag('config', 'AW-18459895779');\r\n</script>",
-  "<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-17836993296\"></script>",
-  "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n  gtag('config', 'AW-17836993296');\r\n\r\n  // Konversi: setiap klik link WhatsApp (wa.me / api.whatsapp.com) di seluruh halaman\r\n  // GANTI LABEL_DISINI dengan Label Konversi dari Google Ads (Sasaran > Konversi)\r\n  document.addEventListener('click', function (e) {\r\n    var a = e.target.closest && e.target.closest('a[href]');\r\n    if (!a) return;\r\n    var href = a.getAttribute('href') || '';\r\n    if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('whatsapp://') > -1) {\r\n      gtag('event', 'conversion', {\r\n        'send_to': 'AW-17836993296/LABEL_DISINI'\r\n      });\r\n    }\r\n  }, true);\r\n</script>"
+ "status": 200,
+ "title": "Jelajah Mobil Listrik BYD & Denza Makassar | AWI",
+ "info": {
+  "cards": 10,
+  "heroImgs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "gtag": "function",
+  "themeHeader": false,
+  "ov": 0
+ },
+ "cardImgs": [
+  true,
+  true,
+  false,
+  true,
+  false,
+  false,
+  false,
+  true,
+  true,
+  true
  ],
- "ico": [
-  "<link rel=\"icon\" href=\"https://byd-makassar.id/wp-content/uploads/2026/01/cropped-byd-fav-by-kedai-website-32x32.webp\" sizes=\"32x32\" />",
-  "<link rel=\"icon\" href=\"https://byd-makassar.id/wp-content/uploads/2026/01/cropped-byd-fav-by-kedai-website-192x192.webp\" sizes=\"192x192\" />",
-  "<link rel=\"apple-touch-icon\" href=\"https://byd-makassar.id/wp-content/uploads/2026/01/cropped-byd-fav-by-kedai-website-180x180.webp\" />"
- ]
+ "errs": [],
+ "bad": []
 }
