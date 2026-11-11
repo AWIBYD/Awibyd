@@ -1,0 +1,20 @@
+name: Shot
+on:
+  push:
+    paths: ['tmp-upload/shot-trigger.txt']
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tmp-upload/shot/pg
+          UA="Mozilla/5.0 (Linux; Android 13) Chrome/120 Mobile Safari/537.36"
+          curl -sL -A "$UA" https://byd-makassar.id/sitemap_index.xml -o tmp-upload/shot/si.xml
+          for sm in $(grep -o 'https://[^<]*sitemap[^<]*\.xml' tmp-upload/shot/si.xml); do curl -sL -A "$UA" "$sm"; done > tmp-upload/shot/all.xml
+          grep -o '<loc>[^<]*</loc>' tmp-upload/shot/all.xml | sed 's/<[^>]*>//g' | grep -v wp-content > tmp-upload/shot/urls.txt
+          for u in $(grep -iE 'atto|dolphin|seal|m6|denza|z9|d9|ti7|titan|harga|kalkulator' tmp-upload/shot/urls.txt); do f=$(echo "$u" | sed 's#https://byd-makassar.id/##; s#/$##; s#/#_#g'); curl -sL -A "$UA" "$u" -o "tmp-upload/shot/pg/${f:-home}.html"; done
+          git config user.name awi-bot; git config user.email actions@users.noreply.github.com
+          git add tmp-upload/shot; git commit -m shot; git push
