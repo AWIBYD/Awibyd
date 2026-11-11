@@ -1,8 +1,8 @@
 const { chromium } = require('playwright'); const fs=require('fs');
 const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
-(async()=>{const b=await chromium.launch();const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const p=await c.newPage();
+(async()=>{await fetch('https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x='+Date.now());await new Promise(r=>setTimeout(r,2500));const b=await chromium.launch();const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const p=await c.newPage();
 const errs=[],bad=[];p.on('pageerror',e=>errs.push(String(e).slice(0,160)));p.on('response',r=>{if(r.status()>=400)bad.push(r.status()+' '+r.url().slice(0,100))});
-const r=await p.goto('https://byd-makassar.id/jelajah/?nc='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(2500);
+const r=await p.goto('https://byd-makassar.id/jelajah/',{waitUntil:'load',timeout:90000});await p.waitForTimeout(2500);
 const out={status:r.status(),title:await p.title()};
 out.info=await p.evaluate(()=>({cards:document.querySelectorAll('.card').length,heroImgs:[...document.querySelectorAll('#heroBg img')].map(i=>i.complete&&i.naturalWidth>0),gtag:typeof gtag,themeHeader:!!document.querySelector('.dealer_top'),ov:document.documentElement.scrollWidth-innerWidth}));
 await p.screenshot({path:'tmp-upload/shot/j1.jpg',type:'jpeg',quality:60});
