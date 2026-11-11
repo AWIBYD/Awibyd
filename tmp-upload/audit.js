@@ -1,0 +1,14 @@
+const { chromium } = require('playwright'); const fs=require('fs');
+const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
+(async()=>{await fetch('https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x='+Date.now());await new Promise(r=>setTimeout(r,2500));const b=await chromium.launch();
+const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const out={};
+let p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,160)));
+await p.goto('https://byd-makassar.id/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(3800);
+out.welcome=await p.evaluate(()=>{const i=document.querySelector('.w-awi');if(!i)return null;const r=i.getBoundingClientRect();return {src:(i.currentSrc||i.src).slice(-32),ok:i.complete&&i.naturalWidth>0,box:[r.left|0,r.width|0,innerWidth]}});
+await p.screenshot({path:'tmp-upload/shot/w.jpg',type:'jpeg',quality:60});await p.close();
+p=await c.newPage();p.on('pageerror',e=>errs.push(String(e).slice(0,160)));
+await p.goto('https://byd-makassar.id/jelajah/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(1500);
+await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('.fx').forEach(e=>e.classList.add('in'));document.querySelectorAll('img').forEach(i=>i.loading='eager');document.getElementById('awi').scrollIntoView()});await p.waitForTimeout(2500);
+out.jelajah=await p.evaluate(()=>{const i=document.querySelector('#awi .ph img');const r=i.getBoundingClientRect();return {src:i.src.slice(-32),ok:i.complete&&i.naturalWidth>0,box:[r.left|0,r.width|0,r.height|0]}});
+await p.screenshot({path:'tmp-upload/shot/j.jpg',type:'jpeg',quality:60});
+out.errs=errs;fs.writeFileSync('tmp-upload/shot/r.json',JSON.stringify(out,null,1));await b.close();})();
