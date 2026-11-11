@@ -1,6 +1,6 @@
 const { chromium } = require('playwright'); const fs=require('fs');
 const UA='Mozilla/5.0 (Linux; Android 13; SM-A546E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36';
-(async()=>{await fetch('https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x='+Date.now());await new Promise(r=>setTimeout(r,2500));const b=await chromium.launch();
+(async()=>{await fetch('https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x='+Date.now(),{signal:AbortSignal.timeout(30000)}).catch(()=>{});await new Promise(r=>setTimeout(r,2500));const b=await chromium.launch();
 const c=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,userAgent:UA});const out={};
 let p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,160)));
 await p.goto('https://byd-makassar.id/?v='+Date.now(),{waitUntil:'load',timeout:90000});await p.waitForTimeout(3800);
