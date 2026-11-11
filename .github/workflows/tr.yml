@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           pip install -q faster-whisper==1.0.3
-          python tmp-upload/song/tr.py
+          mkdir -p tmp-upload/shot; python tmp-upload/song/tr.py
           git config user.name awi-bot; git config user.email actions@users.noreply.github.com
           git add tmp-upload/shot/tr.json; git commit -m tr; git push
