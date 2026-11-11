@@ -1,12 +1,17 @@
 {
+ "purge": {
+  "st": 200,
+  "purgeHdr": null,
+  "lsc": null
+ },
  "facebookexternalhit/ https://byd-makassar.id/": {
   "st": 200,
-  "lsc": "hit",
+  "lsc": "miss",
   "qc": null,
   "cf": null,
   "age": null,
   "server": "LiteSpeed",
-  "og": "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+  "og": "https://byd-makassar.id/wp-content/uploads/2026/11/byd-brand-of-the-year-byd-makassar.jpg"
  },
  "facebookexternalhit/ https://byd-makassar.id": {
   "st": 200,
@@ -15,7 +20,7 @@
   "cf": null,
   "age": null,
   "server": "LiteSpeed",
-  "og": "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+  "og": "https://byd-makassar.id/wp-content/uploads/2026/11/byd-brand-of-the-year-byd-makassar.jpg"
  },
  "WhatsApp/2.23.20.0 A https://byd-makassar.id/": {
   "st": 200,
@@ -24,7 +29,7 @@
   "cf": null,
   "age": null,
   "server": "LiteSpeed",
-  "og": "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+  "og": "https://byd-makassar.id/wp-content/uploads/2026/11/byd-brand-of-the-year-byd-makassar.jpg"
  },
  "WhatsApp/2.23.20.0 A https://byd-makassar.id": {
   "st": 200,
@@ -33,11 +38,11 @@
   "cf": null,
   "age": null,
   "server": "LiteSpeed",
-  "og": "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+  "og": "https://byd-makassar.id/wp-content/uploads/2026/11/byd-brand-of-the-year-byd-makassar.jpg"
  },
  "Mozilla/5.0 (Linux;  https://byd-makassar.id/": {
   "st": 200,
-  "lsc": "hit",
+  "lsc": "miss",
   "qc": null,
   "cf": null,
   "age": null,
