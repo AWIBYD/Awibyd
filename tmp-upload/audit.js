@@ -1,7 +1,7 @@
 const fs=require('fs');
 (async()=>{const out={};
-for (const [k,u] of [['home','https://byd-makassar.id/?nc='+Date.now()],['home_plain','https://byd-makassar.id/'],['atto1','https://byd-makassar.id/model/byd-atto-1/']]){
- const h=await (await fetch(u,{headers:{'user-agent':'facebookexternalhit/1.1'}})).text();
- out[k]=[...h.slice(0,h.indexOf('</head>')).matchAll(/<meta[^>]+(?:property|name)="(?:og:image[^"]*|twitter:image)"[^>]*>/g)].map(m=>m[0].replace(/<meta (property|name)=/,'').slice(0,140));}
-const r=await fetch('https://byd-makassar.id/wp-content/uploads/2026/11/byd-brand-of-the-year-byd-makassar.jpg',{method:'HEAD'}); out.img=r.status+' '+r.headers.get('content-type');
+for (const ua of ['facebookexternalhit/1.1','WhatsApp/2.23.20.0 A','Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36']){
+ for (const u of ['https://byd-makassar.id/','https://byd-makassar.id']){
+ const r=await fetch(u,{headers:{'user-agent':ua}});const h=await r.text();
+ out[ua.slice(0,20)+' '+u]={st:r.status,lsc:r.headers.get('x-litespeed-cache'),qc:r.headers.get('x-qc-cache'),cf:r.headers.get('cf-cache-status'),age:r.headers.get('age'),server:r.headers.get('server'),og:(h.match(/og:image" content="([^"]+)/)||[])[1]};}}
 fs.writeFileSync('tmp-upload/shot/r.json',JSON.stringify(out,null,1));})();
