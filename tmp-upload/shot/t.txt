@@ -1,0 +1,8 @@
+      1 Detail Eksterior &amp; Interiornya
+      1 Detail Eksterior &amp; Interiornya Hatchback listrik kompak yang lincah untuk harian","model":"BYD Atto 1","image":"https://byd-makassar.id/wp-content/uploads/2026/10/byd-atto-1-2026-makassar-hero.webp","brand":{"@type":"Brand","name":"BYD"},"offers":{"@type":"AggregateOffer","priceCurrency":"IDR","lowPrice":213000000,"highPrice":260000000}}
+      1 byd-atto-1-detail-eksterior-interior.mp4
+      1 byd-atto-1-detail-video-poster.webp
+HTTP/2 200 
+content-type: video/mp4
+content-length: 6089250
+video found: true
