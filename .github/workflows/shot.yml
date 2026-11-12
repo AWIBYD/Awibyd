@@ -13,10 +13,10 @@ jobs:
       - run: |
           mkdir -p tmp-upload/shot
           curl -s -o /dev/null --max-time 30 "https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x=$(date +%s)"; sleep 4
-          for s in spklu-makassar "" kalkulator-charging-byd; do
+          for s in spklu-makassar; do
             echo "== $s" >> tmp-upload/shot/t.txt
             curl -s -o /tmp/p.html -w "%{http_code}\n" "https://byd-makassar.id/$s/?v=$(date +%s)" >> tmp-upload/shot/t.txt
-            grep -o -E '<title>[^<]*</title>|<meta name="description"[^>]*>|spklu-makassar/[^"]*"|"FAQPage"|id="spkmap"|<link rel="canonical"[^>]*>' /tmp/p.html | sort | uniq -c >> tmp-upload/shot/t.txt
+            grep -o -E '<h1|<h2 style="font-size:clamp|<title>[^<]*</title>|"FAQPage"|id="spkmap"' /tmp/p.html | sort | uniq -c >> tmp-upload/shot/t.txt
           done
           mkdir -p /tmp/pw && cd /tmp/pw && npm i playwright-core@1.47.2 >/dev/null
           cat > s.js <<'J'
