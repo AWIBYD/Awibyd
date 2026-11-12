@@ -1,0 +1,33 @@
+== 
+      1 AW-17750605097
+      1 AW-17836993296
+      1 AW-18459895779
+      4 api.whatsapp.com
+      2 dari halaman
+      1 gtag('config', 'AW-17836993296')
+      1 gtag('config', 'AW-18459895779')
+      1 send_to': 'AW-17836993296/LABEL_DISINI'
+      1 send_to': 'AW-18459895779/Ghy7CITmlvwcEOPPruJE'
+     11 wa.me/6282259452349
+== model/byd-atto-1/
+      1 AW-17750605097
+      1 AW-17836993296
+      1 AW-18459895779
+      4 api.whatsapp.com
+      2 dari halaman
+      1 gtag('config', 'AW-17836993296')
+      1 gtag('config', 'AW-18459895779')
+      1 send_to': 'AW-17836993296/LABEL_DISINI'
+      1 send_to': 'AW-18459895779/Ghy7CITmlvwcEOPPruJE'
+     14 wa.me/6282259452349
+== simulasi-kredit/
+      1 AW-17750605097
+      1 AW-17836993296
+      1 AW-18459895779
+      4 api.whatsapp.com
+      2 dari halaman
+      1 gtag('config', 'AW-17836993296')
+      1 gtag('config', 'AW-18459895779')
+      1 send_to': 'AW-17836993296/LABEL_DISINI'
+      1 send_to': 'AW-18459895779/Ghy7CITmlvwcEOPPruJE'
+      9 wa.me/6282259452349
