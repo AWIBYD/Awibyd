@@ -1,0 +1,64 @@
+== 
+== model/byd-atto-1
+      1 <img alt="BYD Atto 1 - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="BYD Atto 1 - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      1 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== atto-1-vs-brio-makassar
+      1 <img alt="Atto 1 vs Brio Satya: Hitungan Biaya 5 Tahun di Makassar - BYD Haka Karebosi Makassar" src='https://secure.gravatar.com/avatar/0a3064daeef586504d6271d352875b51e50abca2a72f0212bb64ebab0c8d0597?s=86&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/0a3064daeef586504d6271d352875b51e50abca2a72f0212bb64ebab0c8d0597?s=172&#038;d=mm&#038;r=g 2x' class='avatar avatar-86 photo' height='86' width='86' decoding='async'/>
+      1 <img alt="Atto 1 vs Brio Satya: Hitungan Biaya 5 Tahun di Makassar - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Atto 1 vs Brio Satya: Hitungan Biaya 5 Tahun di Makassar - BYD Haka Karebosi Makassar" data-src='https://secure.gravatar.com/avatar/0a3064daeef586504d6271d352875b51e50abca2a72f0212bb64ebab0c8d0597?s=86&#038;d=mm&#038;r=g' data-srcset='https://secure.gravatar.com/avatar/0a3064daeef586504d6271d352875b51e50abca2a72f0212bb64ebab0c8d0597?s=172&#038;d=mm&#038;r=g 2x' class='avatar avatar-86 photo' height='86' width='86' decoding='async'/>
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Atto 1 vs Brio Satya: Hitungan Biaya 5 Tahun di Makassar - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      1 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== simulasi-kredit
+      1 <img alt="Simulasi Kredit - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Simulasi Kredit - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      2 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      2 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== test-drive
+      1 <img alt="Test Drive - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Test Drive - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      2 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      2 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== spklu-makassar
+      3 "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+      1 <img alt="Peta SPKLU Makassar 2026: Lokasi, Tipe Charger &#038; Biaya Cas - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Peta SPKLU Makassar 2026: Lokasi, Tipe Charger &#038; Biaya Cas - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      2 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      2 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== kalkulator-hemat
+      1 <img alt="Kalkulator Hemat - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Kalkulator Hemat - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      2 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      2 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== harga-byd-makassar
+      3 "https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg"
+      1 <img alt="Daftar Harga Mobil BYD Makassar 2026 - BYD Haka Karebosi Makassar" width="300" height="200" src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      1 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" alt="Daftar Harga Mobil BYD Makassar 2026 - BYD Haka Karebosi Makassar" width="300" height="200" data-src="https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp" />
+      2 <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="300" data-src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 <img data-no-lazy="1" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar-50x50.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" width="40" height="40"/>
+      2 <img width="200" height="300" src="https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg" alt="AWI Sales Consultant BYD Haka Karebosi Makassar" title="A W I" />
+      1 url(https://byd-makassar.id/wp-content/uploads/2025/11/byd-slide-2.webp)
+      1 url(https://byd-makassar.id/wp-content/uploads/2026/05/awi-nyd-makassar.jpg)
+== jelajah
+      1 "https://byd-makassar.id/wp-content/uploads/2026/11/awi-sales-byd-makassar-studio.webp"
+      1 <img loading="lazy" width="620" height="1053" src="https://byd-makassar.id/wp-content/uploads/2026/11/awi-sales-byd-makassar-studio.webp" alt="AWI, Sales Consultant BYD Haka Karebosi Makassar">
