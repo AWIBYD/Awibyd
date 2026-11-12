@@ -1,0 +1,19 @@
+== 
+      1 awi-sales-byd-makassar-3d-full
+      4 awi-sales-byd-makassar-avatar
+      7 awi-sales-consultant-byd-makassar-profil-2
+== model/byd-atto-1/
+      1 awi-sales-byd-makassar-avatar
+      3 awi-sales-consultant-byd-makassar-profil-2
+== atto-1-vs-brio-makassar/
+      8 awi-sales-byd-makassar-avatar
+      3 awi-sales-consultant-byd-makassar-profil-2
+== simulasi-kredit/
+      1 awi-sales-byd-makassar-avatar
+      5 awi-sales-consultant-byd-makassar-profil-2
+      3 gravatar
+== spklu-makassar/
+      4 awi-sales-byd-makassar-avatar
+      8 awi-sales-consultant-byd-makassar-profil-2
+== jelajah/
+      2 awi-sales-byd-makassar-3d-full
