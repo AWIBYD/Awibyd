@@ -1,0 +1,28 @@
+name: Shot
+on:
+  push:
+    paths: ['tmp-upload/shot-trigger.txt']
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p /tmp/pw && cd /tmp/pw && npm i playwright-core@1.47.2 >/dev/null
+          cat > s.js <<'J'
+          const {chromium}=require('/tmp/pw/node_modules/playwright-core');
+          (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome'});
+          for(const [n,v] of [['m',{width:390,height:844,deviceScaleFactor:2}],['d',{width:1280,height:900}]]){
+          const p=await b.newPage({viewport:{width:v.width,height:v.height},deviceScaleFactor:v.deviceScaleFactor||1});
+          await p.goto('file://'+process.env.GITHUB_WORKSPACE+'/tmp-upload/spk/p.html');await p.waitForTimeout(500);
+          await p.evaluate(()=>document.getElementById('spkmap').scrollIntoView());await p.waitForTimeout(5000);
+          const el=await p.$('#peta');await el.screenshot({path:process.env.GITHUB_WORKSPACE+'/tmp-upload/spk/'+n+'.png'});}
+          await b.close()})();
+          J
+          node s.js
+      - run: |
+          git config user.name awi-bot; git config user.email actions@users.noreply.github.com
+          git add tmp-upload/spk/*.png; git commit -m shot; git push

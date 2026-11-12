@@ -1,0 +1,247 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;background:#0A1220;padding:12px"><div class="spk" id="spk">
+<style>
+.spk{--bg:#0A1220;--p:#101B30;--p2:#0D1728;--ln:#223252;--tx:#E9EEF7;--dm:#93A3C0;--ac:#3DFFC1;--acd:#1E7A5E;--am:#FFB020;--rd:#FF6B6B;--bl:#5AA9FF;background:radial-gradient(1200px 600px at 50% -10%,#14213D 0%,#0A1220 55%);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px 16px 32px;border-radius:20px;margin:0 auto;max-width:1080px;-webkit-font-smoothing:antialiased;line-height:1.5}
+.spk *{box-sizing:border-box}
+.spk h1,.spk h2,.spk h3{color:var(--tx);font-family:"Space Grotesk",-apple-system,Segoe UI,sans-serif;margin:0;line-height:1.25}
+.spk h1{font-size:clamp(24px,4.6vw,36px);font-weight:700;letter-spacing:-.3px}
+.spk h2{font-size:clamp(19px,3vw,24px);font-weight:700;margin-bottom:6px}
+.spk h3{font-size:15px;font-weight:700}
+.spk p{margin:0}
+.spk a{color:var(--ac)}
+.spk .eyb{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:600;color:var(--ac);background:rgba(61,255,193,.08);border:1px solid rgba(61,255,193,.25);padding:5px 10px;border-radius:99px;margin-bottom:12px}
+.spk .lead{color:var(--dm);font-size:15px;margin-top:10px;max-width:720px}
+.spk .kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 6px}
+.spk .kpi div{background:var(--p);border:1px solid var(--ln);border-radius:14px;padding:12px}
+.spk .kpi b{display:block;font-size:22px;color:var(--ac);font-family:"Space Grotesk",sans-serif}
+.spk .kpi span{font-size:12px;color:var(--dm)}
+.spk section{margin-top:30px}
+.spk .sub{color:var(--dm);font-size:14px;margin-bottom:14px}
+.spk .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 12px}
+.spk .chip{appearance:none;border:1px solid var(--ln);background:var(--p2);color:var(--dm);font:600 13px/1 inherit;padding:9px 13px;border-radius:99px;cursor:pointer;font-family:inherit}
+.spk .chip.on{background:var(--ac);border-color:var(--ac);color:#04140F}
+.spk .chip.me{border-color:var(--bl);color:var(--bl)}
+.spk .mapw{position:relative;border:1px solid var(--ln);border-radius:16px;overflow:hidden;background:#0D1728}
+.spk #spkmap{height:440px;width:100%}
+.spk .leg{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--dm);margin-top:10px}
+.spk .leg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.spk .cnt{font-size:13px;color:var(--dm);margin:16px 0 10px}
+.spk .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.spk .card{background:var(--p);border:1px solid var(--ln);border-radius:14px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.spk .card.dl{border-color:var(--am);box-shadow:0 0 0 1px rgba(255,176,32,.25) inset}
+.spk .card .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.spk .card h3{overflow-wrap:anywhere}
+.spk .card .ad{font-size:12.5px;color:var(--dm);overflow-wrap:anywhere}
+.spk .tg{font-size:11px;font-weight:700;padding:4px 8px;border-radius:99px;white-space:nowrap}
+.spk .t-u{background:rgba(61,255,193,.14);color:var(--ac)}
+.spk .t-f{background:rgba(90,169,255,.15);color:var(--bl)}
+.spk .t-m{background:rgba(255,176,32,.15);color:var(--am)}
+.spk .t-a{background:rgba(147,163,192,.15);color:#C3CEE2}
+.spk .cn{display:flex;flex-wrap:wrap;gap:6px}
+.spk .cn span{font-size:11.5px;background:var(--p2);border:1px solid var(--ln);padding:3px 7px;border-radius:7px;color:#C9D4E8}
+.spk .cn span.x{opacity:.55;text-decoration:line-through}
+.spk .act{display:flex;gap:8px;margin-top:auto;padding-top:4px}
+.spk .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-weight:700;font-size:13px;padding:10px 12px;border-radius:10px;border:1px solid var(--ln);color:var(--tx);background:var(--p2);flex:1;text-align:center}
+.spk .btn.wa{background:#25D366;border-color:#25D366;color:#05210F}
+.spk .btn.big{flex:none;padding:14px 18px;font-size:15px}
+.spk .dist{font-size:12px;color:var(--bl);font-weight:700}
+.spk .box{background:var(--p);border:1px solid var(--ln);border-radius:16px;padding:18px}
+.spk .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.spk label{display:block;font-size:12px;color:var(--dm);margin:0 0 6px;font-weight:600}
+.spk select{width:100%;background:var(--p2);border:1px solid var(--ln);color:var(--tx);padding:12px;border-radius:10px;font-size:14.5px;font-family:inherit;-webkit-appearance:none;appearance:none;margin:0 0 12px}
+.spk .res{background:var(--p2);border:1px dashed var(--ln);border-radius:12px;padding:14px;font-size:14px}
+.spk .res b{color:var(--ac)}
+.spk .bar{height:10px;background:#1A2740;border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.spk .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),#2BC8FF);border-radius:99px;transition:width .3s}
+.spk .bar.warn i{background:linear-gradient(90deg,var(--am),var(--rd))}
+.spk .cost{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.spk .cost div{background:var(--p2);border:1px solid var(--ln);border-radius:12px;padding:12px;min-width:0}
+.spk .cost b{display:block;font-size:19px;font-family:"Space Grotesk",sans-serif;overflow-wrap:anywhere}
+.spk .cost span{font-size:12px;color:var(--dm)}
+.spk .cost .h b{color:var(--ac)}.spk .cost .s b{color:var(--bl)}.spk .cost .g b{color:var(--rd)}
+.spk .note{font-size:12px;color:var(--dm);margin-top:10px}
+.spk details{background:var(--p);border:1px solid var(--ln);border-radius:12px;margin-bottom:8px}
+.spk summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:14.5px;list-style:none}
+.spk summary::-webkit-details-marker{display:none}
+.spk summary:after{content:"+";float:right;color:var(--ac);font-size:18px;line-height:1}
+.spk details[open] summary:after{content:"–"}
+.spk details p{padding:0 16px 14px;color:#C9D4E8;font-size:14px}
+.spk .cta{text-align:center;background:linear-gradient(140deg,#123B33,#0F1D35);border:1px solid var(--acd);border-radius:18px;padding:24px 16px}
+.spk .cta p{color:var(--dm);margin:8px auto 16px;max-width:560px;font-size:14px}
+.spk .cta .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.spk .src{font-size:11.5px;color:#7385A5;margin-top:22px}
+.spk .leaflet-popup-content-wrapper,.spk .leaflet-popup-tip{background:#101B30;color:#E9EEF7}
+.spk .leaflet-popup-content{margin:12px 14px;font-size:13px;line-height:1.45}
+.spk .leaflet-popup-content b{color:#3DFFC1}
+.spk .leaflet-container a.leaflet-popup-close-button{color:#93A3C0}
+@media(max-width:760px){.spk .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.spk .grid,.spk .two{grid-template-columns:minmax(0,1fr)}.spk #spkmap{height:360px}.spk .cost b{font-size:16px}}
+@media(max-width:400px){.spk .cost{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<span class="eyb">⚡ Data diperbarui 12 November 2026</span>
+<h1>Peta SPKLU Makassar 2026: Lokasi, Tipe Charger &amp; Biaya Cas</h1>
+<p class="lead">Semua titik pengisian mobil listrik umum di Makassar, Gowa, Maros sampai jalur Parepare–Pinrang. Lengkap dengan daya charger, jenis colokan, tombol rute, dan hitungan biaya cas.</p>
+<div class="kpi">
+<div><b id="k1">–</b><span>titik SPKLU di peta</span></div>
+<div><b id="k2">–</b><span>titik di Kota Makassar</span></div>
+<div><b id="k3">–</b><span>titik fast charging DC ≥50 kW</span></div>
+<div><b>180 kW</b><span>daya tertinggi (PLN Karebosi, Hertasning, Maros, Parepare)</span></div>
+</div>
+
+<section id="peta">
+<h2>Cari SPKLU terdekat</h2>
+<p class="sub">Ketuk titik di peta untuk detail &amp; rute. Warna menunjukkan kecepatan charger.</p>
+<div class="chips" id="spkf">
+<button class="chip on" data-f="all">Semua</button>
+<button class="chip" data-f="u">Ultra Fast ≥100 kW</button>
+<button class="chip" data-f="f">Semua DC</button>
+<button class="chip" data-f="a">AC (sambil parkir)</button>
+<button class="chip" data-f="r:mks">Kota Makassar</button>
+<button class="chip" data-f="r:gt">Gowa–Takalar</button>
+<button class="chip" data-f="r:mp">Maros–Pangkep</button>
+<button class="chip" data-f="r:pp">Parepare–Pinrang–Sidrap</button>
+<button class="chip me" id="spkme">📍 Terdekat dari saya</button>
+</div>
+<div class="mapw"><div id="spkmap" role="region" aria-label="Peta SPKLU Makassar"></div></div>
+<div class="leg"><span><i style="background:#3DFFC1"></i>Ultra Fast DC ≥100 kW</span><span><i style="background:#5AA9FF"></i>Fast DC 50–99 kW</span><span><i style="background:#FFB020"></i>DC 25–49 kW</span><span><i style="background:#93A3C0"></i>AC 7–22 kW</span><span><i style="background:#FF5DA2"></i>Showroom BYD Haka Karebosi</span></div>
+<p class="cnt" id="spkcnt"></p>
+<div class="grid" id="spkl"></div>
+</section>
+
+<section id="rute">
+<h2>Rute luar kota: cukup sekali cas?</h2>
+<p class="sub">Pilih mobil dan tujuan. Hitungan memakai jarak tempuh nyata ±80% dari angka resmi (AC menyala, muatan penuh, jalan menanjak).</p>
+<div class="box two">
+<div><label for="spkrm">Mobil BYD / Denza</label><select id="spkrm"></select><label for="spkrr">Tujuan dari Makassar</label><select id="spkrr"></select></div>
+<div class="res" id="spkrres"></div>
+</div>
+</section>
+
+<section id="biaya">
+<h2>Cas di rumah vs SPKLU vs bensin</h2>
+<p class="sub">Kebanyakan pemilik mobil listrik cas di rumah malam hari. SPKLU dipakai saat perjalanan jauh.</p>
+<div class="box">
+<label for="spkcm">Pilih model</label><select id="spkcm"></select>
+<div class="cost">
+<div class="h"><span>Cas penuh di rumah</span><b id="c1">–</b><span>±Rp1.700/kWh</span></div>
+<div class="s"><span>Cas penuh di SPKLU</span><b id="c2">–</b><span>mulai ±Rp2.467/kWh</span></div>
+<div class="g"><span>Bensin jarak sama</span><b id="c3">–</b><span>Pertamax Rp16.300/L, 10 km/L</span></div>
+</div>
+<p class="note" id="c4"></p>
+<p class="note">Tarif SPKLU fast charging bisa ditambah biaya layanan, cek tarif terbaru di aplikasi PLN Mobile. Hitung lebih detail di <a href="https://byd-makassar.id/kalkulator-charging-byd/">Kalkulator Charging BYD</a> dan <a href="https://byd-makassar.id/kalkulator-hemat/">Kalkulator Hemat</a>.</p>
+</div>
+</section>
+
+<section id="faq">
+<h2>Pertanyaan yang sering ditanyakan</h2>
+<div style="margin-top:12px">
+<details><summary>Berapa biaya cas mobil listrik di SPKLU Makassar?</summary><p>Tarif dasar SPKLU PLN tercatat sekitar Rp2.467 per kWh. Untuk fast charging bisa ada tambahan biaya layanan. Contoh: mengisi 30 kWh di SPKLU sekitar Rp74 ribu. Cek tarif terbaru langsung di aplikasi PLN Mobile sebelum mengisi.</p></details>
+<details><summary>Apakah semua SPKLU bisa dipakai mobil BYD?</summary><p>Mobil BYD di Indonesia memakai colokan CCS2 untuk fast charging DC dan Type 2 untuk AC. Hampir semua SPKLU PLN menyediakan keduanya. Colokan CHAdeMO tidak cocok untuk BYD, jadi di peta kami tandai dicoret.</p></details>
+<details><summary>Berapa lama mengisi daya di SPKLU fast charging?</summary><p>Tergantung kemampuan mobil, bukan cuma charger. Contoh BYD Atto 1 Premium (DC maks 40 kW): 20% ke 80% sekitar 35 menit. Model dengan DC lebih besar seperti Sealion 7 (150 kW) bisa lebih cepat. Charger AC 22 kW cocok untuk mengisi sambil kerja, belanja, atau makan.</p></details>
+<details><summary>Lebih hemat cas di rumah atau di SPKLU?</summary><p>Di rumah lebih hemat, sekitar Rp1.700 per kWh untuk tarif rumah tangga non-subsidi, dibanding SPKLU mulai Rp2.467 per kWh. Pola paling praktis: cas di rumah malam hari, SPKLU hanya untuk perjalanan luar kota.</p></details>
+<details><summary>Aman tidak bawa mobil listrik ke Toraja atau Palopo?</summary><p>Aman dengan rencana cas. Jalur Makassar–Parepare–Pinrang punya SPKLU fast charging 180 kW di Maros, Parepare, dan Pinrang. Palopo juga sudah punya SPKLU fast charging. Gunakan simulasi rute di atas, atau konsultasikan rute Anda dengan sales kami.</p></details>
+<details><summary>Bagaimana cara pasang charger di rumah?</summary><p>Yang perlu dicek: daya listrik rumah, jarak panel ke garasi, dan jenis charger. Konsultasikan dengan sales BYD Haka Karebosi via WhatsApp, kami bantu hitungkan kebutuhan daya dan biayanya.</p></details>
+</div>
+</section>
+
+<section>
+<div class="cta">
+<h2>Masih ragu soal charging?</h2>
+<p>Kirim lokasi rumah dan rute harian Anda. Sales kami hitungkan pola cas paling hemat, plus jadwalkan test drive dan coba langsung SPKLU di showroom.</p>
+<div class="row">
+<a class="btn wa big" id="spkw1" href="#" rel="noopener">💬 Konsultasi Charging via WA</a>
+<a class="btn big" id="spkw2" href="#" rel="noopener">🚗 Jadwalkan Test Drive</a>
+</div>
+<p style="margin:14px auto 0;font-size:13px">BYD Haka Karebosi · Jl. Ahmad Yani No. 15 Makassar · WA 0822-5945-2349<br>Senin–Sabtu 08.00–17.00, Minggu 09.00–17.00 WITA</p>
+</div>
+<p class="src">Sumber data lokasi: <a href="https://openchargemap.org/" rel="nofollow noopener">Open Charge Map</a> (CC BY 4.0) dan rilis PLN UID Sulselrabar, dirangkum 12 November 2026. Status ketersediaan bisa berubah, selalu cek status realtime di aplikasi PLN Mobile sebelum berangkat. Peta © kontributor OpenStreetMap.</p>
+</section>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Berapa biaya cas mobil listrik di SPKLU Makassar?","acceptedAnswer":{"@type":"Answer","text":"Tarif dasar SPKLU PLN tercatat sekitar Rp2.467 per kWh. Untuk fast charging bisa ada tambahan biaya layanan. Cek tarif terbaru di aplikasi PLN Mobile."}},{"@type":"Question","name":"Apakah semua SPKLU bisa dipakai mobil BYD?","acceptedAnswer":{"@type":"Answer","text":"Mobil BYD di Indonesia memakai colokan CCS2 untuk fast charging DC dan Type 2 untuk AC. Colokan CHAdeMO tidak cocok untuk BYD."}},{"@type":"Question","name":"Berapa lama mengisi daya di SPKLU fast charging?","acceptedAnswer":{"@type":"Answer","text":"Tergantung kemampuan mobil. Contoh BYD Atto 1 Premium (DC maks 40 kW): 20% ke 80% sekitar 35 menit."}},{"@type":"Question","name":"Lebih hemat cas di rumah atau di SPKLU?","acceptedAnswer":{"@type":"Answer","text":"Di rumah lebih hemat, sekitar Rp1.700 per kWh dibanding SPKLU mulai Rp2.467 per kWh."}},{"@type":"Question","name":"Aman tidak bawa mobil listrik ke Toraja atau Palopo?","acceptedAnswer":{"@type":"Answer","text":"Aman dengan rencana cas. Jalur Makassar–Parepare–Pinrang punya SPKLU fast charging 180 kW di Maros, Parepare, dan Pinrang, dan Palopo juga sudah punya SPKLU fast charging."}},{"@type":"Question","name":"Bagaimana cara pasang charger di rumah?","acceptedAnswer":{"@type":"Answer","text":"Cek daya listrik rumah, jarak panel ke garasi, dan jenis charger. Konsultasikan dengan sales BYD Haka Karebosi via WhatsApp 0822-5945-2349."}}]}</script>
+
+<script>
+(function(){
+var R=document.getElementById('spk');if(!R||R.dataset.init)return;R.dataset.init='1';
+var WA='6282259452349';
+/* [nama, alamat, lat, lng, region, operator, konektor [[tipe,kW,jumlah]], showroom?] tipe: C=CCS2 DC, H=CHAdeMO, A=Type2 AC */
+var S=[
+['BYD Haka Auto Karebosi','Jl. Ahmad Yani No. 15, Makassar',-5.132939,119.409387,'mks','Voltron',[['C',60,2]],1],
+['PLN ULP Karebosi','Jl. Jend. Ahmad Yani, Makassar',-5.132681,119.410701,'mks','PLN',[['C',180,2],['C',100,2]]],
+['Balai Kota Makassar','Jl. Jend. Ahmad Yani, Makassar',-5.133071,119.408097,'mks','PLN',[['C',180,2]]],
+['PLN ULP Makassar Utara','Jl. Gunung Latimojong, Makassar',-5.132096,119.419134,'mks','PLN',[['A',22,1]]],
+['PLN ULP Mattoanging','Jl. Dr. Ratulangi, Makassar',-5.1484,119.415818,'mks','PLN',[['C',200,2],['C',180,2],['C',120,2],['C',60,1],['H',60,1],['A',22,1],['A',7,3]]],
+['SPKLU Volthas','Jl. Metro Tanjung Bunga, Makassar',-5.154926,119.404228,'mks','PLN',[['C',120,4]]],
+['Trans Studio Mall Makassar','Jl. Metro Tanjung Bunga, Makassar',-5.158142,119.395268,'mks','PLN',[['C',50,2],['A',22,2]]],
+['Ciputra School of Business (Terra Charge)','Jl. Sunset Boulevard, CitraLand, Makassar',-5.148323,119.402862,'mks','Terra Charge',[['A',11,2]]],
+['Hotel Grand Asia (Terra Charge)','Jl. Boulevard, Makassar',-5.156039,119.438396,'mks','Terra Charge',[['A',22,1]]],
+['PLN UP3 Makassar Selatan','Jl. Letjen Hertasning, Makassar',-5.1642,119.445365,'mks','PLN',[['C',180,2],['C',120,4],['A',22,1]]],
+['PLN ULP Panakkukang','Jl. Letjen Hertasning, Makassar',-5.164924,119.446446,'mks','PLN',[['A',22,1]]],
+['PLN UID Sulselrabar','Jl. Letjen Hertasning, Makassar',-5.1665,119.447964,'mks','PLN',[['C',180,2]]],
+['Kantor Gubernur Sulawesi Selatan','Jl. Urip Sumoharjo, Makassar',-5.138158,119.451809,'mks','PLN',[['C',25,1],['H',25,1]]],
+['PLN ULP Daya','Jl. Batara Bira, Daya, Makassar',-5.093288,119.512122,'mks','PLN',[['C',180,2]]],
+['PLN ULP Sungguminasa','Jl. Tumanurung, Sungguminasa, Gowa',-5.198557,119.44946,'gt','PLN',[['C',60,1],['H',60,1],['A',22,1]]],
+['Fakultas Teknik Unhas Gowa','Jl. Poros Malino, Gowa',-5.230243,119.502132,'gt','PLN',[['A',22,1]]],
+['PLN ULP Kalebajeng','Jl. Pahlawan, Kalebajeng, Gowa',-5.295104,119.438024,'gt','PLN',[['A',22,2]]],
+['PLN ULP Takalar','Jl. H. Padjonga Dg. Ngalle, Takalar',-5.427956,119.434753,'gt','PLN',[['A',22,1]]],
+['Al Fayyadh Maros','Jl. Poros Makassar–Maros, Maros',-5.038874,119.569785,'mp','PLN',[['A',22,1]]],
+['PLN ULP Maros','Jl. Jend. Sudirman, Maros',-5.006215,119.571606,'mp','PLN',[['C',180,2]]],
+['PLN ULP Pangkep','Jl. KH. Ramli, Pangkajene, Pangkep',-4.835945,119.546916,'mp','PLN',[['A',22,1]]],
+['PLN ULP Parepare','Jl. Veteran, Parepare',-4.0103,119.62315,'pp','PLN',[['C',180,2],['C',50,1],['H',50,1],['A',22,1]]],
+['Cafe Lagota','Jl. Jend. Ahmad Yani, Parepare',-4.01115,119.634633,'pp','PLN',[['C',30,1],['H',30,1]]],
+['PLN ULP Kariango','Jl. Poros Parepare–Pinrang, Pinrang',-3.911303,119.623085,'pp','PLN',[['A',22,1]]],
+['PLN UP3 Pinrang','Jl. Jend. Sukawati, Watang Sawitto, Pinrang',-3.803308,119.649456,'pp','PLN',[['C',180,2],['A',22,2]]],
+['PLN ULP Pangsid','Jl. Bau Massepe, Sidenreng Rappang',-3.926399,119.801275,'pp','PLN',[['C',25,1],['H',25,1]]]
+];
+var RG={mks:'Kota Makassar',gt:'Gowa–Takalar',mp:'Maros–Pangkep',pp:'Parepare–Pinrang–Sidrap'};
+function dcMax(s){var m=0;s[6].forEach(function(c){if(c[0]==='C'&&c[1]>m)m=c[1]});return m}
+function tier(s){var d=dcMax(s);return d>=100?'u':d>=50?'f':d>0?'m':'a'}
+var TC={u:'#3DFFC1',f:'#5AA9FF',m:'#FFB020',a:'#93A3C0'};
+var TL={u:'Ultra Fast',f:'Fast DC',m:'DC',a:'AC'};
+var TK={u:'t-u',f:'t-f',m:'t-m',a:'t-a'};
+function conn(s){return s[6].map(function(c){var n=c[0]==='C'?'CCS2 DC':c[0]==='H'?'CHAdeMO':'Type 2 AC';return '<span'+(c[0]==='H'?' class="x" title="Tidak cocok untuk BYD"':'')+'>'+n+' '+c[1]+' kW ×'+c[2]+'</span>'}).join('')}
+function wa(t){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t)}
+function rute(s){return 'https://www.google.com/maps/dir/?api=1&destination='+s[2]+','+s[3]}
+var $=function(i){return document.getElementById(i)};
+$('k1').textContent=S.length;
+$('k2').textContent=S.filter(function(s){return s[4]==='mks'}).length;
+$('k3').textContent=S.filter(function(s){return dcMax(s)>=50}).length;
+var F='all',ME=null,map=null,MK=[];
+function hav(a,b,c,d){var r=Math.PI/180,x=Math.sin((c-a)*r/2),y=Math.sin((d-b)*r/2),h=x*x+Math.cos(a*r)*Math.cos(c*r)*y*y;return 12742*Math.asin(Math.sqrt(h))}
+function pass(s){if(F==='all')return true;if(F.indexOf('r:')===0)return s[4]===F.slice(2);var t=tier(s);if(F==='f')return t==='f'||t==='u'||t==='m';return t===F}
+function list(){var L=S.map(function(s,i){return{s:s,i:i,d:ME?hav(ME[0],ME[1],s[2],s[3]):null}}).filter(function(o){return pass(o.s)});
+if(ME)L.sort(function(a,b){return a.d-b.d});
+$('spkcnt').textContent=L.length+' titik ditampilkan'+(ME?' · diurutkan dari yang terdekat':'');
+$('spkl').innerHTML=L.map(function(o){var s=o.s,t=tier(s);return '<div class="card'+(s[7]?' dl':'')+'"><div class="top"><div style="min-width:0"><h3>'+(s[7]?'⭐ ':'')+s[0]+'</h3><p class="ad">'+s[1]+' · '+RG[s[4]]+' · '+s[5]+'</p></div><span class="tg '+TK[t]+'">'+TL[t]+(t!=='a'?' '+dcMax(s)+' kW':'')+'</span></div>'+(o.d!==null?'<span class="dist">± '+o.d.toFixed(1)+' km dari Anda</span>':'')+'<div class="cn">'+conn(s)+'</div>'+(s[7]?'<p class="ad" style="color:#FFB020">Isi daya sambil test drive &amp; konsultasi di showroom.</p>':'')+'<div class="act"><a class="btn" href="'+rute(s)+'" target="_blank" rel="noopener">🧭 Rute</a><a class="btn wa" href="'+wa('Halo BYD Haka Karebosi, saya lihat peta SPKLU di website. Saya sering lewat '+s[0]+'. Mau tanya mobil BYD yang cocok dan pola cas-nya.')+'" target="_blank" rel="noopener">💬 Tanya Sales</a></div></div>'}).join('');
+if(map){MK.forEach(function(m){var ok=pass(S[m.i]);if(ok&&!map.hasLayer(m.l))m.l.addTo(map);if(!ok&&map.hasLayer(m.l))map.removeLayer(m.l)});var g=MK.filter(function(m){return pass(S[m.i])}).map(function(m){return [S[m.i][2],S[m.i][3]]});if(ME)g.push(ME);if(F==='all'&&!ME)map.setView([-5.15,119.43],12);else if(g.length)map.fitBounds(g,{padding:[30,30],maxZoom:14})}}
+Array.prototype.forEach.call(document.querySelectorAll('#spkf .chip[data-f]'),function(b){b.addEventListener('click',function(){Array.prototype.forEach.call(document.querySelectorAll('#spkf .chip[data-f]'),function(x){x.classList.remove('on')});b.classList.add('on');F=b.getAttribute('data-f');list()})});
+$('spkme').addEventListener('click',function(){var b=this;if(!navigator.geolocation){b.textContent='📍 Lokasi tidak tersedia';return}b.textContent='📍 Mencari lokasi…';navigator.geolocation.getCurrentPosition(function(p){ME=[p.coords.latitude,p.coords.longitude];b.textContent='📍 Diurutkan terdekat';if(map&&window.L){L.circleMarker(ME,{radius:8,color:'#fff',weight:3,fillColor:'#5AA9FF',fillOpacity:1}).addTo(map).bindPopup('Lokasi Anda')}list()},function(){b.textContent='📍 Izinkan akses lokasi'},{enableHighAccuracy:false,timeout:10000})});
+function initMap(){if(!window.L||map)return;map=L.map('spkmap',{scrollWheelZoom:false,tap:true}).setView([-5.14,119.43],12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+S.forEach(function(s,i){var t=tier(s),col=s[7]?'#FF5DA2':TC[t];var l=L.circleMarker([s[2],s[3]],{radius:s[7]?11:(t==='a'?7:9),color:'#0A1220',weight:2,fillColor:col,fillOpacity:.95});l.bindPopup('<b>'+s[0]+'</b><br>'+s[1]+'<br>'+s[6].map(function(c){return (c[0]==='C'?'CCS2 DC ':c[0]==='H'?'CHAdeMO ':'Type 2 AC ')+c[1]+' kW ×'+c[2]}).join('<br>')+'<br><a href="'+rute(s)+'" target="_blank" rel="noopener">Buka rute →</a>');l.addTo(map);MK.push({i:i,l:l})});
+list()}
+function loadL(){if(window.L){initMap();return}var B=window.SPK_LF||'https://unpkg.com/leaflet@1.9.4/dist/';var c=document.createElement('link');c.rel='stylesheet';c.href=B+'leaflet.css';document.head.appendChild(c);var j=document.createElement('script');j.src=B+'leaflet.js';j.onload=initMap;document.head.appendChild(j)}
+list();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();loadL()}},{rootMargin:'300px'});io.observe($('spkmap'))}else loadL();
+
+/* Model: [nama, kWh baterai, jarak resmi km] sumber: data model byd-makassar.id */
+var M=[['BYD Atto 1 Standard / Dynamic',30.08,300],['BYD Atto 1 Premium',38.88,380],['BYD Atto 2',57.9,510],['BYD Atto 3',49.92,410],['BYD M6 Standard',57.984,450],['BYD M6 Superior',75.616,600],['BYD Seal Premium',82.5,570],['BYD Sealion 7',82.56,567],['Denza D9',115.07,730],['Denza Z9 GT',122.49,701]];
+/* Rute: [tujuan, km sekali jalan, charger di jalur/tujuan, ada DC di jalur?] */
+var T=[['Maros',30,'PLN ULP Maros (DC 180 kW)',1],['Takalar',40,'PLN ULP Takalar (AC 22 kW)',0],['Pangkep',50,'PLN ULP Maros (DC 180 kW), PLN ULP Pangkep (AC 22 kW)',1],['Jeneponto',90,'SPKLU PLN ULP Jeneponto (AC 22 kW)',0],['Parepare',150,'PLN ULP Maros &amp; PLN ULP Parepare (DC 180 kW)',1],['Bulukumba',155,'belum ada data SPKLU terverifikasi di jalur, cek PLN Mobile',0],['Watampone (Bone)',175,'belum ada data SPKLU terverifikasi di jalur, cek PLN Mobile',0],['Pinrang',180,'PLN ULP Parepare &amp; PLN UP3 Pinrang (DC 180 kW)',1],['Sidrap',190,'PLN ULP Parepare (DC 180 kW), PLN ULP Pangsid (DC 25 kW)',1],['Toraja (Rantepao)',320,'PLN ULP Parepare / PLN UP3 Pinrang (DC 180 kW). Di Toraja belum ada data SPKLU terverifikasi',1],['Palopo',365,'PLN ULP Parepare / PLN UP3 Pinrang (DC 180 kW), SPKLU Palopo (DC 50 kW)',1]];
+function opt(el,a){el.innerHTML=a.map(function(x,i){return '<option value="'+i+'">'+x[0]+'</option>'}).join('')}
+opt($('spkrm'),M);opt($('spkcm'),M);
+$('spkrr').innerHTML=T.map(function(x,i){return '<option value="'+i+'">'+x[0]+' (±'+x[1]+' km)</option>'}).join('');
+$('spkrr').value=4;
+function rp(n){return 'Rp'+Math.round(n/1000).toLocaleString('id-ID')+' rb'}
+function route(){var m=M[+$('spkrm').value],t=T[+$('spkrr').value],real=m[2]*.8,p=Math.round(t[1]/real*100),pp=Math.round(2*t[1]/real*100),h='';
+if(p<=85){h+='✅ <b>Sekali jalan aman.</b> ±'+t[1]+' km memakai ±'+p+'% baterai.';h+='<div class="bar"><i style="width:'+Math.min(p,100)+'%"></i></div>';
+h+=pp<=85?'<p style="margin-top:8px">Pulang-pergi (±'+(2*t[1])+' km) juga cukup tanpa cas, sisa baterai ±'+(100-pp)+'%.</p>':'<p style="margin-top:8px">Untuk pulang-pergi (±'+(2*t[1])+' km) perlu cas sekali: '+t[2]+'.</p>'}
+else{h+='⚠️ <b>Perlu cas 1× di perjalanan.</b> ±'+t[1]+' km setara ±'+p+'% baterai.<div class="bar warn"><i style="width:100%"></i></div><p style="margin-top:8px">Titik cas di jalur: '+t[2]+'.</p>'}
+h+='<p class="note">Jarak nyata '+m[0]+' ±'+Math.round(real)+' km (80% dari klaim '+m[2]+' km). Jarak jalan bisa berbeda tergantung rute.</p>';$('spkrres').innerHTML=h}
+function cost(){var m=M[+$('spkcm').value],real=m[2]*.8;$('c1').textContent=rp(m[1]*1700);$('c2').textContent=rp(m[1]*2467);$('c3').textContent=rp(real/10*16300);
+$('c4').innerHTML='Untuk ±'+Math.round(real)+' km: cas di rumah sekitar <b style="color:#3DFFC1">'+rp(real/10*16300-m[1]*1700)+' lebih hemat</b> dibanding bensin.'}
+$('spkrm').addEventListener('change',route);$('spkrr').addEventListener('change',route);$('spkcm').addEventListener('change',cost);route();cost();
+$('spkw1').href=wa('Halo BYD Haka Karebosi, saya lihat Peta SPKLU Makassar di website. Rumah saya di daerah ___. Mau tanya pola charging BYD yang paling praktis.');
+$('spkw2').href=wa('Halo BYD Haka Karebosi, saya mau jadwalkan test drive mobil listrik BYD. Sekalian mau tanya soal charging.');
+})();
+</script>
+</div>
+</body></html>
