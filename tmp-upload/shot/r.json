@@ -9,8 +9,9 @@
    "title": "Tips Melindungi Komponen High Voltage BYD dari Tikus",
    "words": 1084,
    "in_sitemap": true,
-   "inlinks": 2,
+   "inlinks": 3,
    "from": [
+    "/",
     "/charging-garansi-servis-byd-makassar/",
     "/category/tips-otomotif/"
    ]
@@ -23,10 +24,11 @@
    "title": "Test Drive BYD Makassar: Coba Atto 1 Rute ke Maros",
    "words": 1756,
    "in_sitemap": true,
-   "inlinks": 3,
+   "inlinks": 4,
    "from": [
     "/cicilan-atto-1-makassar/",
     "/atto-1-vs-brio-makassar/",
+    "/",
     "/category/panduan-beli-ev/"
    ]
   },
@@ -38,10 +40,11 @@
    "title": "Mobil Listrik BYD Berbunyi Setelah Dimatikan? Ini Sebabnya",
    "words": 1702,
    "in_sitemap": true,
-   "inlinks": 3,
+   "inlinks": 4,
    "from": [
     "/spklu-makassar/",
     "/merawat-baterai-mobil-listrik-byd/",
+    "/",
     "/category/tips-otomotif/"
    ]
   },
@@ -68,8 +71,9 @@
    "title": "Garansi dan Asuransi BYD: Bedanya | BYD Makassar",
    "words": 1220,
    "in_sitemap": true,
-   "inlinks": 2,
+   "inlinks": 3,
    "from": [
+    "/",
     "/charging-garansi-servis-byd-makassar/",
     "/category/panduan-beli-ev/"
    ]
@@ -102,7 +106,7 @@
    "title": "Panduan Beli EV – BYD Makassar",
    "words": 633,
    "in_sitemap": true,
-   "inlinks": 9,
+   "inlinks": 10,
    "from": [
     "/mengenal-ingress-protection-adu-ketangguhan-ip-rating-byd-vs-mobil-konvensional/",
     "/byd-sealion-7-makassar-toraja/",
