@@ -1,8 +1,0 @@
-== spklu-makassar
-200
-      1 "FAQPage"
-      1 <h1
-      1 <h2 style="font-size:clamp
-      1 <title>Peta SPKLU Makassar 2026: Lokasi, Tipe Charger &amp; Biaya Cas</title>
-      1 id="spkmap"
-live: markers,cards,sw,w=[26,26,390,390] errs=[]
