@@ -1,0 +1,19 @@
+name: Shot
+on:
+  push:
+    paths: ['tmp-upload/shot-trigger.txt']
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tmp-upload/shot
+          UA="Mozilla/5.0 (Linux; Android 14) Chrome/120 Mobile Safari/537.36"
+          while read u; do echo "$(curl -s -o /dev/null -A "$UA" -w '%{http_code} %{redirect_url}' --max-time 20 "$u") $u"; done < tmp-upload/u404.txt > tmp-upload/shot/status.txt
+          for t in posts pages model tags categories; do curl -s -A "$UA" --max-time 30 "https://byd-makassar.id/wp-json/wp/v2/$t?per_page=100&_fields=id,link,slug,count,title" -o tmp-upload/shot/$t.json; done
+          curl -s -A "$UA" --max-time 30 "https://byd-makassar.id/wp-json/wp/v2/types" -o tmp-upload/shot/types.json
+          git config user.name awi-bot; git config user.email actions@users.noreply.github.com
+          git add tmp-upload/shot; git commit -m shot; git push
