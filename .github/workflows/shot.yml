@@ -12,9 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir -p tmp-upload/shot /tmp/pw && cd /tmp/pw && npm i playwright-core@1.47.2 lighthouse@12.2.1 >/dev/null 2>&1
-          cd $GITHUB_WORKSPACE && node tmp-upload/audit/crawl.js || echo CRAWLFAIL >> tmp-upload/shot/err.txt
-          for u in "" model/byd-atto-1/ simulasi-kredit/ spklu-makassar/; do n=$(echo "${u:-home}" | tr -cd 'a-z0-9-'); /tmp/pw/node_modules/.bin/lighthouse "https://byd-makassar.id/$u" --chrome-path=/usr/bin/google-chrome --chrome-flags="--headless=new --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/tmp/lh_$n.json --quiet || true
-          node -e "const r=require('/tmp/lh_$n.json');const o={c:{},a:{}};for(const k in r.categories)o.c[k]=Math.round(r.categories[k].score*100);for(const k of ['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','speed-index','total-byte-weight','render-blocking-resources','unused-javascript','uses-optimized-images','modern-image-formats','offscreen-images','unused-css-rules','server-response-time','dom-size','third-party-summary'])if(r.audits[k])o.a[k]=r.audits[k].displayValue||r.audits[k].score;o.fail=Object.values(r.audits).filter(a=>a.score!==null&&a.score<0.9&&a.scoreDisplayMode!=='informative'&&a.scoreDisplayMode!=='notApplicable'&&a.scoreDisplayMode!=='manual').map(a=>a.id+': '+(a.displayValue||a.score));o.tp=(r.audits['third-party-summary'].details?.items||[]).map(i=>[i.entity?.text||i.entity,Math.round(i.blockingTime),Math.round(i.transferSize/1024)+'KB']).slice(0,10);require('fs').writeFileSync('tmp-upload/shot/lh_$n.json',JSON.stringify(o,null,1))" || true; done
+          cd $GITHUB_WORKSPACE && node tmp-upload/audit/net.js || true; true
       - run: |
           git config user.name awi-bot; git config user.email actions@users.noreply.github.com
           git add tmp-upload/shot; git commit -m shot; git push
