@@ -1,1 +1,0 @@
-[{"label":"purge off","method":"POST","path":"code-snippets/v1/snippets/28","body":{"active":false}},{"label":"chk","method":"GET","path":"code-snippets/v1/snippets?per_page=50"}]
