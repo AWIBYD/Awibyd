@@ -1,0 +1,56 @@
+== https://byd-makassar.id/ total=0.011
+{"v":0.0112,"t":2840,"src":["P#. {\"x\":35,\"y\":513.5,\"width\":341,\"height\":108,\"top\":513.5,\"right\":376,\"bottom\":621.5,\"left\":35}->{\"x\":35,\"y\":533,\"width\":341,\"height\":108,\"top\":533,\"right\":376,\"bottom\":641,\"left\":35}","P#. {\"x\":36,\"y\":633.5,\"width\":340,\"height\":102.375,\"top\":633.5,\"right\":376,\"bottom\":735.875,\"left\":36}->{\"x\":36,\"y\":653,\"width\":340,\"height\":102.375,\"top\":653,\"right\":376,\"bottom\":755.375,\"left\":36}","#text#. {\"x\":35,\"y\":550.5,\"width\":341,\"height\":72,\"top\":550.5,\"right\":376,\"bottom\":622.5,\"left\":35}->{\"x\":35,\"y\":569,\"width\":341,\"height\":72,\"top\":569,\"right\":376,\"bottom\":641,\"left\":35}","DIV#. {\"x\":36,\"y\":755.875,\"width\":340,\"height\":67.125,\"top\":755.875,\"right\":376,\"bottom\":823,\"left\":36}->{\"x\":36,\"y\":775.375,\"width\":340,\"height\":47.625,\"top\":775.375,\"right\":376,\"bottom\":823,\"left\":36}","DIV#.dealer_timework {\"x\":109.9375,\"y\":12,\"width\":180.875,\"height\":30,\"top\":12,\"right\":290.8125,\"bottom\":42,\"left\":109.9375}->{\"x\":103.171875,\"y\":12,\"width\":193.90625,\"height\":30,\"top\":12,\"right\":297.078125,\"bottom\":42,\"left\":103.171875}"]}
+OFFSCREEN-LOADED 30
+{"src":"tps://byd-makassar.id/wp-content/uploads/2025/11/atto-1-Pine-Lime.webp","top":960,"w":975,"lz":"eager","nl":true,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f525.svg","top":1275,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":1530,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":2027,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3036,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3036,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3218,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3399,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3528,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3656,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3785,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":3913,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":4075,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":4235,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":4397,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f3ac.svg","top":5315,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/26a1.svg","top":6083,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f50b.svg","top":6182,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f6e0.svg","top":6281,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/2b50.svg","top":8043,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8144,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8144,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8144,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8144,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8144,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+== https://byd-makassar.id/model/byd-atto-1/ total=0.093
+{"v":0.0935,"t":3468,"src":["DIV#.dealer__clear dealer__photo {\"x\":0,\"y\":777.4375,\"width\":412,\"height\":45.5625,\"top\":777.4375,\"right\":412,\"bottom\":823,\"left\":0}->{\"x\":0,\"y\":657.4375,\"width\":412,\"height\":165.5625,\"top\":657.4375,\"right\":412,\"bottom\":823,\"left\":0}","?"]}
+OFFSCREEN-LOADED 38
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f3ac.svg","top":1834,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/26a1.svg","top":3539,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f50b.svg","top":3638,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://s.w.org/images/core/emoji/17.0.2/svg/1f6e0.svg","top":3737,"w":150,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":5520,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":6880,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":8747,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":9170,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":9937,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":10332,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":10738,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":11442,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":11844,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":12281,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":12666,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":13061,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":13467,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":13862,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=","top":16136,"w":1,"lz":"lazy","nl":false,"ds":true,"done":true}
+{"src":"https://byd-makassar.id/wp-content/uploads/2025/04/m6-300x200.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"https://byd-makassar.id/wp-content/uploads/2025/04/seal-300x200.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":".id/wp-content/uploads/2026/10/byd-m6-dm-makassar-hero-hd-300x200.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"/wp-content/uploads/2026/10/byd-atto-1-2026-makassar-hero-600x400.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"ar.id/wp-content/uploads/2026/10/byd-atto-3-makassar-hero-300x200.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
+{"src":"ttps://byd-makassar.id/wp-content/uploads/2025/04/dolphin-300x200.webp","top":20273,"w":300,"lz":null,"nl":false,"ds":false,"done":true}
