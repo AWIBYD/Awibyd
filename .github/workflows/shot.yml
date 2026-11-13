@@ -14,9 +14,7 @@ jobs:
           mkdir -p tmp-upload/shot /tmp/pw && cd /tmp/pw && npm i playwright-core@1.47.2 lighthouse@12.2.1 >/dev/null 2>&1
           curl -s -o /dev/null --max-time 30 "https://byd-makassar.id/?awi_purge=ea25bc517ab6c5a7&x=$(date +%s)"; sleep 5
           for u in "" model/byd-atto-1/ simulasi-kredit/ spklu-makassar/; do curl -s -o /dev/null "https://byd-makassar.id/$u"; done
-          cd $GITHUB_WORKSPACE && node tmp-upload/audit/verify.js || true
-          for u in "" model/byd-atto-1/ simulasi-kredit/ spklu-makassar/; do n=$(echo "${u:-home}" | tr -cd 'a-z0-9-'); /tmp/pw/node_modules/.bin/lighthouse "https://byd-makassar.id/$u" --chrome-path=/usr/bin/google-chrome --chrome-flags="--headless=new --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/tmp/lh_$n.json --quiet || true
-          node -e "const r=require('/tmp/lh_$n.json');const o={};for(const k in r.categories)o[k]=Math.round(r.categories[k].score*100);for(const k of ['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','total-byte-weight','offscreen-images'])o[k]=r.audits[k].displayValue;console.log('$n',JSON.stringify(o))" >> tmp-upload/shot/lh.txt || true; done
+          cd $GITHUB_WORKSPACE && node tmp-upload/audit/sp.js || true; true
       - run: |
           git config user.name awi-bot; git config user.email actions@users.noreply.github.com
           git add tmp-upload/shot; git commit -m shot; git push

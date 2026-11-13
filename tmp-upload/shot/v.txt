@@ -1,7 +1,0 @@
-https://byd-makassar.id/ ref= {"splash":false,"bunga":false,"lazy":47,"imgs":51,"formbg":"","tenor":"","jkt":0,"emoji":0,"kb":2305,"errs":[]}
-https://byd-makassar.id/?gclid=tes123 ref= {"splash":false,"bunga":false,"lazy":47,"imgs":51,"formbg":"","tenor":"","jkt":0,"emoji":0,"kb":2337,"errs":[]}
-https://byd-makassar.id/ ref=https://www.google.com/ {"splash":false,"bunga":false,"lazy":47,"imgs":51,"formbg":"","tenor":"","jkt":0,"emoji":0,"kb":2337,"errs":[]}
-https://byd-makassar.id/model/byd-atto-1/ ref= {"splash":false,"bunga":false,"lazy":72,"imgs":75,"formbg":"none","tenor":"","jkt":0,"emoji":0,"kb":2242,"errs":["Error: [splide] null is invalid."]}
-https://byd-makassar.id/simulasi-kredit/ ref= {"splash":false,"bunga":false,"lazy":22,"imgs":31,"formbg":"none","tenor":"Bulan ini / 1–3 bulan lagi / Lebih dari 3 bulan","jkt":0,"emoji":0,"kb":1829,"errs":[]}
-https://byd-makassar.id/test-drive/ ref= {"splash":false,"bunga":false,"lazy":22,"imgs":24,"formbg":"none","tenor":"","jkt":0,"emoji":0,"kb":1834,"errs":[]}
-https://byd-makassar.id/model/byd-m6/ ref= {"splash":false,"bunga":false,"lazy":68,"imgs":71,"formbg":"none","tenor":"","jkt":0,"emoji":0,"kb":2079,"errs":["Error: [splide] null is invalid."]}
