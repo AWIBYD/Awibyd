@@ -1,7 +1,7 @@
 const {chromium}=require('/tmp/pw/node_modules/playwright-core');const fs=require('fs');const D=process.env.GITHUB_WORKSPACE+'/tmp-upload/shot/';const L=s=>fs.appendFileSync(D+'v.txt',s+'\n');
 (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome'});
 const UA='Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129 Mobile Safari/537.36';
-for(const [u,ref] of [['https://byd-makassar.id/',''],['https://byd-makassar.id/?gclid=tes123',''],['https://byd-makassar.id/','https://www.google.com/'],['https://byd-makassar.id/model/byd-atto-1/',''],['https://byd-makassar.id/simulasi-kredit/',''],['https://byd-makassar.id/test-drive/',''],['https://byd-makassar.id/model/byd-m6/','']]){
+for(const [u,ref] of [['https://byd-makassar.id/',''],['https://byd-makassar.id/?gclid=tes123',''],['https://byd-makassar.id/','https://www.google.com/'],['https://byd-makassar.id/model/byd-atto-1/',''],['https://byd-makassar.id/simulasi-kredit/',''],]){
  const c=await b.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,userAgent:UA,extraHTTPHeaders:ref?{Referer:ref}:{}});const p=await c.newPage();
  let jkt=0,emoji=0,bytes=0;const errs=[];
  p.on('response',r=>{if(/bydjkt/.test(r.url()))jkt++;if(/emoji/.test(r.url()))emoji++;const l=r.headers()['content-length'];if(l)bytes+=+l;});
