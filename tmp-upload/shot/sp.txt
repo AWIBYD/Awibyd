@@ -1,0 +1,8 @@
+tpl=0 awq=0
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" /><script>WebFontConfig={google:{families:["Poppins:wght@300;400;500;700"]}};if ( typeof WebFont === "object" && typeof WebFont.load === "function" ) { WebFont.load( WebFontConfig ); }</script><script data-optimized="1" src="https://byd-makassar.id/wp-content/plugins/litespeed-cache/assets/js/webfontloader.min.js"></script><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+		<meta name="viewport" content="
+CON log JQMIGRATE: Migrate is installed, version 3.4.1
+wel=false tplInDom=false ss=null
