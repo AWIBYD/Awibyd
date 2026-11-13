@@ -1,0 +1,107 @@
+{
+ "c": {
+  "performance": 37,
+  "accessibility": 81,
+  "best-practices": 79,
+  "seo": 92
+ },
+ "a": {
+  "first-contentful-paint": "3.9 s",
+  "largest-contentful-paint": "16.4 s",
+  "total-blocking-time": "1,370 ms",
+  "cumulative-layout-shift": "0",
+  "speed-index": "6.2 s",
+  "total-byte-weight": "Total size was 2,477 KiB",
+  "render-blocking-resources": null,
+  "unused-javascript": "Potential savings of 625 KiB",
+  "uses-optimized-images": 1,
+  "modern-image-formats": "Potential savings of 219 KiB",
+  "offscreen-images": "Potential savings of 9 KiB",
+  "unused-css-rules": "Potential savings of 24 KiB",
+  "server-response-time": "Root document took 250 ms",
+  "dom-size": "763 elements",
+  "third-party-summary": "Third-party code blocked the main thread for 1,520 ms"
+ },
+ "fail": [
+  "first-contentful-paint: 3.9 s",
+  "largest-contentful-paint: 16.4 s",
+  "speed-index: 6.2 s",
+  "total-blocking-time: 1,370 ms",
+  "max-potential-fid: 850 ms",
+  "interactive: 18.6 s",
+  "third-party-cookies: 10 cookies found",
+  "mainthread-work-breakdown: 4.6 s",
+  "bootup-time: 2.6 s",
+  "font-display: 0.5",
+  "third-party-summary: Third-party code blocked the main thread for 1,520 ms",
+  "aria-progressbar-name: 0",
+  "color-contrast: 0",
+  "frame-title: 0",
+  "link-name: 0",
+  "link-in-text-block: 0",
+  "select-name: 0",
+  "table-fake-caption: 0",
+  "uses-long-cache-ttl: 1 resource found",
+  "offscreen-images: Potential savings of 9 KiB",
+  "unminified-css: Potential savings of 7 KiB",
+  "unused-css-rules: Potential savings of 24 KiB",
+  "unused-javascript: Potential savings of 625 KiB",
+  "modern-image-formats: Potential savings of 219 KiB",
+  "uses-responsive-images: Potential savings of 104 KiB",
+  "legacy-javascript: Potential savings of 8 KiB",
+  "inspector-issues: 0",
+  "crawlable-anchors: 0"
+ ],
+ "tp": [
+  [
+   "Google Tag Manager",
+   1397,
+   "1215KB"
+  ],
+  [
+   "Clarity",
+   124,
+   "28KB"
+  ],
+  [
+   "bydjkt.co.id",
+   0,
+   "565KB"
+  ],
+  [
+   "Google Fonts",
+   0,
+   "75KB"
+  ],
+  [
+   "Google/Doubleclick Ads",
+   0,
+   "14KB"
+  ],
+  [
+   "WordPress",
+   0,
+   "2KB"
+  ],
+  [
+   "Google Analytics",
+   0,
+   "1KB"
+  ],
+  [
+   "Bing Ads",
+   0,
+   "1KB"
+  ],
+  [
+   "Other Google APIs/SDKs",
+   0,
+   "0KB"
+  ],
+  [
+   "wpforms.com",
+   0,
+   "0KB"
+  ]
+ ]
+}

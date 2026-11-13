@@ -1,0 +1,97 @@
+{
+ "c": {
+  "performance": 12,
+  "accessibility": 82,
+  "best-practices": 79,
+  "seo": 92
+ },
+ "a": {
+  "first-contentful-paint": "4.1 s",
+  "largest-contentful-paint": "8.0 s",
+  "total-blocking-time": "1,600 ms",
+  "cumulative-layout-shift": "2.057",
+  "speed-index": "5.4 s",
+  "total-byte-weight": "Total size was 2,531 KiB",
+  "render-blocking-resources": null,
+  "unused-javascript": "Potential savings of 603 KiB",
+  "uses-optimized-images": 1,
+  "modern-image-formats": "Potential savings of 11 KiB",
+  "offscreen-images": "Potential savings of 9 KiB",
+  "unused-css-rules": "Potential savings of 10 KiB",
+  "server-response-time": "Root document took 270 ms",
+  "dom-size": "866 elements",
+  "third-party-summary": "Third-party code blocked the main thread for 1,660 ms"
+ },
+ "fail": [
+  "first-contentful-paint: 4.1 s",
+  "largest-contentful-paint: 8.0 s",
+  "speed-index: 5.4 s",
+  "total-blocking-time: 1,600 ms",
+  "max-potential-fid: 740 ms",
+  "cumulative-layout-shift: 2.057",
+  "interactive: 18.4 s",
+  "third-party-cookies: 10 cookies found",
+  "mainthread-work-breakdown: 5.9 s",
+  "bootup-time: 2.7 s",
+  "font-display: 0.5",
+  "third-party-summary: Third-party code blocked the main thread for 1,660 ms",
+  "color-contrast: 0",
+  "frame-title: 0",
+  "link-name: 0",
+  "link-in-text-block: 0",
+  "table-fake-caption: 0",
+  "target-size: 0",
+  "uses-long-cache-ttl: 2 resources found",
+  "offscreen-images: Potential savings of 9 KiB",
+  "unminified-css: Potential savings of 7 KiB",
+  "unused-css-rules: Potential savings of 10 KiB",
+  "unused-javascript: Potential savings of 603 KiB",
+  "modern-image-formats: Potential savings of 11 KiB",
+  "uses-responsive-images: Potential savings of 608 KiB",
+  "dom-size: 866 elements",
+  "inspector-issues: 0",
+  "crawlable-anchors: 0"
+ ],
+ "tp": [
+  [
+   "Google Tag Manager",
+   1621,
+   "1215KB"
+  ],
+  [
+   "Clarity",
+   42,
+   "28KB"
+  ],
+  [
+   "Google Fonts",
+   0,
+   "81KB"
+  ],
+  [
+   "Google/Doubleclick Ads",
+   0,
+   "13KB"
+  ],
+  [
+   "WordPress",
+   0,
+   "8KB"
+  ],
+  [
+   "Google Analytics",
+   0,
+   "1KB"
+  ],
+  [
+   "Bing Ads",
+   0,
+   "1KB"
+  ],
+  [
+   "Other Google APIs/SDKs",
+   0,
+   "0KB"
+  ]
+ ]
+}
