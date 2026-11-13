@@ -1,0 +1,1 @@
+[{"label":"s25 on","method":"POST","path":"code-snippets/v1/snippets/25","body":{"active":true}},{"label":"del diag","method":"DELETE","path":"code-snippets/v1/snippets/35"},{"label":"del fix","method":"DELETE","path":"code-snippets/v1/snippets/37"}]
