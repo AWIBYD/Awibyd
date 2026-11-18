@@ -1,1 +1,0 @@
-[{"label":"del diag","method":"DELETE","path":"code-snippets/v1/snippets/40"},{"label":"del fix","method":"DELETE","path":"code-snippets/v1/snippets/41"},{"label":"purge off","method":"POST","path":"code-snippets/v1/snippets/28","body":{"active":false}}]
