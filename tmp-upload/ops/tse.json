@@ -1,0 +1,1 @@
+[{"label":"del seo diag","method":"DELETE","path":"code-snippets/v1/snippets/42"},{"label":"del seofix","method":"DELETE","path":"code-snippets/v1/snippets/44"},{"label":"purge off","method":"POST","path":"code-snippets/v1/snippets/28","body":{"active":false}}]
