@@ -3,8 +3,8 @@ const {chromium}=require('/tmp/pw/node_modules/playwright-core');const fs=requir
 for(const u of ['https://byd-makassar.id/model/byd-ti7/','https://byd-makassar.id/keunggulan-byd-ti7-vs-fortuner-pajero-sport-makassar/','https://byd-makassar.id/?p=10833','https://byd-makassar.id/?gclid=x','https://byd-makassar.id/jelajah/']){
  const h=await (await fetch(u+(u.includes('?')?'&':'?')+'nc='+Date.now(),UA)).text();
  const t=h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g,' ');
- L('== '+u+' len='+h.length);
- (h.match(/[^"'\s(]*byd-ti7-[a-z0-9-]+\.(webp|jpg|png)/g)||[]).filter((v,i,a)=>a.indexOf(v)===i).forEach(x=>L('  OLDIMG '+x));
+ L('== '+u+' len='+h.length);(h.match(/.{0,120}byd-ti7-(hero|v2l)[^"']*/g)||[]).slice(0,4).forEach(x=>L('  CTX '+x.replace(/\s+/g,' ')));
+ XX[a-z0-9-]+\.(webp|jpg|png)/g)||[]).filter((v,i,a)=>a.indexOf(v)===i).forEach(x=>L('  OLDIMG '+x));
  (t.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').match(/.{0,70}(160 kW|260 N|Jade Green|Mountain Green|Titanium Grey|Starlight Silver|Obsidian Black).{0,50}/g)||[]).forEach(x=>L('  BAD '+x));
  L('  titan-imgs='+(h.match(/byd-titan-7-dm-[a-z0-9-]+\.webp/g)||[]).length+' tiGrey='+(t.match(/Ti Grey/g)||[]).length+' nebula='+(t.match(/Nebula Silver/g)||[]).length+' 110kW='+(t.match(/110 kW/g)||[]).length);
 }
