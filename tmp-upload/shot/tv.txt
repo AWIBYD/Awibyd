@@ -1,0 +1,13 @@
+== https://byd-makassar.id/model/byd-ti7/ len=214352
+  titan-imgs=51 tiGrey=6 nebula=5 110kW=2
+== https://byd-makassar.id/keunggulan-byd-ti7-vs-fortuner-pajero-sport-makassar/ len=153486
+  titan-imgs=31 tiGrey=4 nebula=1 110kW=1
+== https://byd-makassar.id/?p=10833 len=152430
+  titan-imgs=23 tiGrey=0 nebula=0 110kW=0
+== https://byd-makassar.id/?gclid=x len=187364
+  titan-imgs=15 tiGrey=0 nebula=0 110kW=0
+== https://byd-makassar.id/jelajah/ len=59919
+  titan-imgs=1 tiGrey=0 nebula=0 110kW=0
+model {"broken":[]} errs=["Error: [splide] null is invalid.","Error: [splide] null is invalid.","Error: [splide] null is invalid."]
+kc {"broken":[],"kc":["Premium (FWD DM-i)","Performance (AWD DM-p)"]} errs=[]
+sk {"broken":[],"awid":["Premium (FWD DM-i)","Performance (AWD DM-p)"]} errs=[]
