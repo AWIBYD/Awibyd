@@ -1,8 +1,0 @@
-PILL  pauseOnHover: true, }, perMove : 1, speed : 1000, interval : 3000, cover : false, rewind : true, pagination: false, }).mount(); }); </script> </div> <div class="color__galeri"> <div class="container dealer__clear"> <div class="model__heading"> <div class="model__price"> <i class="icon-dealer-tag"></i> <div>Harga Mulai</div> </div> <h1>BYD TiTAN 7 DM Makassar - Harga OTR Resmi</h1> <div class="model__status"> </div> </div> <div class="color__slide"> </div> </div> </div> <script> document.addEventListener( 'DOMContentLoaded', function () { new Splide( '.color-slide', { 
-len=223445 fitur=true flyerimgs=12
-  P dan AWD · DM-p yang lebih bertenaga di segala medan. Harga: TBA (To Be Announced) , diumumkan resmi saat peluncuran . Dafta
-  P  tenang untuk satu keluarga. Harga BYD TiTAN 7 DM Makassar: TBA (To Be Announced) Harga resmi segera diumumkan. Daftar inde
-  P p; kenyamanan premium Harga OTR Makassar Rp311,4–403,4 juta TBA (To Be Announced) Rp897 juta Butuh 7 penumpang plug-in hybr
-  P TiTAN 7 DM di Makassar? Harga BYD TiTAN 7 DM saat ini masih TBA (To Be Announced) . Harga resmi untuk Indonesia akan diumum
-model {"n":6,"broken":0,"top":6478.59375,"price":["SCRIPT:{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEnti","STYLE:.model__price>div::after{content:\" TBA\";font-weight:800;lett","STRONG:TBA (To Be Announced)","SPAN:TBA","STRONG:TBA (To Be Announced)","STRONG:TBA (To Be Announced)"]} errs=["Error: [splide] null is invalid.","Error: [splide] null is invalid.","Error: [splide] null is invalid."]
-sk []
