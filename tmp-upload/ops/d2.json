@@ -1,3 +1,0 @@
-[
-{"label":"d9 model","method":"GET","path":"wp/v2/model/8073?context=edit&_fields=id,slug,title,content.raw,excerpt.raw,meta,featured_media,yoast_head_json.title,yoast_head_json.description"}
-]

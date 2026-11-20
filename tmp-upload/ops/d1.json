@@ -1,6 +1,0 @@
-[
-{"label":"model list","method":"GET","path":"wp/v2/model?search=denza&per_page=20&context=edit&_fields=id,slug,title,link,status,modified"},
-{"label":"model d9","method":"GET","path":"wp/v2/model?search=d9&per_page=20&context=edit&_fields=id,slug,title,link,status,modified"},
-{"label":"posts d9","method":"GET","path":"wp/v2/posts?search=d9&per_page=20&context=edit&_fields=id,slug,title,link,status"},
-{"label":"pages d9","method":"GET","path":"wp/v2/pages?search=d9&per_page=20&context=edit&_fields=id,slug,title,link,status"}
-]
