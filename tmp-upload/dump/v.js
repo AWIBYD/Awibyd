@@ -7,7 +7,7 @@ for(const [u,n] of pages){const r=await fetch(u+(u.includes('?')?'&':'?')+'nc='+
  for(const m of t.matchAll(/.{0,90}(TBA|belum diumumkan|diumumkan saat|Saat launching|saat harga|harga keluar|harga resmi keluar|belum resmi).{0,110}/g)) L('  OLD '+m[0]);
  const head=h.slice(0,h.indexOf('</head>'));
  if(n==='model'||n==='vs'){L('  TITLE '+(head.match(/<title>(.*?)<\/title>/)||[])[1]);L('  DESC '+(head.match(/<meta name="description" content="([^"]*)"/)||[])[1]);L('  OGIMG '+(head.match(/og:image" content="([^"]*)"/)||[])[1]);
-  L('  LD '+[...head.matchAll(/"@type":"(Product|FAQPage|Question|AggregateOffer|WebPage|BreadcrumbList)"/g)].map(x=>x[1]).join(','));}
+  L('  PRODUCT '+/"@type":"Product"/.test(h)+' AGG '+/AggregateOffer/.test(h));L('  LD '+[...head.matchAll(/"@type":"(Product|FAQPage|Question|AggregateOffer|WebPage|BreadcrumbList)"/g)].map(x=>x[1]).join(','));}
  if(n==='model'){L('  hargaSection='+/id="harga-byd-titan-7-dm"/.test(h)+' khususPerf='+(h.match(/Khusus Performance/g)||[]).length+' faqQ='+(h.match(/"@type":"Question"/g)||[]).length);}
 }
 const b=await chromium.launch({executablePath:'/usr/bin/google-chrome'});
