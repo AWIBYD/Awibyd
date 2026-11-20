@@ -1,0 +1,8 @@
+title=New Denza D9 2026 Makassar: Harga, Advance vs Premium
+desc=New Denza D9 2026 (Danza D9) hadir 2 varian: Advance 730 km &amp; Premium AWD 410 kW. Advance OTR Makassar Rp1,118 M. Tanya AWI harga Premium &amp; test drive.
+ogtitle=New Denza D9 2026 Makassar: Harga, Advance vs Premium
+ogdesc=New Denza D9 2026 (Danza D9) hadir 2 varian: Advance 730 km &amp; Premium AWD 410 kW. Advance OTR Makassar Rp1,118 M. Tanya AWI harga Premium &amp; test drive.
+emptySrc=0
+has410=true hasPremium=true has160=true old150bat=false
+ldjson=2 types="@type":"WebPage","@type":"ReadAction","@type":"ImageObject","@type":"BreadcrumbList","@type":"ListItem","@type":"ListItem","@type":"ListItem","@type":"WebSite","@type":"SearchAction","@type":"EntryPoint","@type":"PropertyValueSpecification","@type":"Organization","@type":"ImageObject","@type":"Product","@type":"Brand","@type":"AggregateOffer"
+imgs {"n":40,"ok":39,"bad":["https://byd-makassar.id/wp-content/uploads/2026/10/denza-d9-makassar-hero-300x200.webp"],"top":13871.6875,"sw":390}
