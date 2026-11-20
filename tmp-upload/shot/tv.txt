@@ -1,3 +1,0 @@
-len=77983 fitur=false flyerimgs=0
-model {"none":1} errs=["ReferenceError: Splide is not defined"]
-sk ["Premium (FWD DM-i)\tIDR TBA","Performance (AWD DM-p)\tIDR TBA"]

@@ -2,7 +2,7 @@ const {chromium}=require('/tmp/pw/node_modules/playwright-core');const fs=requir
 (async()=>{const UA={headers:{'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129 Safari/537.36'}};
 const h=await (await fetch('https://byd-makassar.id/model/byd-ti7/?nc='+Date.now(),UA)).text();
 const t=h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
-L('len='+h.length+' fitur='+(h.includes('awi-titan-fitur-start')||t.includes('6 Fitur Utama'))+' flyerimgs='+(h.match(/byd-titan-7-dm-(dm-p-performa|suspensi-disus|multi-terrain|leopard-u-turn|v2l-camping-flyer|adas-tire)[a-z0-9-]*\.webp/g)||[]).length);
+(h.match(/[\s\S]{0,500}Harga Mulai[\s\S]{0,400}/)||['NOPILL']).forEach(x=>L('PILL '+x.replace(/\s+/g,' ')));L('len='+h.length+' fitur='+(h.includes('awi-titan-fitur-start')||t.includes('6 Fitur Utama'))+' flyerimgs='+(h.match(/byd-titan-7-dm-(dm-p-performa|suspensi-disus|multi-terrain|leopard-u-turn|v2l-camping-flyer|adas-tire)[a-z0-9-]*\.webp/g)||[]).length);
 (t.match(/.{0,60}(TBA|Diumumkan saat peluncuran|Harga resmi Indonesia).{0,60}/g)||[]).forEach(x=>L('  P '+x));
 const b=await chromium.launch({executablePath:'/usr/bin/google-chrome'});
 const c=await b.newContext({viewport:{width:390,height:844},isMobile:true,deviceScaleFactor:1});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(String(e).slice(0,90)));
