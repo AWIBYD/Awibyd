@@ -1,0 +1,23 @@
+name: Dump
+on:
+  push:
+    paths: ['tmp-upload/dump-trigger.txt']
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tmp-upload/dump
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129 Safari/537.36'
+          curl -s -A "$UA" "https://byd-makassar.id/model/byd-ti7/?nc=$(date +%s)" -o tmp-upload/dump/model.html
+          curl -s -A "$UA" "https://byd-makassar.id/keunggulan-byd-ti7-vs-fortuner-pajero-sport-makassar/?nc=$(date +%s)" -o tmp-upload/dump/vs.html
+          curl -s -A "$UA" "https://byd-makassar.id/?p=10833&nc=$(date +%s)" -o tmp-upload/dump/p10833.html
+          curl -s -A "$UA" "https://byd-makassar.id/sitemap_index.xml" -o tmp-upload/dump/sitemap.xml
+          ls -la tmp-upload/dump
+      - run: |
+          git config user.name awi-bot; git config user.email actions@users.noreply.github.com
+          git add tmp-upload/dump; git commit -m dump; git push
