@@ -1,0 +1,21 @@
+== model 200 len=228205
+  TITLE BYD TiTAN 7 DM (Ti7) Makassar: Harga Resmi, Spek &amp; Inden
+  DESC BYD TiTAN 7 DM (Ti7) resmi rilis: mulai Rp639 juta OTR Jakarta. Cek harga OTR Makassar, spek, garansi baterai 8 tahun &amp; inden di dealer resmi BYD Haka Karebosi.
+  OGIMG https://byd-makassar.id/wp-content/uploads/2026/11/byd-titan-7-dm-ti-grey-makassar-hero.webp
+  PRODUCT true AGG true
+  LD WebPage,BreadcrumbList,FAQPage,Question,Question,Question,Question,Question,Question,Question,Question,Question,Question,Question,Product,AggregateOffer
+  hargaSection=true khususPerf=5 faqQ=11
+== vs 200 len=153846
+  OLD TAN 7 DM (OTR Jakarta) Rp639 juta untuk Premium FWD dan Rp739 juta untuk Performance AWD, diumumkan saat peluncuran 20 November 2026. Harga OTR Makassar dikonfirmasi AWI, dan unit bisa dipesan di BYD Haka Karebosi 
+  TITLE BYD TiTAN 7 DM (Ti7) vs Fortuner &amp; Pajero Sport | Makassar
+  DESC BYD TiTAN 7 DM vs Fortuner &amp; Pajero Sport: harga mulai Rp639 juta (OTR Jakarta), harian full listrik, AWD 0-100 km/jam 4,8 detik, garansi baterai 8 tahun.
+  OGIMG https://byd-makassar.id/wp-content/uploads/2026/11/byd-titan-7-dm-ti-grey-makassar-hero.webp
+  PRODUCT false AGG false
+  LD WebPage,BreadcrumbList,FAQPage,Question,Question,Question,Question,Question,Question
+== p10833 200 len=152509
+  OLD rak listrik sekitar 200 km. Namun hingga artikel ini ditulis, harga resminya di Indonesia belum diumumkan dan kapasitas kursinya 5. BYD TiTAN 7 DM memakai sistem DM (Dual Mode) yang lebih fleksibel: di kota jalan li
+  OLD TAN 7 DM (OTR Jakarta) Rp639 juta untuk Premium FWD dan Rp739 juta untuk Performance AWD, diumumkan saat peluncuran 20 November 2026. Unit bisa dipesan di BYD Haka Karebosi Makassar; hubungi Sales Consultant AWI un
+== home 200 len=187479
+  OLD juta (Premium) dan Rp739 juta (Performance); harga OTR Makassar via AWI. Harga BYD Atto 2 diumumkan saat peluncuran. Ketentuan inden mengikuti kebijakan BYD. 9 model BYD &amp; Denza, EV dan PHEV Rp213 jt Harga mula
+  OLD ship Denza Rp2.288.000.000 Inden Dibuka BYD Atto 2 SUV listrik 510 km, segera hadir Harga diumumkan saat peluncuran Inden Dibuka BYD TiTAN 7 DM SUV PHEV 7 kursi, FWD &amp; AWD, resmi meluncur Mulai Rp639 jt (OTR Ja
+harga top=2271.40625 errs=["Error: [splide] null is invalid.","Error: [splide] null is invalid.","Error: [splide] null is invalid."]
