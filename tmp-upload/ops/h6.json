@@ -1,0 +1,1 @@
+[{"label": "off28", "method": "POST", "path": "code-snippets/v1/snippets/28", "body": {"active": false}}, {"label": "del64a", "method": "DELETE", "path": "code-snippets/v1/snippets/64"}, {"label": "del64b", "method": "DELETE", "path": "code-snippets/v1/snippets/64"}]
